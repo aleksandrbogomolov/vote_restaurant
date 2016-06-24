@@ -50,6 +50,13 @@ public class User extends NamedEntity {
     public User() {
     }
 
+    public User(Integer id, String name, String email, String password, Role role) {
+        super(id, name);
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
+
     public User(Integer id, String name, String email, String password, boolean enabled, LocalDateTime registered, Role role) {
         super(id, name);
         this.email = email;
