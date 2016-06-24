@@ -28,23 +28,23 @@ public class JpaUserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    @Transactional
     public boolean delete(int id) {
-
-        return false;
+        return em.createNamedQuery(User.DELETE).setParameter("id", id).executeUpdate() != 0;
     }
 
     @Override
     public User get(int id) {
-        return null;
+        return em.find(User.class, id);
     }
 
     @Override
     public User getByEmail(String email) {
-        return null;
+        return em.createNamedQuery(User.BY_EMAIL, User.class).setParameter("email", email).getSingleResult();
     }
 
     @Override
     public List<User> getAll() {
-        return null;
+        return em.createNamedQuery(User.GET_ALL, User.class).getResultList();
     }
 }

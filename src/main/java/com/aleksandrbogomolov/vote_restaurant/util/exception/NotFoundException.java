@@ -1,0 +1,8 @@
+package com.aleksandrbogomolov.vote_restaurant.util.exception;
+
+public class NotFoundException extends RuntimeException {
+
+    public NotFoundException(String message) {
+        super(message);
+    }
+}

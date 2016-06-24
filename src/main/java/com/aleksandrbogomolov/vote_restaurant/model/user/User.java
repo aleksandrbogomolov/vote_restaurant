@@ -1,25 +1,56 @@
 package com.aleksandrbogomolov.vote_restaurant.model.user;
 
 import com.aleksandrbogomolov.vote_restaurant.model.NamedEntity;
+import com.aleksandrbogomolov.vote_restaurant.util.LocalDateTimePersistenceConverter;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
-import java.time.LocalDate;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
+@NamedQueries({
+        @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=:id"),
+        @NamedQuery(name = User.BY_EMAIL, query = "SELECT u FROM User u WHERE u.email=:email"),
+        @NamedQuery(name = User.GET_ALL, query = "SELECT u FROM User  u ORDER BY u.name")
+})
+@Entity
+@Table(name = "users")
 public class User extends NamedEntity {
 
+    public static final String DELETE = "User.delete";
+    public static final String BY_EMAIL = "User.getByEmail";
+    public static final String GET_ALL = "User.getAll";
+
+    @NotEmpty
+    @Email
+    @Column(name = "email", unique = true)
     private String email;
 
+    @NotEmpty
+    @Length(min = 6)
+    @Column(name = "password")
     private String password;
 
-    private LocalDate registered;
+    @NotNull
+    @Convert(converter = LocalDateTimePersistenceConverter.class)
+    @Column(name = "registered", columnDefinition = "timestamp default now()")
+    private LocalDateTime registered;
 
+    @NotNull
+    @Column(name = "enabled")
     private boolean enabled = true;
 
+    @NotNull
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "role")
     private Role role;
 
     public User() {
     }
 
-    public User(Integer id, String name, String email, String password, boolean enabled, LocalDate registered, Role role) {
+    public User(Integer id, String name, String email, String password, boolean enabled, LocalDateTime registered, Role role) {
         super(id, name);
         this.email = email;
         this.password = password;
@@ -52,11 +83,11 @@ public class User extends NamedEntity {
         this.enabled = enabled;
     }
 
-    public LocalDate getRegistered() {
+    public LocalDateTime getRegistered() {
         return registered;
     }
 
-    public void setRegistered(LocalDate registered) {
+    public void setRegistered(LocalDateTime registered) {
         this.registered = registered;
     }
 
@@ -71,6 +102,8 @@ public class User extends NamedEntity {
     @Override
     public String toString() {
         return "User{" +
+                "id='" + id + '\'' +
+                "name='" + name + '\'' +
                 "email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", enabled=" + enabled +
