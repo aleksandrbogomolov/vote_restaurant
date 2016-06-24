@@ -1,10 +1,10 @@
 package com.aleksandrbogomolov.vote_restaurant.model.user;
 
-import com.aleksandrbogomolov.vote_restaurant.model.NamedIEntity;
+import com.aleksandrbogomolov.vote_restaurant.model.NamedEntity;
 
 import java.time.LocalDate;
 
-public class User extends NamedIEntity {
+public class User extends NamedEntity {
 
     private String email;
 

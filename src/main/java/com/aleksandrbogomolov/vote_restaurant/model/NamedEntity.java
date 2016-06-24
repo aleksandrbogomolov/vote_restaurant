@@ -1,13 +1,13 @@
 package com.aleksandrbogomolov.vote_restaurant.model;
 
-public class NamedIEntity extends BaseEntity {
+public class NamedEntity extends BaseEntity {
 
     protected String name;
 
-    public NamedIEntity() {
+    public NamedEntity() {
     }
 
-    public NamedIEntity(Integer id, String name) {
+    public NamedEntity(Integer id, String name) {
         super(id);
         this.name = name;
     }
@@ -22,7 +22,7 @@ public class NamedIEntity extends BaseEntity {
 
     @Override
     public String toString() {
-        return "NamedIEntity{" +
+        return "NamedEntity{" +
                 "name='" + name + '\'' +
                 '}';
     }

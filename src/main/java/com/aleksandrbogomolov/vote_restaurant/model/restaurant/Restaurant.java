@@ -1,11 +1,11 @@
 package com.aleksandrbogomolov.vote_restaurant.model.restaurant;
 
-import com.aleksandrbogomolov.vote_restaurant.model.NamedIEntity;
+import com.aleksandrbogomolov.vote_restaurant.model.NamedEntity;
 
 import java.time.LocalTime;
 import java.util.Set;
 
-public class Restaurant extends NamedIEntity {
+public class Restaurant extends NamedEntity {
 
     private String address;
 
