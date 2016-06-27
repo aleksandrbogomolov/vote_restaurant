@@ -12,35 +12,35 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserRepository repository;
 
     @Override
     public User save(User user) {
-        return userRepository.save(user);
+        return repository.save(user);
     }
 
     @Override
     public void update(User user) {
-        userRepository.save(user);
+        repository.save(user);
     }
 
     @Override
     public void delete(int id) throws NotFoundException {
-        userRepository.delete(id);
+        repository.delete(id);
     }
 
     @Override
     public User get(int id) {
-        return userRepository.get(id);
+        return repository.get(id);
     }
 
     @Override
     public User getByEmail(String email) throws NotFoundException {
-        return userRepository.getByEmail(email);
+        return repository.getByEmail(email);
     }
 
     @Override
     public List<User> getAll() {
-        return userRepository.getAll();
+        return repository.getAll();
     }
 }
