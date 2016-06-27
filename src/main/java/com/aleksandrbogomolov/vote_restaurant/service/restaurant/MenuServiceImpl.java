@@ -2,7 +2,6 @@ package com.aleksandrbogomolov.vote_restaurant.service.restaurant;
 
 import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Menu;
 import com.aleksandrbogomolov.vote_restaurant.repository.restaurant.MenuRepository;
-import com.aleksandrbogomolov.vote_restaurant.service.BaseService;
 import com.aleksandrbogomolov.vote_restaurant.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class MenuServiceImpl implements BaseService<Menu> {
+public class MenuServiceImpl implements MenuService {
 
     @Autowired
     private MenuRepository repository;

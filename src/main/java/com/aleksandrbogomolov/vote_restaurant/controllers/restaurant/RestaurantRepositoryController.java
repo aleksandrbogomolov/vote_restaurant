@@ -18,15 +18,15 @@ public class RestaurantRepositoryController {
     private BaseService<Restaurant> service;
 
     public Restaurant create(Restaurant restaurant) {
-        restaurant.setId(null);
         log.info("create restaurant {}", restaurant);
+        restaurant.setId(null);
         service.save(restaurant);
         return restaurant;
     }
 
     public void update(Restaurant restaurant, int id) {
+        log.info("update restaurant with id {}", id);
         restaurant.setId(id);
-        log.info("update restaurant {}", restaurant);
         service.update(restaurant);
     }
 
