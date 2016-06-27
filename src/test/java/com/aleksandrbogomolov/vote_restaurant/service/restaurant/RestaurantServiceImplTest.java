@@ -1,6 +1,7 @@
 package com.aleksandrbogomolov.vote_restaurant.service.restaurant;
 
 import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Restaurant;
+import com.aleksandrbogomolov.vote_restaurant.service.BaseService;
 import com.aleksandrbogomolov.vote_restaurant.test_data.RestaurantTestData;
 import com.aleksandrbogomolov.vote_restaurant.util.exception.NotFoundException;
 import org.junit.Rule;
@@ -29,7 +30,7 @@ public class RestaurantServiceImplTest {
     private static Logger log = LoggerFactory.getLogger(RestaurantServiceImplTest.class);
 
     @Autowired
-    private com.aleksandrbogomolov.vote_restaurant.service.MainService<Restaurant> service;
+    private BaseService<Restaurant> service;
 
     @Rule
     public ExpectedException exception = ExpectedException.none();

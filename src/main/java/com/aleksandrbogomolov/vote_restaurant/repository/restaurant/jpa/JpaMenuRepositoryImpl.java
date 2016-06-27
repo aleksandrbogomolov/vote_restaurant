@@ -1,7 +1,7 @@
 package com.aleksandrbogomolov.vote_restaurant.repository.restaurant.jpa;
 
 import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Menu;
-import com.aleksandrbogomolov.vote_restaurant.repository.restaurant.AdditionalRestaurantRepository;
+import com.aleksandrbogomolov.vote_restaurant.repository.restaurant.MenuRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 @Transactional(readOnly = true)
-public class JpaMenuRepositoryImpl implements AdditionalRestaurantRepository<Menu> {
+public class JpaMenuRepositoryImpl implements MenuRepository {
 
     @PersistenceContext
     private EntityManager em;

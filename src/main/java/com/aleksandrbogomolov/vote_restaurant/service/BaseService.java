@@ -5,7 +5,7 @@ import com.aleksandrbogomolov.vote_restaurant.util.exception.NotFoundException;
 
 import java.util.List;
 
-public interface MainService<T extends BaseEntity> {
+public interface BaseService<T extends BaseEntity> {
 
     T save(T entity);
 
