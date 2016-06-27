@@ -20,9 +20,7 @@ CREATE UNIQUE INDEX users_unique_email_idx ON users (email);
 CREATE TABLE restaurants (
   id            INTEGER     NOT NULL PRIMARY KEY DEFAULT nextval('global_seq'),
   name          VARCHAR(50) NOT NULL,
-  address       VARCHAR(50) NOT NULL,
-  time_to_up    TIME                             DEFAULT ('09:00:00'),
-  time_to_close TIME                             DEFAULT ('23:00:00')
+  address       VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE menus (
