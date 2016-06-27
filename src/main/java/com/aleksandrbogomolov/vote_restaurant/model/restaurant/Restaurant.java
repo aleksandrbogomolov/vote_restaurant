@@ -1,22 +1,26 @@
 package com.aleksandrbogomolov.vote_restaurant.model.restaurant;
 
 import com.aleksandrbogomolov.vote_restaurant.model.NamedEntity;
+import org.hibernate.validator.constraints.NotEmpty;
 
-import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "restaurants")
 public class Restaurant extends NamedEntity {
 
+    @NotEmpty
+    @Column(name = "address")
     private String address;
-
-    private Set<Menu> menus;
 
     public Restaurant() {
     }
 
-    public Restaurant(Integer id, String name, String address, Set<Menu> menus) {
+    public Restaurant(Integer id, String name, String address) {
         super(id, name);
         this.address = address;
-        this.menus = menus;
     }
 
     public String getAddress() {
@@ -27,19 +31,10 @@ public class Restaurant extends NamedEntity {
         this.address = address;
     }
 
-    public Set<Menu> getMenus() {
-        return menus;
-    }
-
-    public void setMenus(Set<Menu> menus) {
-        this.menus = menus;
-    }
-
     @Override
     public String toString() {
         return "Restaurant{" +
                 "address='" + address + '\'' +
-                ", menus=" + menus +
                 '}';
     }
 }
