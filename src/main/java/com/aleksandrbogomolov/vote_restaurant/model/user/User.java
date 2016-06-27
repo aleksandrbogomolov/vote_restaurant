@@ -1,14 +1,13 @@
 package com.aleksandrbogomolov.vote_restaurant.model.user;
 
 import com.aleksandrbogomolov.vote_restaurant.model.NamedEntity;
-import com.aleksandrbogomolov.vote_restaurant.util.LocalDateTimePersistenceConverter;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @NamedQueries({
         @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=:id"),
@@ -26,43 +25,41 @@ public class User extends NamedEntity {
     @NotEmpty
     @Email
     @Column(name = "email", unique = true)
-    private String email;
+    protected String email;
 
     @NotEmpty
-    @Length(min = 6)
+    @Length(min = 5)
     @Column(name = "password")
-    private String password;
+    protected String password;
 
-    @NotNull
-    @Convert(converter = LocalDateTimePersistenceConverter.class)
     @Column(name = "registered", columnDefinition = "timestamp default now()")
-    private LocalDateTime registered;
+    private Date registered = new Date();
 
     @NotNull
     @Column(name = "enabled")
-    private boolean enabled = true;
+    protected boolean enabled = true;
 
     @NotNull
     @Enumerated(value = EnumType.STRING)
     @Column(name = "role")
-    private Role role;
+    protected Role role;
 
     public User() {
     }
 
-    public User(Integer id, String name, String email, String password, Role role) {
-        super(id, name);
-        this.email = email;
-        this.password = password;
-        this.role = role;
+    public User(User u) {
+        this(u.getId(), u.getName(), u.getEmail(), u.getPassword(), u.isEnabled(), u.getRole());
     }
 
-    public User(Integer id, String name, String email, String password, boolean enabled, LocalDateTime registered, Role role) {
+    public User(Integer id, String name, String email, String password, Role role) {
+        this(id, name, email, password, true, role);
+    }
+
+    public User(Integer id, String name, String email, String password, boolean enabled, Role role) {
         super(id, name);
         this.email = email;
         this.password = password;
         this.enabled = enabled;
-        this.registered = registered;
         this.role = role;
     }
 
@@ -90,11 +87,11 @@ public class User extends NamedEntity {
         this.enabled = enabled;
     }
 
-    public LocalDateTime getRegistered() {
+    public Date getRegistered() {
         return registered;
     }
 
-    public void setRegistered(LocalDateTime registered) {
+    public void setRegistered(Date registered) {
         this.registered = registered;
     }
 
@@ -114,7 +111,6 @@ public class User extends NamedEntity {
                 "email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", enabled=" + enabled +
-                ", registered=" + registered +
                 ", role=" + role +
                 '}';
     }
