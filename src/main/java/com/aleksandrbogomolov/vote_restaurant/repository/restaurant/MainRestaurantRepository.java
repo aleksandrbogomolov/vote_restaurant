@@ -4,9 +4,9 @@ import com.aleksandrbogomolov.vote_restaurant.model.BaseEntity;
 
 import java.util.List;
 
-public interface RestaurantRepository<T extends BaseEntity> {
+public interface MainRestaurantRepository<T extends BaseEntity> {
 
-    T save(T restaurant);
+    T save(T entity);
 
     boolean delete(int id);
 

@@ -29,7 +29,7 @@ public class RestaurantServiceImplTest {
     private static Logger log = LoggerFactory.getLogger(RestaurantServiceImplTest.class);
 
     @Autowired
-    private RestaurantService<Restaurant> service;
+    private com.aleksandrbogomolov.vote_restaurant.service.MainService<Restaurant> service;
 
     @Rule
     public ExpectedException exception = ExpectedException.none();

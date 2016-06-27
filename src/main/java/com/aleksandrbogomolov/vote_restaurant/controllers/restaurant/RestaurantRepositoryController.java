@@ -1,7 +1,7 @@
 package com.aleksandrbogomolov.vote_restaurant.controllers.restaurant;
 
 import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Restaurant;
-import com.aleksandrbogomolov.vote_restaurant.service.restaurant.RestaurantService;
+import com.aleksandrbogomolov.vote_restaurant.service.MainService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ public class RestaurantRepositoryController {
     private static Logger log = LoggerFactory.getLogger(RestaurantRepositoryController.class);
 
     @Autowired
-    private RestaurantService<Restaurant> service;
+    private MainService<Restaurant> service;
 
     public Restaurant create(Restaurant restaurant) {
         restaurant.setId(null);

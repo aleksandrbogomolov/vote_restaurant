@@ -31,7 +31,7 @@ public class UserServiceImplTest {
     private static Logger log = LoggerFactory.getLogger(UserServiceImplTest.class);
 
     @Autowired
-    private UserService userService;
+    private UserService<User> userService;
 
     @Rule
     public ExpectedException exception = ExpectedException.none();

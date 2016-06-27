@@ -1,7 +1,8 @@
 package com.aleksandrbogomolov.vote_restaurant.service.restaurant;
 
 import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Restaurant;
-import com.aleksandrbogomolov.vote_restaurant.repository.restaurant.RestaurantRepository;
+import com.aleksandrbogomolov.vote_restaurant.repository.restaurant.MainRestaurantRepository;
+import com.aleksandrbogomolov.vote_restaurant.service.MainService;
 import com.aleksandrbogomolov.vote_restaurant.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,10 +10,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class RestaurantServiceImpl implements RestaurantService<Restaurant> {
+public class RestaurantServiceImpl implements MainService<Restaurant> {
 
     @Autowired
-    private RestaurantRepository<Restaurant> repository;
+    private MainRestaurantRepository<Restaurant> repository;
 
     @Override
     public Restaurant save(Restaurant entity) {

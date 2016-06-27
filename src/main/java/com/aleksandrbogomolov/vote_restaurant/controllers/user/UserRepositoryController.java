@@ -15,7 +15,7 @@ public class UserRepositoryController {
     private static Logger log = LoggerFactory.getLogger(UserRepositoryController.class);
 
     @Autowired
-    private UserService service;
+    private UserService<User> service;
 
     public User create(User user) {
         user.setId(null);
