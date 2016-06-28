@@ -4,18 +4,21 @@ import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Dish;
 import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Menu;
 import com.aleksandrbogomolov.vote_restaurant.repository.restaurant.AdditionalRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
+@Transactional(readOnly = true)
 public class JpaDishRepositoryImpl implements AdditionalRepository<Dish> {
 
     @PersistenceContext
     private EntityManager em;
 
     @Override
+    @Transactional
     public Dish save(Dish dish, Integer id) {
         if (dish.isNew()) {
             dish.setId(null);
@@ -29,6 +32,7 @@ public class JpaDishRepositoryImpl implements AdditionalRepository<Dish> {
     }
 
     @Override
+    @Transactional
     public boolean delete(int id) {
         return em.createNamedQuery(Dish.DELETE).setParameter("id", id).executeUpdate() != 0;
     }

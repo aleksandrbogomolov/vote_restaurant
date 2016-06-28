@@ -49,13 +49,13 @@ public class RestaurantServiceImplTest {
         RestaurantTestData.TestRestaurant updateRestaurant = new TestRestaurant(RESTAURANT_1);
         updateRestaurant.setName("У Галины");
         service.update(updateRestaurant.asRestaurant());
-        MATCHER.assertEquals(updateRestaurant, service.get(RESTAURANT_ID_1));
+        MATCHER.assertEquals(updateRestaurant, service.get(RESTAURANT_ID));
         log.info(LocalDateTime.now().toString());
     }
 
     @Test
     public void delete() throws Exception {
-        service.delete(RESTAURANT_ID_1);
+        service.delete(RESTAURANT_ID);
         MATCHER.assertCollectionEquals(Collections.singletonList(RESTAURANT_2), service.getAll());
         log.info(LocalDateTime.now().toString());
     }
@@ -69,7 +69,7 @@ public class RestaurantServiceImplTest {
 
     @Test
     public void get() throws Exception {
-        MATCHER.assertEquals(RESTAURANT_1, service.get(RESTAURANT_ID_1));
+        MATCHER.assertEquals(RESTAURANT_1, service.get(RESTAURANT_ID));
         log.info(LocalDateTime.now().toString());
     }
 

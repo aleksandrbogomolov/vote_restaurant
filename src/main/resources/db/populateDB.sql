@@ -29,7 +29,7 @@ INSERT INTO dishes (name, price, menu_id) VALUES ('Пюре', 30, 100004);
 
 INSERT INTO dishes (name, price, menu_id) VALUES ('Котлета', 50, 100004);
 
-INSERT INTO dishes (name, price, menu_id) VALUES ('Салат', 40, 100004);
+INSERT INTO dishes (name, price, menu_id) VALUES ('Салат из помидор', 40, 100004);
 
 INSERT INTO dishes (name, price, menu_id) VALUES ('Солянка', 70, 100005);
 
