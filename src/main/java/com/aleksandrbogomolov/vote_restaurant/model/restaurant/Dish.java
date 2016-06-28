@@ -2,9 +2,18 @@ package com.aleksandrbogomolov.vote_restaurant.model.restaurant;
 
 import com.aleksandrbogomolov.vote_restaurant.model.NamedEntity;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "dishes")
 public class Dish extends NamedEntity {
 
+    @Column(name = "price")
     private int price;
+
+    @JoinColumn(name = "menu_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Menu menu;
 
     public Dish() {
     }
