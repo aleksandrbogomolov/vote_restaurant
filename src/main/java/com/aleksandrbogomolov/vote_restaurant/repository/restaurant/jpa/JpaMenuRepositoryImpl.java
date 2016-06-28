@@ -2,7 +2,7 @@ package com.aleksandrbogomolov.vote_restaurant.repository.restaurant.jpa;
 
 import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Menu;
 import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Restaurant;
-import com.aleksandrbogomolov.vote_restaurant.repository.restaurant.MenuRepository;
+import com.aleksandrbogomolov.vote_restaurant.repository.restaurant.AdditionalRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,15 +12,10 @@ import java.util.List;
 
 @Repository
 @Transactional(readOnly = true)
-public class JpaMenuRepositoryImpl implements MenuRepository {
+public class JpaMenuRepositoryImpl implements AdditionalRepository<Menu> {
 
     @PersistenceContext
     private EntityManager em;
-
-    @Override
-    public Menu save(Menu entity) {
-        return null;
-    }
 
     @Override
     @Transactional
@@ -55,5 +50,12 @@ public class JpaMenuRepositoryImpl implements MenuRepository {
     @Transactional
     public boolean clearAll() {
         return em.createNamedQuery(Menu.CLEAR_ALL).executeUpdate() != 0;
+    }
+
+//    Unimplemented methods
+
+    @Override
+    public Menu save(Menu entity) {
+        return null;
     }
 }

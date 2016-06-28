@@ -4,9 +4,16 @@ import com.aleksandrbogomolov.vote_restaurant.model.NamedEntity;
 
 import javax.persistence.*;
 
+@NamedQueries({
+        @NamedQuery(name = Dish.DELETE, query = "DELETE FROM Dish d WHERE d.id=:id"),
+        @NamedQuery(name = Dish.GET_ALL, query = "SELECT d FROM Dish d order by d.name")
+})
 @Entity
 @Table(name = "dishes")
 public class Dish extends NamedEntity {
+
+    public static final String DELETE = "Dish.delete";
+    public static final String GET_ALL = "Dish.getAll";
 
     @Column(name = "price")
     private int price;
@@ -33,6 +40,14 @@ public class Dish extends NamedEntity {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
     }
 
     @Override
