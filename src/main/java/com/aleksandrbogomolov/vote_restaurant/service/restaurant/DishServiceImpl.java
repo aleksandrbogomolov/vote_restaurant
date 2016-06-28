@@ -1,7 +1,7 @@
 package com.aleksandrbogomolov.vote_restaurant.service.restaurant;
 
 import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Dish;
-import com.aleksandrbogomolov.vote_restaurant.repository.restaurant.AdditionalRepository;
+import com.aleksandrbogomolov.vote_restaurant.repository.restaurant.MenuDishRepository;
 import com.aleksandrbogomolov.vote_restaurant.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class DishServiceImpl implements AdditionalService<Dish> {
+public class DishServiceImpl implements MenuDishService<Dish> {
 
     @Autowired
-    private AdditionalRepository<Dish> repository;
+    private MenuDishRepository<Dish> repository;
 
     @Override
     public Dish save(Dish dish, Integer id) {
@@ -37,22 +37,5 @@ public class DishServiceImpl implements AdditionalService<Dish> {
     @Override
     public List<Dish> getAll() {
         return repository.getAll();
-    }
-
-//    Unimplemented methods
-
-    @Override
-    public Dish save(Dish dish) {
-        return null;
-    }
-
-    @Override
-    public void update(Dish dish) {
-
-    }
-
-    @Override
-    public void clearAll() {
-
     }
 }

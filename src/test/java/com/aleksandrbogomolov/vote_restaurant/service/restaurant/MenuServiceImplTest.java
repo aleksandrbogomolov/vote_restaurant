@@ -18,7 +18,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.Arrays;
-import java.util.Collections;
 
 import static com.aleksandrbogomolov.vote_restaurant.test_data.MenuTestData.*;
 
@@ -30,7 +29,7 @@ public class MenuServiceImplTest {
     private static Logger log = LoggerFactory.getLogger(MenuServiceImplTest.class);
 
     @Autowired
-    private AdditionalService<Menu> service;
+    private MenuDishService<Menu> service;
 
     @Rule
     public ExpectedException exception = ExpectedException.none();
@@ -83,13 +82,6 @@ public class MenuServiceImplTest {
     @Test
     public void getAll() throws Exception {
         MATCHER.assertCollectionEquals(Arrays.asList(MENU_2, MENU_3, MENU_1), service.getAll());
-        log.info(LocalDateTime.now().toString());
-    }
-
-    @Test
-    public void clearAll() throws Exception {
-        service.clearAll();
-        MATCHER.assertCollectionEquals(Collections.emptyList(), service.getAll());
         log.info(LocalDateTime.now().toString());
     }
 }

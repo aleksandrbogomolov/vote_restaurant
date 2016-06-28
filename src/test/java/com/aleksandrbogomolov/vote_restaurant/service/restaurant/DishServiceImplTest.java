@@ -29,7 +29,7 @@ public class DishServiceImplTest {
     private static Logger log = LoggerFactory.getLogger(DishServiceImplTest.class);
 
     @Autowired
-    private AdditionalService<Dish> service;
+    private MenuDishService<Dish> service;
 
     @Rule
     public ExpectedException exception = ExpectedException.none();
