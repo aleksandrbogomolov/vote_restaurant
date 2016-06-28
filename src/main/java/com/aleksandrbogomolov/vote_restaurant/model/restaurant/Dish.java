@@ -16,7 +16,7 @@ public class Dish extends NamedEntity {
     public static final String GET_ALL = "Dish.getAll";
 
     @Column(name = "price")
-    private int price;
+    protected int price;
 
     @JoinColumn(name = "menu_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)

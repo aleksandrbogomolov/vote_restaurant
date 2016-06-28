@@ -9,11 +9,10 @@ import static com.aleksandrbogomolov.vote_restaurant.model.BaseEntity.START_SEQ;
 
 public class RestaurantTestData {
 
-    public static final int RESTAURANT_ID_1 = START_SEQ + 2;
-    public static final int RESTAURANT_ID_2 = START_SEQ + 3;
+    public static final int RESTAURANT_ID = START_SEQ + 2;
 
-    public static final Restaurant RESTAURANT_1 = new Restaurant(RESTAURANT_ID_1, "Кавказ", "Днепровка");
-    public static final Restaurant RESTAURANT_2 = new Restaurant(RESTAURANT_ID_2, "Скиф", "Энергодар");
+    public static final Restaurant RESTAURANT_1 = new Restaurant(RESTAURANT_ID, "Кавказ", "Днепровка");
+    public static final Restaurant RESTAURANT_2 = new Restaurant(RESTAURANT_ID + 1, "Скиф", "Энергодар");
 
     public static final ModelMatcher<Restaurant, TestRestaurant> MATCHER = new ModelMatcher<>(tr -> ((tr instanceof TestRestaurant) ? (TestRestaurant) tr : new TestRestaurant(tr)));
 

@@ -37,7 +37,6 @@ public class MenuTestData {
             return new Menu(this);
         }
 
-
         @Override
         public String toString() {
             return "Menu{" +
