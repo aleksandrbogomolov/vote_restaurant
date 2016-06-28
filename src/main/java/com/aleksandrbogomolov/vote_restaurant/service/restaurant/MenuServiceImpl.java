@@ -9,20 +9,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class MenuServiceImpl implements MenuService {
+public class MenuServiceImpl implements AdditionalService<Menu> {
 
     @Autowired
     private AdditionalRepository<Menu> repository;
-
-    @Override
-    public Menu save(Menu entity) {
-        return null;
-    }
-
-    @Override
-    public void update(Menu entity) {
-
-    }
 
     @Override
     public Menu save(Menu entity, Integer id) {
@@ -51,5 +41,17 @@ public class MenuServiceImpl implements MenuService {
 
     public void clearAll() {
         repository.clearAll();
+    }
+
+//    Unimplemented methods
+
+    @Override
+    public Menu save(Menu menu) {
+        return null;
+    }
+
+    @Override
+    public void update(Menu menu) {
+
     }
 }

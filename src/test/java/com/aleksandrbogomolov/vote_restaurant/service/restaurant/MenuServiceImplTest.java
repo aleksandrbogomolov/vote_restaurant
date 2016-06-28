@@ -30,7 +30,7 @@ public class MenuServiceImplTest {
     private static Logger log = LoggerFactory.getLogger(MenuServiceImplTest.class);
 
     @Autowired
-    private MenuService service;
+    private AdditionalService<Menu> service;
 
     @Rule
     public ExpectedException exception = ExpectedException.none();
