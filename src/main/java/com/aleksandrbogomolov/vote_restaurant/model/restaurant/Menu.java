@@ -4,7 +4,7 @@ import com.aleksandrbogomolov.vote_restaurant.model.BaseEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @NamedQueries({
         @NamedQuery(name = Menu.DELETE, query = "DELETE FROM Menu m WHERE m.id=:id"),
@@ -21,22 +21,39 @@ public class Menu extends BaseEntity {
 
     @NotNull
     @Column(name = "registered")
-    private Date registered;
+    protected LocalDateTime registered;
+
+    @NotNull
+    @JoinColumn(name = "restaurant_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    protected Restaurant restaurant;
 
     public Menu() {
     }
 
-    public Menu(Integer id, Date registered) {
+    public Menu(Menu m) {
+        this(m.getId(), m.getRegistered());
+    }
+
+    public Menu(Integer id, LocalDateTime registered) {
         super(id);
         this.registered = registered;
     }
 
-    public Date getRegistered() {
+    public LocalDateTime getRegistered() {
         return registered;
     }
 
-    public void setRegistered(Date registered) {
+    public void setRegistered(LocalDateTime registered) {
         this.registered = registered;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
     @Override

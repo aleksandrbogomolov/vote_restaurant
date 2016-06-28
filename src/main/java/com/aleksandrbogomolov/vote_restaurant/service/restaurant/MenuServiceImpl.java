@@ -16,12 +16,22 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public Menu save(Menu entity) {
-        return repository.save(entity);
+        return null;
     }
 
     @Override
     public void update(Menu entity) {
-        repository.save(entity);
+
+    }
+
+    @Override
+    public Menu save(Menu entity, Integer id) {
+        return repository.save(entity, id);
+    }
+
+    @Override
+    public void update(Menu entity, Integer id) {
+        repository.save(entity, id);
     }
 
     @Override

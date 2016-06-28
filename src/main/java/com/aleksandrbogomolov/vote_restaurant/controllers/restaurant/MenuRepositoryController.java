@@ -17,17 +17,17 @@ public class MenuRepositoryController {
     @Autowired
     private MenuService service;
 
-    public Menu create(Menu menu) {
+    public Menu create(Menu menu, int restaurant_id) {
         log.info("create menu {}", menu);
         menu.setId(null);
-        service.save(menu);
+        service.save(menu, restaurant_id);
         return menu;
     }
 
-    public void update(Menu menu, int id) {
+    public void update(Menu menu, int id, int restaurant_id) {
         log.info("update menu with id {}", id);
         menu.setId(id);
-        service.update(menu);
+        service.update(menu, restaurant_id);
     }
 
     public void delete(int id) {

@@ -6,4 +6,6 @@ import com.aleksandrbogomolov.vote_restaurant.repository.BaseRepository;
 public interface MenuRepository extends BaseRepository<Menu> {
 
     boolean clearAll();
+
+    Menu save(Menu menu, Integer id);
 }

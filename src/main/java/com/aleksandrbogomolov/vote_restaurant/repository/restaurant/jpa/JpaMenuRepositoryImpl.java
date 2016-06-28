@@ -1,6 +1,7 @@
 package com.aleksandrbogomolov.vote_restaurant.repository.restaurant.jpa;
 
 import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Menu;
+import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Restaurant;
 import com.aleksandrbogomolov.vote_restaurant.repository.restaurant.MenuRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,12 +18,19 @@ public class JpaMenuRepositoryImpl implements MenuRepository {
     private EntityManager em;
 
     @Override
-    @Transactional
     public Menu save(Menu entity) {
+        return null;
+    }
+
+    @Override
+    @Transactional
+    public Menu save(Menu entity, Integer id) {
         if (entity.isNew()) {
+            entity.setRestaurant(em.getReference(Restaurant.class, id));
             em.persist(entity);
             return entity;
         } else {
+            entity.setRestaurant(em.getReference(Restaurant.class, id));
             return em.merge(entity);
         }
     }
