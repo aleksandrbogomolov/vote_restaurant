@@ -59,6 +59,7 @@ public class Menu extends BaseEntity {
     @Override
     public String toString() {
         return "Menu{" +
+                "id=" + id +
                 "registered=" + registered +
                 '}';
     }
