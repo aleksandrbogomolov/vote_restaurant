@@ -3,6 +3,7 @@ package com.aleksandrbogomolov.vote_restaurant.repository.restaurant.jpa;
 import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Dish;
 import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Menu;
 import com.aleksandrbogomolov.vote_restaurant.repository.restaurant.MenuDishRepository;
+import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,31 +20,32 @@ public class JpaDishRepositoryImpl implements MenuDishRepository<Dish> {
 
     @Override
     @Transactional
-    public Dish save(Dish dish, Integer id) {
+    public Dish save(Dish dish, int menu_id) {
         if (dish.isNew()) {
             dish.setId(null);
-            dish.setMenu(em.getReference(Menu.class, id));
+            dish.setMenu(em.getReference(Menu.class, menu_id));
             em.persist(dish);
             return dish;
         } else {
-            dish.setMenu(em.getReference(Menu.class, id));
-            return em.merge(dish);
+            int result = em.createNamedQuery(Dish.UPDATE).setParameter("id", dish.getId()).setParameter("menu_id", menu_id).setParameter("name", dish.getName()).setParameter("price", dish.getPrice()).executeUpdate();
+            return result != 0 ? dish : null;
         }
     }
 
     @Override
     @Transactional
-    public boolean delete(int id) {
-        return em.createNamedQuery(Dish.DELETE).setParameter("id", id).executeUpdate() != 0;
+    public boolean delete(int id, int menu_id) {
+        return em.createNamedQuery(Dish.DELETE).setParameter("id", id).setParameter("menu_id", menu_id).executeUpdate() != 0;
     }
 
     @Override
-    public Dish get(int id) {
-        return em.find(Dish.class, id);
+    public Dish get(int id, int menu_id) {
+        List<Dish> dishes = em.createNamedQuery(Dish.GET, Dish.class).setParameter("id", id).setParameter("menu_id", menu_id).getResultList();
+        return DataAccessUtils.singleResult(dishes);
     }
 
     @Override
-    public List<Dish> getAll() {
-        return em.createNamedQuery(Dish.GET_ALL, Dish.class).getResultList();
+    public List<Dish> getAll(int menu_id) {
+        return em.createNamedQuery(Dish.GET_ALL, Dish.class).setParameter("menu_id", menu_id).getResultList();
     }
 }

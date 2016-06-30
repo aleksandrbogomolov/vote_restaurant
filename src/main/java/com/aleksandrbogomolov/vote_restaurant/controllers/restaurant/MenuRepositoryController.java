@@ -30,18 +30,18 @@ public class MenuRepositoryController {
         service.update(menu, restaurant_id);
     }
 
-    public void delete(int id) {
+    public void delete(int id, int restaurant_id) {
         log.info("delete menu with id {}", id);
-        service.delete(id);
+        service.delete(id, restaurant_id);
     }
 
-    public Menu get(int id) {
+    public Menu get(int id, int restaurant_id) {
         log.info("get menu with id {}", id);
-        return service.get(id);
+        return service.get(id, restaurant_id);
     }
 
-    public List<Menu> getAll() {
+    public List<Menu> getAll(int restaurant_id) {
         log.info("get all menu");
-        return service.getAll();
+        return service.getAll(restaurant_id);
     }
 }

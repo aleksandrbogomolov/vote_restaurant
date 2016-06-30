@@ -18,6 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.Arrays;
+import java.util.Collections;
 
 import static com.aleksandrbogomolov.vote_restaurant.test_data.MenuTestData.*;
 
@@ -39,7 +40,7 @@ public class MenuServiceImplTest {
         MenuTestData.TestMenu testMenu = new MenuTestData.TestMenu(null, LocalDateTime.of(2016, Month.JUNE, 28, 9, 30));
         Menu menu = service.save(testMenu.asMenu(), 100002);
         testMenu.setId(menu.getId());
-        MATCHER.assertCollectionEquals(Arrays.asList(testMenu, MENU_2, MENU_3, MENU_1), service.getAll());
+        MATCHER.assertCollectionEquals(Arrays.asList(testMenu, MENU_2, MENU_1), service.getAll(100002));
         log.info(LocalDateTime.now().toString());
     }
 
@@ -47,41 +48,47 @@ public class MenuServiceImplTest {
     public void update() throws Exception {
         TestMenu updateMenu = new TestMenu(MENU_1);
         updateMenu.setRegistered(LocalDateTime.of(2016, Month.JUNE, 25, 9, 0));
-        service.update(updateMenu.asMenu(), 100002);
-        MATCHER.assertEquals(updateMenu, service.get(100004));
+        Menu menu = service.update(updateMenu.asMenu(), 100002);
+        updateMenu.setId(menu.getId());
+        MATCHER.assertEquals(updateMenu, service.get(100004, 100002));
+        log.info(LocalDateTime.now().toString());
+    }
+
+    @Test(expected = NotFoundException.class)
+    public void notFoundUpdate() throws Exception {
+        Menu menu = service.get(100004, 100002);
+        service.update(menu, 100003);
         log.info(LocalDateTime.now().toString());
     }
 
     @Test
     public void delete() throws Exception {
-        service.delete(100004);
-        MATCHER.assertCollectionEquals(Arrays.asList(MENU_2, MENU_3), service.getAll());
+        service.delete(100004, 100002);
+        MATCHER.assertCollectionEquals(Collections.singletonList(MENU_2), service.getAll(100002));
         log.info(LocalDateTime.now().toString());
     }
 
     @Test(expected = NotFoundException.class)
     public void notFoundDelete() throws Exception {
-        service.delete(1);
+        service.delete(1, 100002);
         log.info(LocalDateTime.now().toString());
-        throw new NotFoundException("");
     }
 
     @Test
     public void get() throws Exception {
-        MATCHER.assertEquals(MENU_1, service.get(100004));
+        MATCHER.assertEquals(MENU_1, service.get(100004, 100002));
         log.info(LocalDateTime.now().toString());
     }
 
     @Test(expected = NotFoundException.class)
     public void notFoundGet() throws Exception {
-        service.get(1);
+        service.get(1, 100002);
         log.info(LocalDateTime.now().toString());
-        throw new NotFoundException("");
     }
 
     @Test
     public void getAll() throws Exception {
-        MATCHER.assertCollectionEquals(Arrays.asList(MENU_2, MENU_3, MENU_1), service.getAll());
+        MATCHER.assertCollectionEquals(Arrays.asList(MENU_2, MENU_1), service.getAll(100002));
         log.info(LocalDateTime.now().toString());
     }
 }

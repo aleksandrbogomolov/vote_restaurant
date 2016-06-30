@@ -17,31 +17,31 @@ public class DishRepositoryController {
     @Autowired
     private MenuDishService<Dish> service;
 
-    public Dish create(Dish dish, Integer menu_id) {
+    public Dish create(Dish dish, int menu_id) {
         log.info("create dish {}", dish);
         dish.setId(null);
         service.save(dish, menu_id);
         return dish;
     }
 
-    public void update(Dish dish, int id, Integer menu_id) {
+    public void update(Dish dish, int id, int menu_id) {
         log.info("update dish with id {}", id);
         dish.setId(id);
         service.update(dish, menu_id);
     }
 
-    public void delete(int id) {
+    public void delete(int id, int menu_id) {
         log.info("delete dish with id {}", id);
-        service.delete(id);
+        service.delete(id, menu_id);
     }
 
-    public Dish get(int id) {
+    public Dish get(int id, int menu_id) {
         log.info("get dish with id {}", id);
-        return service.get(id);
+        return service.get(id, menu_id);
     }
 
-    public List<Dish> getAll() {
+    public List<Dish> getAll(int menu_id) {
         log.info("get all dishes");
-        return service.getAll();
+        return service.getAll(menu_id);
     }
 }

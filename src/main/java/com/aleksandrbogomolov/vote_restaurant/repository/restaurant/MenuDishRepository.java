@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface MenuDishRepository<T extends BaseEntity> {
 
-    T save(T entity, Integer id);
+    T save(T entity, int restaurant_id);
 
-    boolean delete(int id);
+    boolean delete(int id, int restaurant_id);
 
-    T get(int id);
+    T get(int id, int restaurant_id);
 
-    List<T> getAll();
+    List<T> getAll(int restaurant_id);
 }
