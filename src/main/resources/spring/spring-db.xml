@@ -10,9 +10,11 @@
 
     <context:property-placeholder location="classpath:db/postgres.properties" system-properties-mode="OVERRIDE"/>
 
-    <context:component-scan base-package="com.aleksandrbogomolov.**.repository"/>
+    <context:component-scan base-package="com.aleksandrbogomolov.**.repository.**.datajpa"/>
 
-    <jpa:repositories base-package="com.aleksandrbogomolov.**.repository"/>
+    <!--<context:component-scan base-package="com.aleksandrbogomolov.**.repository.**.jpa"/>-->
+
+    <jpa:repositories base-package="com.aleksandrbogomolov.**.repository.**.datajpa"/>
 
     <tx:annotation-driven/>
 
