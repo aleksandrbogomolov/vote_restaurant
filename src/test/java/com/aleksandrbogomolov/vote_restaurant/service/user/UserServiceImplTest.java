@@ -18,6 +18,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -25,6 +26,7 @@ import java.util.Collections;
 
 import static com.aleksandrbogomolov.vote_restaurant.test_data.UserTestData.*;
 
+@WebAppConfiguration
 @ContextConfiguration(classes = {SpringWebConfiguration.class, DataBaseConfiguration.class})
 @RunWith(SpringJUnit4ClassRunner.class)
 @Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
