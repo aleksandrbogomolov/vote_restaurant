@@ -20,7 +20,6 @@ import java.util.Properties;
 @Configuration
 @EnableJpaRepositories(basePackages = "com.aleksandrbogomolov.vote_restaurant")
 @EnableTransactionManagement
-//@EnableSpringDataWebSupport
 @ComponentScan(value = "com.aleksandrbogomolov.vote_restaurant.repository")
 @PropertySource(value = "classpath:db/postgres.properties")
 public class DataBaseConfiguration {

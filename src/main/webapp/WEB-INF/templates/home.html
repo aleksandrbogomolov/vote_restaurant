@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Home Page</title>
+</head>
+<body>
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Registered</th>
+            <th>Enabled</th>
+            <th>Role</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user:${allUsers}">
+            <td th:text="${{user.id}}"></td>
+            <td th:text="${{user.name}}"></td>
+            <td th:text="${{user.email}}"></td>
+            <td th:text="${{user.password}}"></td>
+            <td th:text="${#dates.format(user.registered, 'dd/MMM/yyyy HH:mm')}"></td>
+            <td><input type="checkbox" name="enabled" th:checked="${{user.enabled}}"></td>
+            <td th:text="${{user.role}}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

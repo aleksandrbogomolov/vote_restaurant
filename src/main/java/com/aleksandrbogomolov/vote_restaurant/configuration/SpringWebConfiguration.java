@@ -49,8 +49,6 @@ public class SpringWebConfiguration extends WebMvcConfigurerAdapter implements A
     public ThymeleafViewResolver thymeleafViewResolver() {
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
         viewResolver.setTemplateEngine(templateEngine());
-        viewResolver.setViewNames(new String[]{"index", "*th"});
-        viewResolver.setOrder(1);
         return viewResolver;
     }
 
