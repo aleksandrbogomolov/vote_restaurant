@@ -1,5 +1,7 @@
 package com.aleksandrbogomolov.vote_restaurant.service.user;
 
+import com.aleksandrbogomolov.vote_restaurant.configuration.DataBaseConfiguration;
+import com.aleksandrbogomolov.vote_restaurant.configuration.SpringWebConfiguration;
 import com.aleksandrbogomolov.vote_restaurant.model.user.Role;
 import com.aleksandrbogomolov.vote_restaurant.model.user.User;
 import com.aleksandrbogomolov.vote_restaurant.test_data.UserTestData;
@@ -23,7 +25,7 @@ import java.util.Collections;
 
 import static com.aleksandrbogomolov.vote_restaurant.test_data.UserTestData.*;
 
-@ContextConfiguration({"classpath:spring/spring-app.xml", "classpath:spring/spring-db.xml"})
+@ContextConfiguration(classes = {SpringWebConfiguration.class, DataBaseConfiguration.class})
 @RunWith(SpringJUnit4ClassRunner.class)
 @Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
 public class UserServiceImplTest {

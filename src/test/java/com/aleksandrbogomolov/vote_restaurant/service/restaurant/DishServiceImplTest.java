@@ -1,5 +1,7 @@
 package com.aleksandrbogomolov.vote_restaurant.service.restaurant;
 
+import com.aleksandrbogomolov.vote_restaurant.configuration.DataBaseConfiguration;
+import com.aleksandrbogomolov.vote_restaurant.configuration.SpringWebConfiguration;
 import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Dish;
 import com.aleksandrbogomolov.vote_restaurant.test_data.DishTestData;
 import com.aleksandrbogomolov.vote_restaurant.util.exception.NotFoundException;
@@ -21,7 +23,7 @@ import java.util.List;
 
 import static com.aleksandrbogomolov.vote_restaurant.test_data.DishTestData.*;
 
-@ContextConfiguration({"classpath:spring/spring-app.xml", "classpath:spring/spring-db.xml"})
+@ContextConfiguration(classes = {SpringWebConfiguration.class, DataBaseConfiguration.class})
 @RunWith(SpringJUnit4ClassRunner.class)
 @Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
 public class DishServiceImplTest {
