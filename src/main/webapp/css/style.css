@@ -15,7 +15,7 @@ body {
 /* Wrapper for page content to push down footer */
 #wrap {
     min-height: 100%;
-    height: auto !important;
+    /*height: auto !important;*/
     height: 100%;
     /* Negative indent footer by its height */
     margin: 0 auto -60px;
@@ -58,23 +58,33 @@ h1, h2, h3, h4 {
 
 header {
     background: #f16251;
-    height: 150px;
+    height: 120px;
     color: #000000;
 }
 
-header h1, header h2, header h4 a, header a, header a:hover {
+header h1, header h2, header h3 a, header a, header a:hover {
     color: #101010;
     font-weight: 800;
     text-decoration: none;
 }
 
-header h4 {
+header h3 {
     font-family: 'Kreon', serif;
     background: #ffcc33;
     border-radius: 3px;
     font-size: 34px;
     padding: 12px 10px 6px 10px;
     margin-top: 20px;
+}
+
+header .dropdown-menu {
+    top: 74px;
+    background: #ffcc33;
+    border-width: 0;
+}
+
+.dropdown-menu {
+    right: 0;
 }
 
 h1 {
@@ -111,7 +121,7 @@ h1 {
 section {
     color: #ffffff;
     min-height: 400px;
-    height: auto !important;
+    /*height: auto !important;*/
     height: 100%;
     padding-top: 100px;
 }
@@ -144,4 +154,3 @@ section {
     padding-top: 30px;
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(20, 20, 20, 0.2)), to(rgba(255, 255, 255, 0)), color-stop(1, #000));
 }
-

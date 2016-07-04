@@ -3,18 +3,30 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
-<div class="container" th:fragment="user_header">
+<div class="container" th:fragment="top_header">
     <div class="row">
         <div class="col-sm-6">
             <h1><a href="#">Welcome to the voting page</a></h1>
         </div>
         <div class="col-sm-6">
             <div class="pull-right  hidden-xs">
-                <a href="login.html" class="btn"><h4>Logout</h4></a>
+                <div class="nav nav-pills">
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <h3><i class="glyphicon glyphicon-user"></i></h3>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                            <li><a href="#" title="Update profile"><i class="glyphicon glyphicon-pencil"></i> Update
+                                profile</a></li>
+                            <li><a href="login.html" title="Log out"><i class="glyphicon glyphicon-log-out"></i> Log out</a>
+                            </li>
+                            <li id="remove" title="Remove profile"><a href="#"><i
+                                    class="glyphicon glyphicon-remove"></i> Remove profile</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
