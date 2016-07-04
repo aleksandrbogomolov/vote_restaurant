@@ -3,10 +3,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Home Page</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
-<div>
-    <table>
+<div class="container">
+    <table class="table">
         <thead>
         <tr>
             <th>ID</th>
@@ -24,7 +26,7 @@
             <td th:text="${{user.name}}"></td>
             <td th:text="${{user.email}}"></td>
             <td th:text="${{user.password}}"></td>
-            <td th:text="${#dates.format(user.registered, 'dd/MMM/yyyy HH:mm')}"></td>
+            <td th:text="${#dates.format(user.registered, 'dd/MM/yyyy HH:mm')}"></td>
             <td><input type="checkbox" name="enabled" th:checked="${{user.enabled}}"></td>
             <td th:text="${{user.role}}"></td>
         </tr>
@@ -32,4 +34,10 @@
     </table>
 </div>
 </body>
+<div class="nav navbar-nav navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="text-center" th:include="footer::copy"></div>
+    </div>
+</div>
+
 </html>
