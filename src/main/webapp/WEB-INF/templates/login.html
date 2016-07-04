@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+</head>
+<body>
+<p th:if="${loginError}">Wrong User or Password</p>
+<form th:action="@{j_spring_security_check}" method="post">
+    <label for="j_username">Username</label>
+    <input type="text" id="j_username" name="j_username"/><br/>
+    <label for="j_password">Password</label>
+    <input type="password" id="j_password" name="j_password"/><br/>
+    <input type="submit" value="Log in">
+</form>
+</body>
+</html>

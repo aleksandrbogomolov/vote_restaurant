@@ -55,6 +55,6 @@ public class UserRepositoryController {
     @RequestMapping(value = "/")
     public String getAll(User user) {
         log.info("get all users");
-        return "home";
+        return "user_page";
     }
 }
