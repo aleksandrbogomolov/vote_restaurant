@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+<div class="container" th:fragment="user_header">
+    <div class="row">
+        <div class="col-sm-6">
+            <h1><a href="#">Welcome to the voting page</a></h1>
+        </div>
+        <div class="col-sm-6">
+            <div class="pull-right  hidden-xs">
+                <a href="login.html" class="btn"><h4>Logout</h4></a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

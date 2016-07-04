@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Home Page</title>
@@ -7,7 +8,76 @@
     <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
-<div class="container">
+<div class="wrap">
+    <header th:include="header::user_header"></header>
+
+    <div class="divider" id="section1"></div>
+    <div class="container">
+        <div class="col-sm-10 col-sm-offset-1">
+            <div class="page-header text-center">
+                <h1>Vote restaurant</h1>
+            </div>
+            <p class="lead text-center">
+                Choosing the best restaurant every day
+            </p>
+            <p class="text-center">
+                Users can vote on which restaurant they want to have lunch at Only one vote counted per user If user
+                votes again the same day. If it is before 11:00 we assume that he changed his mind. If it is after 11:00
+                then it is too late, vote can't be changed. Each restaurant provides new menu each day.
+            </p>
+        </div>
+    </div>
+
+    <div class="continer bg-4">
+        <div class="row">
+            <div class="col-sm-4 col-xs-6">
+                <div class="panel panel-default">
+                    <div>
+                        <img src="//placehold.it/450X250/565656/eee" class="img-responsive">
+                    </div>
+                    <div class="panel-body">
+                        <p class="lead">Hacker News</p>
+                        <p>120k Followers, 900 Posts</p>
+                        <p>
+                            <img src="https://lh4.googleusercontent.com/-9Yw2jNffJlE/AAAAAAAAAAI/AAAAAAAAAAA/u3WcFXvK-g8/s28-c-k-no/photo.jpg"
+                                 width="28px" height="28px"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 col-xs-6">
+                <div class="panel panel-default">
+                    <div class="panel-thumbnail">
+                        <img src="//placehold.it/450X250/ffcc33/444" class="img-responsive">
+                    </div>
+                    <div class="panel-body">
+                        <p class="lead">Bootstrap Templates</p>
+                        <p>902 Followers, 88 Posts</p>
+                        <p>
+                            <img src="https://lh5.googleusercontent.com/-AQznZjgfM3E/AAAAAAAAAAI/AAAAAAAAABA/WEPOnkQS_20/s28-c-k-no/photo.jpg"
+                                 width="28px" height="28px"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 col-xs-6">
+                <div class="panel panel-default">
+                    <div class="panel-thumbnail"><img src="//placehold.it/450X250/f16251/444" class="img-responsive">
+                    </div>
+                    <div class="panel-body">
+                        <p class="lead">Social Media</p>
+                        <p>19k Followers, 789 Posts</p>
+                        <p>
+                            <img src="https://lh4.googleusercontent.com/-eSs1F2O7N1A/AAAAAAAAAAI/AAAAAAAAAAA/caHwQFv2RqI/s28-c-k-no/photo.jpg"
+                                 width="28px" height="28px">
+                            <img src="https://lh4.googleusercontent.com/-9Yw2jNffJlE/AAAAAAAAAAI/AAAAAAAAAAA/u3WcFXvK-g8/s28-c-k-no/photo.jpg"
+                                 width="28px" height="28px"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <table class="table">
         <thead>
         <tr>
@@ -22,22 +92,40 @@
         </thead>
         <tbody>
         <tr th:each="user:${allUsers}">
-            <td th:text="${{user.id}}"></td>
-            <td th:text="${{user.name}}"></td>
-            <td th:text="${{user.email}}"></td>
-            <td th:text="${{user.password}}"></td>
-            <td th:text="${#dates.format(user.registered, 'dd/MM/yyyy HH:mm')}"></td>
+            <td th:text="${{user.id}}">1</td>
+            <td th:text="${{user.name}}">Ben</td>
+            <td th:text="${{user.email}}">ben@mail.ru</td>
+            <td th:text="${{user.password}}">1111</td>
+            <td th:text="${#dates.format(user.registered, 'dd/MM/yyyy HH:mm')}">04-06-2016 10:00</td>
             <td><input type="checkbox" name="enabled" th:checked="${{user.enabled}}"></td>
-            <td th:text="${{user.role}}"></td>
+            <td th:text="${{user.role}}">User</td>
         </tr>
         </tbody>
     </table>
-</div>
-</body>
-<div class="nav navbar-nav navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-        <div class="text-center" th:include="footer::copy"></div>
+
+
+    <div class="container">
+        <div class="col-sm-8 col-sm-offset-2 text-center">
+            <h2>Beautiful Bootstrap Templates</h2>
+            <hr>
+            <h4>We love templates. We love Bootstrap.</h4>
+            <p>Get more free templates like this at the <a href="http://bootply.com">Bootstrap Playground</a>, Bootply.
+            </p>
+            <hr>
+            <ul class="list-inline center-block">
+                <li><a href="http://facebook.com/bootply"><img src="/assets/example/soc_fb.png"></a></li>
+                <li><a href="http://twitter.com/bootply"><img src="/assets/example/soc_tw.png"></a></li>
+                <li><a href="http://google.com/+bootply"><img src="/assets/example/soc_gplus.png"></a></li>
+                <li><a href="http://pinterest.com/in1"><img src="/assets/example/soc_pin.png"></a></li>
+            </ul>
+        </div>
     </div>
 </div>
+</body>
+<div id="footer" class="text-center" th:include="footer::copy"></div>
+<ul class="nav pull-right scroll-top">
+    <li><a href="#" title="Scroll to top"><i class="glyphicon glyphicon-chevron-up"></i></a></li>
+</ul>
 <script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../js/app.js"></script>
 </html>
