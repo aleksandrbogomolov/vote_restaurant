@@ -32,49 +32,16 @@
 
     <div class="container bg">
         <div class="row">
-            <div class="col-sm-4 col-xs-6">
-                <div class="panel panel-default">
-                    <div>
-                        <img src="//placehold.it/450X250/565656/eee" class="img-responsive">
-                    </div>
-                    <div class="panel-body">
-                        <p class="lead">Hacker News</p>
-                        <p>120k Followers, 900 Posts</p>
-                        <p>
-                            <img src="https://lh4.googleusercontent.com/-9Yw2jNffJlE/AAAAAAAAAAI/AAAAAAAAAAA/u3WcFXvK-g8/s28-c-k-no/photo.jpg"
-                                 width="28px" height="28px"></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-4 col-xs-6">
-                <div class="panel panel-default">
-                    <div class="panel-thumbnail">
-                        <img src="//placehold.it/450X250/ffcc33/444" class="img-responsive">
-                    </div>
-                    <div class="panel-body">
-                        <p class="lead">Bootstrap Templates</p>
-                        <p>902 Followers, 88 Posts</p>
-                        <p>
-                            <img src="https://lh5.googleusercontent.com/-AQznZjgfM3E/AAAAAAAAAAI/AAAAAAAAABA/WEPOnkQS_20/s28-c-k-no/photo.jpg"
-                                 width="28px" height="28px"></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-4 col-xs-6">
-                <div class="panel panel-default">
-                    <div class="panel-thumbnail"><img src="//placehold.it/450X250/f16251/444"
-                                                      class="img-responsive">
-                    </div>
-                    <div class="panel-body">
-                        <p class="lead">Social Media</p>
-                        <p>19k Followers, 789 Posts</p>
-                        <p>
-                            <img src="https://lh4.googleusercontent.com/-eSs1F2O7N1A/AAAAAAAAAAI/AAAAAAAAAAA/caHwQFv2RqI/s28-c-k-no/photo.jpg"
-                                 width="28px" height="28px">
-                            <img src="https://lh4.googleusercontent.com/-9Yw2jNffJlE/AAAAAAAAAAI/AAAAAAAAAAA/u3WcFXvK-g8/s28-c-k-no/photo.jpg"
-                                 width="28px" height="28px"></p>
+            <div th:each="user:${allRestaurant}">
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img src="//placehold.it/450X250/565656/eee" alt="...">
+                        <div class="caption">
+                            <h3 th:text="${{user.name}}"></h3>
+                            <h4 th:text="${{user.address}}"></h4>
+                            <p>...</p>
+                            <p><a href="#" class="btn btn-primary" role="button">Vote!</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -82,40 +49,14 @@
     </div>
 
     <div class="container">
-        <table class="table">
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Address</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="user:${allRestaurant}">
-                <td th:text="${{user.id}}">1</td>
-                <td th:text="${{user.name}}">Ben</td>
-                <td th:text="${{user.address}}">ben@mail.ru</td>
-                <!--<td th:text="${#dates.format(user.registered, 'dd/MM/yyyy HH:mm')}">04-06-2016 10:00</td>-->
-                <!--<td><input type="checkbox" name="enabled" th:checked="${{user.enabled}}"></td>-->
-            </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="container">
         <div class="col-sm-8 col-sm-offset-2 text-center">
-            <h2>Beautiful Bootstrap Templates</h2>
-            <hr>
-            <h4>We love templates. We love Bootstrap.</h4>
-            <p>Get more free templates like this at the <a href="http://bootply.com">Bootstrap Playground</a>,
-                Bootply.
-            </p>
+            <p>Based on the <a href="http://bootply.com">Bootstrap Playground</a>, Bootply.</p>
             <hr>
             <ul class="list-inline center-block">
-                <li><a id="rr" href="http://facebook.com/bootply"><img src="/assets/example/soc_fb.png"></a></li>
-                <li><a href="http://twitter.com/bootply"><img src="/assets/example/soc_tw.png"></a></li>
-                <li><a href="http://google.com/+bootply"><img src="/assets/example/soc_gplus.png"></a></li>
-                <li><a href="http://pinterest.com/in1"><img src="/assets/example/soc_pin.png"></a></li>
+                <li><a href="http://facebook.com/bootply"><img src="../../pictures/soc_fb.png"></a></li>
+                <li><a href="http://twitter.com/bootply"><img src="../../pictures/soc_tw.png"></a></li>
+                <li><a href="http://google.com/+bootply"><img src="../../pictures/soc_gplus.png"></a></li>
+                <li><a href="http://pinterest.com/in1"><img src="../../pictures/soc_pin.png"></a></li>
             </ul>
         </div>
     </div>
