@@ -33,4 +33,22 @@ public class SpringServletInitializer extends AbstractDispatcherServletInitializ
         encodingFilter.setForceEncoding(true);
         return new Filter[]{encodingFilter};
     }
+
+
+//    May be change on this with extends WebMvcConfigurerAdapter
+//        @Override
+//        public void onStartup(ServletContext servletContext) throws ServletException {
+//        AnnotationConfigWebApplicationContext applicationContext = new AnnotationConfigWebApplicationContext();
+//        applicationContext.register(SpringWebConfiguration.class);
+//        applicationContext.setServletContext(servletContext);
+//        ServletRegistration.Dynamic servletRegistration = servletContext.addServlet("dispatcher", new DispatcherServlet(applicationContext));
+//        servletRegistration.setLoadOnStartup(1);
+//        servletRegistration.addMapping("/");
+//
+//        CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
+//        encodingFilter.setEncoding("UTF-8");
+//        encodingFilter.setForceEncoding(true);
+//        FilterRegistration.Dynamic filter = servletContext.addFilter("characterEncodingFilter", encodingFilter);
+//        filter.addMappingForUrlPatterns(null, false, "/*");
+//    }
 }

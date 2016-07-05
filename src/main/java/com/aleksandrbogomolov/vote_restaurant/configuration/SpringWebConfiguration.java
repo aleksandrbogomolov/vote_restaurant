@@ -33,6 +33,7 @@ public class SpringWebConfiguration extends WebMvcConfigurerAdapter implements A
         templateResolver.setPrefix("/WEB-INF/templates/");
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode(TemplateMode.HTML);
+        templateResolver.setCharacterEncoding("UTF-8");
         templateResolver.setCacheable(true);
         return templateResolver;
     }
@@ -49,6 +50,8 @@ public class SpringWebConfiguration extends WebMvcConfigurerAdapter implements A
     public ThymeleafViewResolver thymeleafViewResolver() {
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
         viewResolver.setTemplateEngine(templateEngine());
+        viewResolver.setContentType("text/html;charset=UTF-8");
+        viewResolver.setCharacterEncoding("utf-8");
         return viewResolver;
     }
 

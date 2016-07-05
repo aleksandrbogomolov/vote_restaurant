@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Home Page</title>
     <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../../css/font-awesome.min.css"/>
@@ -87,22 +87,16 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Email</th>
-                <th>Password</th>
-                <th>Registered</th>
-                <th>Enabled</th>
-                <th>Role</th>
+                <th>Address</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="user:${allUsers}">
+            <tr th:each="user:${allRestaurant}">
                 <td th:text="${{user.id}}">1</td>
                 <td th:text="${{user.name}}">Ben</td>
-                <td th:text="${{user.email}}">ben@mail.ru</td>
-                <td th:text="${{user.password}}">1111</td>
-                <td th:text="${#dates.format(user.registered, 'dd/MM/yyyy HH:mm')}">04-06-2016 10:00</td>
-                <td><input type="checkbox" name="enabled" th:checked="${{user.enabled}}"></td>
-                <td th:text="${{user.role}}">User</td>
+                <td th:text="${{user.address}}">ben@mail.ru</td>
+                <!--<td th:text="${#dates.format(user.registered, 'dd/MM/yyyy HH:mm')}">04-06-2016 10:00</td>-->
+                <!--<td><input type="checkbox" name="enabled" th:checked="${{user.enabled}}"></td>-->
             </tr>
             </tbody>
         </table>

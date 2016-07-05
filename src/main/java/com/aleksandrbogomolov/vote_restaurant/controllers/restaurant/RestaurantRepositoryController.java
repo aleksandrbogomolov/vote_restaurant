@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -16,6 +18,11 @@ public class RestaurantRepositoryController {
 
     @Autowired
     private BaseService<Restaurant> service;
+
+    @ModelAttribute("allRestaurant")
+    public List<Restaurant> getAllRestaurants() {
+        return service.getAll();
+    }
 
     public Restaurant create(Restaurant restaurant) {
         log.info("create restaurant {}", restaurant);
@@ -40,8 +47,9 @@ public class RestaurantRepositoryController {
         return service.get(id);
     }
 
-    public List<Restaurant> getAll() {
+    @RequestMapping(value = "/")
+    public String getAll(Restaurant restaurant) {
         log.info("get all restaurants");
-        return service.getAll();
+        return "user_page";
     }
 }

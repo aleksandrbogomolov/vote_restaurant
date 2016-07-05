@@ -52,7 +52,7 @@ public class UserRepositoryController {
         return service.getByEmail(email);
     }
 
-    @RequestMapping(value = "/")
+    @RequestMapping(value = "/getAll")
     public String getAll(User user) {
         log.info("get all users");
         return "user_page";
