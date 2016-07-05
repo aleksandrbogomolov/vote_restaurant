@@ -96,7 +96,7 @@ h1 {
 }
 
 .divider {
-    height: 100px;
+    height: 20px;
 }
 
 .panel {
@@ -126,31 +126,7 @@ section {
     padding-top: 100px;
 }
 
-.bg-1 {
-    background: url('http://www.bootply.com/assets/example/bg_4.jpg') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-
-.bg-2 {
-    background: url('http://www.bootply.com/assets/example/bg_5.jpg') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-
-.bg-3 {
-    background: url('http://www.bootply.com/assets/example/bg_6.jpg') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-
-.bg-4 {
+.bg {
     padding-top: 30px;
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(20, 20, 20, 0.2)), to(rgba(255, 255, 255, 0)), color-stop(1, #000));
 }
