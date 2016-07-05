@@ -4,7 +4,7 @@ Solution in process
 
 Goal:
 
-Design and implement a JSON API using Hibernate/Spring/SpringMVC (or Spring-Boot) without frontend.
+Design and implement a JSON API using Hibernate/Spring/SpringMVC (or Spring-Boot).
 
 The task is:
 
