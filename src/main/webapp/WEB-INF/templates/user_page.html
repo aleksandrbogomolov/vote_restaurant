@@ -35,11 +35,17 @@
             <div th:each="user:${allRestaurant}">
                 <div class="col-sm-6 col-md-4">
                     <div class="thumbnail">
-                        <img src="//placehold.it/450X250/565656/eee" alt="...">
                         <div class="caption">
                             <h3 th:text="${{user.name}}"></h3>
                             <h4 th:text="${{user.address}}"></h4>
-                            <p>...</p>
+                            <div>
+                                <p>Menu item here</p>
+                                <p>Menu item here</p>
+                                <p>Menu item here</p>
+                                <p>Menu item here</p>
+                                <p>Menu item here</p>
+                                <p>Menu item here</p>
+                            </div>
                             <p><a href="#" class="btn btn-primary" role="button">Vote!</a></p>
                         </div>
                     </div>
