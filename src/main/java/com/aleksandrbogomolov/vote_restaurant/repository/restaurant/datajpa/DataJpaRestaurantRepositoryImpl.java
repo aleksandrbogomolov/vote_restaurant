@@ -35,8 +35,4 @@ public class DataJpaRestaurantRepositoryImpl implements RestaurantRepository {
     public List<Restaurant> getAll() {
         return proxy.findAll(RESTAURANT_NAME);
     }
-
-    public List<Restaurant> getAllWithMenu() {
-        return proxy.findAllWithMenu(RESTAURANT_NAME);
-    }
 }

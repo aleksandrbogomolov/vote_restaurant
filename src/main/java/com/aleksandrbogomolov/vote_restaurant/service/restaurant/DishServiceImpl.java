@@ -1,7 +1,7 @@
 package com.aleksandrbogomolov.vote_restaurant.service.restaurant;
 
 import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Dish;
-import com.aleksandrbogomolov.vote_restaurant.repository.restaurant.MenuDishRepository;
+import com.aleksandrbogomolov.vote_restaurant.repository.restaurant.DishRepository;
 import com.aleksandrbogomolov.vote_restaurant.util.exception.ExceptionUtil;
 import com.aleksandrbogomolov.vote_restaurant.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,33 +10,33 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class DishServiceImpl implements MenuDishService<Dish> {
+public class DishServiceImpl implements DishService {
 
     @Autowired
-    private MenuDishRepository<Dish> repository;
+    private DishRepository repository;
 
     @Override
-    public Dish save(Dish dish, int menu_id) {
-        return repository.save(dish, menu_id);
+    public Dish save(Dish dish, int restaurant_id) {
+        return repository.save(dish, restaurant_id);
     }
 
     @Override
-    public Dish update(Dish dish, int menu_id) {
-        return ExceptionUtil.checkNotFoundWithId(repository.save(dish, menu_id), dish.getId());
+    public Dish update(Dish dish, int restaurant_id) {
+        return ExceptionUtil.checkNotFoundWithId(repository.save(dish, restaurant_id), dish.getId());
     }
 
     @Override
-    public void delete(int id, int menu_id) throws NotFoundException {
-        ExceptionUtil.checkNotFoundWithId(repository.delete(id, menu_id), id);
+    public void delete(int id, int restaurant_id) throws NotFoundException {
+        ExceptionUtil.checkNotFoundWithId(repository.delete(id, restaurant_id), id);
     }
 
     @Override
-    public Dish get(int id, int menu_id) throws NotFoundException {
-        return ExceptionUtil.checkNotFoundWithId(repository.get(id, menu_id), id);
+    public Dish get(int id, int restaurant_id) throws NotFoundException {
+        return ExceptionUtil.checkNotFoundWithId(repository.get(id, restaurant_id), id);
     }
 
     @Override
-    public List<Dish> getAll(int menu_id) {
-        return repository.getAll(menu_id);
+    public List<Dish> getAll(int restaurant_id) {
+        return repository.getAll(restaurant_id);
     }
 }

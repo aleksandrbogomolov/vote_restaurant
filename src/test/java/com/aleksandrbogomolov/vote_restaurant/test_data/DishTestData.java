@@ -9,7 +9,7 @@ import static com.aleksandrbogomolov.vote_restaurant.model.BaseEntity.START_SEQ;
 
 public class DishTestData {
 
-    public static final int DISH_ID = START_SEQ + 7;
+    public static final int DISH_ID = START_SEQ + 4;
 
     public static final Dish DISH_1 = new Dish(DISH_ID, "Борщ", 50);
     public static final Dish DISH_3 = new Dish(DISH_ID + 1, "Пюре", 30);
@@ -42,7 +42,7 @@ public class DishTestData {
 
         @Override
         public String toString() {
-            return "Menu{" +
+            return "Dish{" +
                     "id='" + id + '\'' +
                     "name='" + name + '\'' +
                     "price='" + price + '\'' +

@@ -33,7 +33,7 @@ public class DishServiceImplTest {
     private static Logger log = LoggerFactory.getLogger(DishServiceImplTest.class);
 
     @Autowired
-    private MenuDishService<Dish> service;
+    private DishService service;
 
     @Rule
     public ExpectedException exception = ExpectedException.none();
@@ -41,10 +41,10 @@ public class DishServiceImplTest {
     @Test
     public void save() throws Exception {
         DishTestData.TestDish testDish = new DishTestData.TestDish("New", 50);
-        Dish dish = service.save(testDish.asDish(), 100004);
+        Dish dish = service.save(testDish.asDish(), 100002);
         testDish.setId(dish.getId());
-        testDish.setMenu(dish.getMenu());
-        MATCHER.assertEquals(testDish, service.get(100015, 100004));
+        testDish.setRestaurant(dish.getRestaurant());
+        MATCHER.assertEquals(testDish, service.get(100012, 100002));
         log.info(LocalDateTime.now().toString());
     }
 
@@ -52,49 +52,49 @@ public class DishServiceImplTest {
     public void update() throws Exception {
         DishTestData.TestDish updateDish = new DishTestData.TestDish(DISH_1);
         updateDish.setName("Гороховый суп");
-        service.update(updateDish.asDish(), 100004);
-        MATCHER.assertEquals(updateDish, service.get(100007, 100004));
+        service.update(updateDish.asDish(), 100002);
+        MATCHER.assertEquals(updateDish, service.get(100004, 100002));
         log.info(LocalDateTime.now().toString());
     }
 
     @Test
     public void notFoundUpdate() {
         exception.expect(NotFoundException.class);
-        Dish dish = service.get(100007, 100004);
-        service.update(dish, 100005);
+        Dish dish = service.get(100004, 100002);
+        service.update(dish, 100003);
         log.info(LocalDateTime.now().toString());
     }
 
     @Test
     public void delete() throws Exception {
-        service.delete(100007,100004);
-        MATCHER.assertCollectionEquals(sortArrays().subList(1, sortArrays().size()), service.getAll(100004));
+        service.delete(100004,100002);
+        MATCHER.assertCollectionEquals(sortArrays().subList(1, sortArrays().size()), service.getAll(100002));
         log.info(LocalDateTime.now().toString());
     }
 
     @Test
     public void notFoundDelete() {
         exception.expect(NotFoundException.class);
-        service.delete(1, 100004);
+        service.delete(1, 100002);
         log.info(LocalDateTime.now().toString());
     }
 
     @Test
     public void get() throws Exception {
-        MATCHER.assertEquals(DISH_1, service.get(100007, 100004));
+        MATCHER.assertEquals(DISH_1, service.get(100004, 100002));
         log.info(LocalDateTime.now().toString());
     }
 
     @Test
     public void notFoundGet() {
         exception.expect(NotFoundException.class);
-        service.get(1, 100004);
+        service.get(1, 100002);
         log.info(LocalDateTime.now().toString());
     }
 
     @Test
     public void getAll() throws Exception {
-        MATCHER.assertCollectionEquals(sortArrays(), service.getAll(100004));
+        MATCHER.assertCollectionEquals(sortArrays(), service.getAll(100002));
         log.info(LocalDateTime.now().toString());
     }
 

@@ -1,7 +1,7 @@
 package com.aleksandrbogomolov.vote_restaurant.controllers.restaurant;
 
 import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Dish;
-import com.aleksandrbogomolov.vote_restaurant.service.restaurant.MenuDishService;
+import com.aleksandrbogomolov.vote_restaurant.service.restaurant.DishService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ public class DishRepositoryController {
     private static Logger log = LoggerFactory.getLogger(DishRepositoryController.class);
 
     @Autowired
-    private MenuDishService<Dish> service;
+    private DishService service;
 
     public Dish create(Dish dish, int menu_id) {
         log.info("create dish {}", dish);

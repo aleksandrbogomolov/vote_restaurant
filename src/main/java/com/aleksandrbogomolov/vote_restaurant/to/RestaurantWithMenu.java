@@ -1,7 +1,6 @@
 package com.aleksandrbogomolov.vote_restaurant.to;
 
 import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Dish;
-import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Menu;
 
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -13,8 +12,6 @@ public class RestaurantWithMenu {
     private String name;
 
     private String address;
-
-    private Menu menu;
 
     private Set<Dish> dishes;
 
@@ -42,14 +39,6 @@ public class RestaurantWithMenu {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public Menu getMenu() {
-        return menu;
-    }
-
-    public void setMenu(Menu menu) {
-        this.menu = menu;
     }
 
     public Set<Dish> getDishes() {

@@ -3,10 +3,7 @@ package com.aleksandrbogomolov.vote_restaurant.model.restaurant;
 import com.aleksandrbogomolov.vote_restaurant.model.NamedEntity;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
@@ -17,8 +14,8 @@ public class Restaurant extends NamedEntity {
     @Column(name = "address")
     protected String address;
 
-    @OneToMany(mappedBy = "restaurant")
-    private Set<Menu> menus;
+    @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
+    private Set<Dish> dishes;
 
     public Restaurant() {
     }
@@ -40,12 +37,12 @@ public class Restaurant extends NamedEntity {
         this.address = address;
     }
 
-    public Set<Menu> getMenus() {
-        return menus;
+    public Set<Dish> getDishes() {
+        return dishes;
     }
 
-    public void setMenus(Set<Menu> menus) {
-        this.menus = menus;
+    public void setDishes(Set<Dish> dishes) {
+        this.dishes = dishes;
     }
 
     @Override

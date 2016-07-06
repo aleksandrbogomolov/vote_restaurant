@@ -21,7 +21,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 import static com.aleksandrbogomolov.vote_restaurant.test_data.RestaurantTestData.*;
 
@@ -88,15 +87,5 @@ public class RestaurantServiceImplTest {
     public void getAll() throws Exception {
         RESTAURANT_MATCHER.assertCollectionEquals(Arrays.asList(RESTAURANT_1, RESTAURANT_2), service.getAll());
         log.info(LocalDateTime.now().toString());
-    }
-
-    @Test
-    public void getAllWithMenu() throws Exception {
-        List<Restaurant> restaurants = service.getAllWithMenu();
-        RESTAURANT_MATCHER.assertCollectionEquals(Arrays.asList(RESTAURANT_1, RESTAURANT_2), restaurants);
-//        for (Restaurant r :
-//                restaurants) {
-//            System.out.println(r + r.getMenus().toString());
-//        }
     }
 }

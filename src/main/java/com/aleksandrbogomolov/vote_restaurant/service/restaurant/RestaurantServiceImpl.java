@@ -39,9 +39,4 @@ public class RestaurantServiceImpl implements RestaurantService {
     public List<Restaurant> getAll() {
         return repository.getAll();
     }
-
-    @Override
-    public List<Restaurant> getAllWithMenu() {
-        return repository.getAllWithMenu();
-    }
 }
