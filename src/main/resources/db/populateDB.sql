@@ -15,18 +15,18 @@ INSERT INTO restaurants (name, address) VALUES ('Кавказ', 'Днепров�
 INSERT INTO restaurants (name, address) VALUES ('Скиф', 'Энергодар');
 
 
-INSERT INTO dishes (name, price, restaurant_id) VALUES ('Борщ', 50, 100002);
+INSERT INTO dishes (name, type_dish, price, restaurant_id) VALUES ('Борщ', 1, 50, 100002);
 
-INSERT INTO dishes (name, price, restaurant_id) VALUES ('Пюре', 30, 100002);
+INSERT INTO dishes (name, type_dish, price, restaurant_id) VALUES ('Пюре', 2, 30, 100002);
 
-INSERT INTO dishes (name, price, restaurant_id) VALUES ('Котлета', 50, 100002);
+INSERT INTO dishes (name, type_dish, price, restaurant_id) VALUES ('Котлета', 3, 50, 100002);
 
-INSERT INTO dishes (name, price, restaurant_id) VALUES ('Салат из помидор', 40, 100002);
+INSERT INTO dishes (name, type_dish, price, restaurant_id) VALUES ('Салат из помидор', 4, 40, 100002);
 
-INSERT INTO dishes (name, price, restaurant_id) VALUES ('Солянка', 70, 100003);
+INSERT INTO dishes (name, type_dish, price, restaurant_id) VALUES ('Солянка', 1, 70, 100003);
 
-INSERT INTO dishes (name, price, restaurant_id) VALUES ('Макароны', 20, 100003);
+INSERT INTO dishes (name, type_dish, price, restaurant_id) VALUES ('Макароны', 2, 20, 100003);
 
-INSERT INTO dishes (name, price, restaurant_id) VALUES ('Бифштекс', 60, 100003);
+INSERT INTO dishes (name, type_dish, price, restaurant_id) VALUES ('Бифштекс', 3, 60, 100003);
 
-INSERT INTO dishes (name, price, restaurant_id) VALUES ('Компот', 10, 100003);
+INSERT INTO dishes (name, type_dish, price, restaurant_id) VALUES ('Компот', 4, 10, 100003);

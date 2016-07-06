@@ -4,7 +4,7 @@ import com.aleksandrbogomolov.vote_restaurant.model.NamedEntity;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "restaurants")
@@ -14,8 +14,9 @@ public class Restaurant extends NamedEntity {
     @Column(name = "address")
     protected String address;
 
+    @OrderBy(value = "typeDish ASC")
     @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
-    private Set<Dish> dishes;
+    private List<Dish> dishes;
 
     public Restaurant() {
     }
@@ -37,11 +38,11 @@ public class Restaurant extends NamedEntity {
         this.address = address;
     }
 
-    public Set<Dish> getDishes() {
+    public List<Dish> getDishes() {
         return dishes;
     }
 
-    public void setDishes(Set<Dish> dishes) {
+    public void setDishes(List<Dish> dishes) {
         this.dishes = dishes;
     }
 

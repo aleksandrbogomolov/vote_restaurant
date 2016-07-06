@@ -40,7 +40,7 @@ public class DishServiceImplTest {
 
     @Test
     public void save() throws Exception {
-        DishTestData.TestDish testDish = new DishTestData.TestDish("New", 50);
+        DishTestData.TestDish testDish = new DishTestData.TestDish("New", 50, 1);
         Dish dish = service.save(testDish.asDish(), 100002);
         testDish.setId(dish.getId());
         testDish.setRestaurant(dish.getRestaurant());

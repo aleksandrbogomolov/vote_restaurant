@@ -32,19 +32,15 @@
 
     <div class="container bg">
         <div class="row">
-            <div th:each="user:${allRestaurant}">
+            <div th:each="restaurant:${allRestaurant}">
                 <div class="col-sm-6 col-md-4">
                     <div class="thumbnail">
                         <div class="caption">
-                            <h3 th:text="${{user.name}}"></h3>
-                            <h4 th:text="${{user.address}}"></h4>
-                            <div>
-                                <p>Menu item here</p>
-                                <p>Menu item here</p>
-                                <p>Menu item here</p>
-                                <p>Menu item here</p>
-                                <p>Menu item here</p>
-                                <p>Menu item here</p>
+                            <h3 th:text="${{restaurant.name}}"></h3>
+                            <h4 th:text="${{restaurant.address}}"></h4>
+                            <div th:each="dish:${restaurant.dishes}" class="list-inline">
+                                <span th:text="${{dish.name}}"></span>
+                                <span th:text="${{dish.price}}"></span>
                             </div>
                             <p><a href="#" class="btn btn-primary" role="button">Vote!</a></p>
                         </div>
