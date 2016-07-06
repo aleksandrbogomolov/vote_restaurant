@@ -45,7 +45,7 @@ public class UserServiceImplTest {
         UserTestData.TestUser testUser = new UserTestData.TestUser(null, "New", "new@yandex.ru", "testPass", false, Role.USER);
         User created = userService.save(testUser.asUser());
         testUser.setId(created.getId());
-        MATCHER.assertCollectionEquals(Arrays.asList(ADMIN, testUser, USER), userService.getAll());
+        USER_MATCHER.assertCollectionEquals(Arrays.asList(ADMIN, testUser, USER), userService.getAll());
         log.info(LocalDateTime.now().toString());
     }
 
@@ -60,14 +60,14 @@ public class UserServiceImplTest {
         TestUser updateUser = new TestUser(USER);
         updateUser.setName("UpdateUser");
         userService.update(updateUser.asUser());
-        MATCHER.assertEquals(updateUser, userService.get(USER_ID));
+        USER_MATCHER.assertEquals(updateUser, userService.get(USER_ID));
         log.info(LocalDateTime.now().toString());
     }
 
     @Test
     public void delete() throws Exception {
         userService.delete(USER_ID);
-        MATCHER.assertCollectionEquals(Collections.singletonList(ADMIN), userService.getAll());
+        USER_MATCHER.assertCollectionEquals(Collections.singletonList(ADMIN), userService.getAll());
         log.info(LocalDateTime.now().toString());
     }
 
@@ -81,7 +81,7 @@ public class UserServiceImplTest {
     @Test
     public void get() throws Exception {
         User user = userService.get(USER_ID);
-        MATCHER.assertEquals(USER, user);
+        USER_MATCHER.assertEquals(USER, user);
         log.info(LocalDateTime.now().toString());
     }
 
@@ -95,13 +95,13 @@ public class UserServiceImplTest {
     @Test
     public void getByEmail() throws Exception {
         User user = userService.getByEmail(USER.getEmail());
-        MATCHER.assertEquals(USER, user);
+        USER_MATCHER.assertEquals(USER, user);
         log.info(LocalDateTime.now().toString());
     }
 
     @Test
     public void getAll() throws Exception {
-        MATCHER.assertCollectionEquals(Arrays.asList(ADMIN, USER), userService.getAll());
+        USER_MATCHER.assertCollectionEquals(Arrays.asList(ADMIN, USER), userService.getAll());
         log.info(LocalDateTime.now().toString());
     }
 }

@@ -3,7 +3,6 @@ package com.aleksandrbogomolov.vote_restaurant.service.restaurant;
 import com.aleksandrbogomolov.vote_restaurant.configuration.DataBaseConfiguration;
 import com.aleksandrbogomolov.vote_restaurant.configuration.SpringWebConfiguration;
 import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Restaurant;
-import com.aleksandrbogomolov.vote_restaurant.service.BaseService;
 import com.aleksandrbogomolov.vote_restaurant.test_data.RestaurantTestData;
 import com.aleksandrbogomolov.vote_restaurant.util.exception.NotFoundException;
 import org.junit.Rule;
@@ -22,6 +21,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import static com.aleksandrbogomolov.vote_restaurant.test_data.RestaurantTestData.*;
 
@@ -34,7 +34,7 @@ public class RestaurantServiceImplTest {
     private static Logger log = LoggerFactory.getLogger(RestaurantServiceImplTest.class);
 
     @Autowired
-    private BaseService<Restaurant> service;
+    private RestaurantService service;
 
     @Rule
     public ExpectedException exception = ExpectedException.none();
@@ -44,7 +44,7 @@ public class RestaurantServiceImplTest {
         RestaurantTestData.TestRestaurant testRestaurant = new RestaurantTestData.TestRestaurant(null, "New", "Moscow");
         Restaurant restaurant = service.save(testRestaurant.asRestaurant());
         testRestaurant.setId(restaurant.getId());
-        MATCHER.assertCollectionEquals(Arrays.asList(testRestaurant, RESTAURANT_1, RESTAURANT_2), service.getAll());
+        RESTAURANT_MATCHER.assertCollectionEquals(Arrays.asList(testRestaurant, RESTAURANT_1, RESTAURANT_2), service.getAll());
         log.info(LocalDateTime.now().toString());
     }
 
@@ -53,14 +53,14 @@ public class RestaurantServiceImplTest {
         RestaurantTestData.TestRestaurant updateRestaurant = new TestRestaurant(RESTAURANT_1);
         updateRestaurant.setName("У Галины");
         service.update(updateRestaurant.asRestaurant());
-        MATCHER.assertEquals(updateRestaurant, service.get(RESTAURANT_ID));
+        RESTAURANT_MATCHER.assertEquals(updateRestaurant, service.get(RESTAURANT_ID));
         log.info(LocalDateTime.now().toString());
     }
 
     @Test
     public void delete() throws Exception {
         service.delete(RESTAURANT_ID);
-        MATCHER.assertCollectionEquals(Collections.singletonList(RESTAURANT_2), service.getAll());
+        RESTAURANT_MATCHER.assertCollectionEquals(Collections.singletonList(RESTAURANT_2), service.getAll());
         log.info(LocalDateTime.now().toString());
     }
 
@@ -73,7 +73,7 @@ public class RestaurantServiceImplTest {
 
     @Test
     public void get() throws Exception {
-        MATCHER.assertEquals(RESTAURANT_1, service.get(RESTAURANT_ID));
+        RESTAURANT_MATCHER.assertEquals(RESTAURANT_1, service.get(RESTAURANT_ID));
         log.info(LocalDateTime.now().toString());
     }
 
@@ -86,7 +86,17 @@ public class RestaurantServiceImplTest {
 
     @Test
     public void getAll() throws Exception {
-        MATCHER.assertCollectionEquals(Arrays.asList(RESTAURANT_1, RESTAURANT_2), service.getAll());
+        RESTAURANT_MATCHER.assertCollectionEquals(Arrays.asList(RESTAURANT_1, RESTAURANT_2), service.getAll());
         log.info(LocalDateTime.now().toString());
+    }
+
+    @Test
+    public void getAllWithMenu() throws Exception {
+        List<Restaurant> restaurants = service.getAllWithMenu();
+        RESTAURANT_MATCHER.assertCollectionEquals(Arrays.asList(RESTAURANT_1, RESTAURANT_2), restaurants);
+//        for (Restaurant r :
+//                restaurants) {
+//            System.out.println(r + r.getMenus().toString());
+//        }
     }
 }

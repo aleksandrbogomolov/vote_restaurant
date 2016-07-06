@@ -44,7 +44,7 @@ public class MenuServiceImplTest {
         MenuTestData.TestMenu testMenu = new MenuTestData.TestMenu(null, LocalDateTime.of(2016, Month.JUNE, 28, 9, 30));
         Menu menu = service.save(testMenu.asMenu(), 100002);
         testMenu.setId(menu.getId());
-        MATCHER.assertCollectionEquals(Arrays.asList(testMenu, MENU_2, MENU_1), service.getAll(100002));
+        MENU_MATCHER.assertCollectionEquals(Arrays.asList(testMenu, MENU_2, MENU_1), service.getAll(100002));
         log.info(LocalDateTime.now().toString());
     }
 
@@ -54,7 +54,7 @@ public class MenuServiceImplTest {
         updateMenu.setRegistered(LocalDateTime.of(2016, Month.JUNE, 25, 9, 0));
         Menu menu = service.update(updateMenu.asMenu(), 100002);
         updateMenu.setId(menu.getId());
-        MATCHER.assertEquals(updateMenu, service.get(100004, 100002));
+        MENU_MATCHER.assertEquals(updateMenu, service.get(100004, 100002));
         log.info(LocalDateTime.now().toString());
     }
 
@@ -68,7 +68,7 @@ public class MenuServiceImplTest {
     @Test
     public void delete() throws Exception {
         service.delete(100004, 100002);
-        MATCHER.assertCollectionEquals(Collections.singletonList(MENU_2), service.getAll(100002));
+        MENU_MATCHER.assertCollectionEquals(Collections.singletonList(MENU_2), service.getAll(100002));
         log.info(LocalDateTime.now().toString());
     }
 
@@ -80,7 +80,7 @@ public class MenuServiceImplTest {
 
     @Test
     public void get() throws Exception {
-        MATCHER.assertEquals(MENU_1, service.get(100004, 100002));
+        MENU_MATCHER.assertEquals(MENU_1, service.get(100004, 100002));
         log.info(LocalDateTime.now().toString());
     }
 
@@ -92,7 +92,7 @@ public class MenuServiceImplTest {
 
     @Test
     public void getAll() throws Exception {
-        MATCHER.assertCollectionEquals(Arrays.asList(MENU_2, MENU_1), service.getAll(100002));
+        MENU_MATCHER.assertCollectionEquals(Arrays.asList(MENU_2, MENU_1), service.getAll(100002));
         log.info(LocalDateTime.now().toString());
     }
 }

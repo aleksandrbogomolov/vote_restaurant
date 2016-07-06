@@ -3,22 +3,22 @@ package com.aleksandrbogomolov.vote_restaurant.model.restaurant;
 import com.aleksandrbogomolov.vote_restaurant.model.NamedEntity;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import java.util.Set;
 
-@NamedQueries({
-        @NamedQuery(name = Restaurant.DELETE, query = "DELETE FROM Restaurant r WHERE r.id=:id"),
-        @NamedQuery(name = Restaurant.GET_ALL, query = "SELECT r FROM Restaurant r ORDER BY r.name")
-})
 @Entity
 @Table(name = "restaurants")
 public class Restaurant extends NamedEntity {
 
-    public static final String DELETE = "Restaurant.delete";
-    public static final String GET_ALL = "Restaurant.getAll";
-
     @NotEmpty
     @Column(name = "address")
     protected String address;
+
+    @OneToMany(mappedBy = "restaurant")
+    private Set<Menu> menus;
 
     public Restaurant() {
     }
@@ -38,6 +38,14 @@ public class Restaurant extends NamedEntity {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Set<Menu> getMenus() {
+        return menus;
+    }
+
+    public void setMenus(Set<Menu> menus) {
+        this.menus = menus;
     }
 
     @Override

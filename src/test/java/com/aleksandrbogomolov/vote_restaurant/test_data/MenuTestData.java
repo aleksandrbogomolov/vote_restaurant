@@ -17,7 +17,7 @@ public class MenuTestData {
     public static final Menu MENU_2 = new Menu(MENU_ID + 1, LocalDateTime.of(2016, Month.JUNE, 27, 9, 0));
     public static final Menu MENU_3 = new Menu(MENU_ID + 2, LocalDateTime.of(2016, Month.JUNE, 27, 8, 30));
 
-    public static final ModelMatcher<Menu, TestMenu> MATCHER = new ModelMatcher<>(m -> ((m instanceof TestMenu) ? (TestMenu) m : new TestMenu(m)));
+    public static final ModelMatcher<Menu, TestMenu> MENU_MATCHER = new ModelMatcher<>(m -> ((m instanceof TestMenu) ? (TestMenu) m : new TestMenu(m)));
 
     public static class TestMenu extends Menu {
 

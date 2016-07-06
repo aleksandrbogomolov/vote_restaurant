@@ -1,7 +1,7 @@
 package com.aleksandrbogomolov.vote_restaurant.repository.restaurant.datajpa;
 
 import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Restaurant;
-import com.aleksandrbogomolov.vote_restaurant.repository.BaseRepository;
+import com.aleksandrbogomolov.vote_restaurant.repository.restaurant.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class DataJpaRestaurantRepositoryImpl implements BaseRepository<Restaurant> {
+public class DataJpaRestaurantRepositoryImpl implements RestaurantRepository {
 
     private static final Sort RESTAURANT_NAME = new Sort("name");
 
@@ -34,5 +34,9 @@ public class DataJpaRestaurantRepositoryImpl implements BaseRepository<Restauran
     @Override
     public List<Restaurant> getAll() {
         return proxy.findAll(RESTAURANT_NAME);
+    }
+
+    public List<Restaurant> getAllWithMenu() {
+        return proxy.findAllWithMenu(RESTAURANT_NAME);
     }
 }

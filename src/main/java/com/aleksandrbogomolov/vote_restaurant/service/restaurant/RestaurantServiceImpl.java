@@ -1,8 +1,8 @@
 package com.aleksandrbogomolov.vote_restaurant.service.restaurant;
 
 import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Restaurant;
-import com.aleksandrbogomolov.vote_restaurant.repository.BaseRepository;
-import com.aleksandrbogomolov.vote_restaurant.service.BaseService;
+import com.aleksandrbogomolov.vote_restaurant.repository.restaurant.RestaurantRepository;
+import com.aleksandrbogomolov.vote_restaurant.util.exception.ExceptionUtil;
 import com.aleksandrbogomolov.vote_restaurant.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class RestaurantServiceImpl implements BaseService<Restaurant> {
+public class RestaurantServiceImpl implements RestaurantService {
 
     @Autowired
-    private BaseRepository<Restaurant> repository;
+    private RestaurantRepository repository;
 
     @Override
     public Restaurant save(Restaurant entity) {
@@ -27,16 +27,21 @@ public class RestaurantServiceImpl implements BaseService<Restaurant> {
 
     @Override
     public void delete(int id) throws NotFoundException {
-        repository.delete(id);
+        ExceptionUtil.checkNotFoundWithId(repository.delete(id), id);
     }
 
     @Override
     public Restaurant get(int id) throws NotFoundException {
-        return repository.get(id);
+        return ExceptionUtil.checkNotFoundWithId(repository.get(id), id);
     }
 
     @Override
     public List<Restaurant> getAll() {
         return repository.getAll();
+    }
+
+    @Override
+    public List<Restaurant> getAllWithMenu() {
+        return repository.getAllWithMenu();
     }
 }
