@@ -1,11 +1,15 @@
 package com.aleksandrbogomolov.vote_restaurant.model.restaurant;
 
 import com.aleksandrbogomolov.vote_restaurant.model.NamedEntity;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "dishes")
 public class Dish extends NamedEntity {
 
@@ -32,30 +36,6 @@ public class Dish extends NamedEntity {
         super(id, name);
         this.price = price;
         this.typeDish = typeDish;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public int getTypeDish() {
-        return typeDish;
-    }
-
-    public void setTypeDish(int typeDish) {
-        this.typeDish = typeDish;
-    }
-
-    public Restaurant getRestaurant() {
-        return restaurant;
-    }
-
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
     }
 
     @Override

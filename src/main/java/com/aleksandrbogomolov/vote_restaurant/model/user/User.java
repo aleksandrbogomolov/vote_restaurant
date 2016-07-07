@@ -1,6 +1,8 @@
 package com.aleksandrbogomolov.vote_restaurant.model.user;
 
 import com.aleksandrbogomolov.vote_restaurant.model.NamedEntity;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -16,6 +18,8 @@ import java.util.Date;
 })
 @Entity
 @Table(name = "users")
+@Getter
+@Setter
 public class User extends NamedEntity {
 
     public static final String DELETE = "User.delete";
@@ -60,46 +64,6 @@ public class User extends NamedEntity {
         this.email = email;
         this.password = password;
         this.enabled = enabled;
-        this.role = role;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public Date getRegistered() {
-        return registered;
-    }
-
-    public void setRegistered(Date registered) {
-        this.registered = registered;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
         this.role = role;
     }
 
