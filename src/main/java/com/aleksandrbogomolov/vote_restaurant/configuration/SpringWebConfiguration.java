@@ -30,7 +30,7 @@ public class SpringWebConfiguration extends WebMvcConfigurerAdapter implements A
     @Bean
     public ResourceBundleMessageSource messageSource() {
         ResourceBundleMessageSource resourceBundleMessageSource = new ResourceBundleMessageSource();
-        resourceBundleMessageSource.setBasenames("messages/user_page", "messages/footer");
+        resourceBundleMessageSource.setBasenames("messages/header", "messages/user_page", "messages/footer");
         resourceBundleMessageSource.setDefaultEncoding("UTF-8");
         return resourceBundleMessageSource;
     }
@@ -43,7 +43,7 @@ public class SpringWebConfiguration extends WebMvcConfigurerAdapter implements A
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode(TemplateMode.HTML);
         templateResolver.setCharacterEncoding("UTF-8");
-        templateResolver.setCacheable(true);
+        templateResolver.setCacheable(false);
         return templateResolver;
     }
 

@@ -58,7 +58,7 @@ h1, h2, h3, h4 {
 
 header {
     background: #f16251;
-    height: 120px;
+    height: 150px;
     color: #000000;
 }
 
@@ -74,7 +74,7 @@ header h3 {
     border-radius: 3px;
     font-size: 34px;
     padding: 12px 10px 6px 10px;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 header .dropdown-menu {
@@ -88,7 +88,7 @@ header .dropdown-menu {
 }
 
 h1 {
-    font-size: 50px;
+    font-size: 40px;
 }
 
 #footer > .container {
