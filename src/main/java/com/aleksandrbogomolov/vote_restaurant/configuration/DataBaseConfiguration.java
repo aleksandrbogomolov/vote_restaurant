@@ -2,7 +2,6 @@ package com.aleksandrbogomolov.vote_restaurant.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -18,9 +17,8 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@EnableJpaRepositories(basePackages = "com.aleksandrbogomolov.vote_restaurant")
+@EnableJpaRepositories(basePackages = "com.aleksandrbogomolov.vote_restaurant.repository")
 @EnableTransactionManagement
-@ComponentScan(value = "com.aleksandrbogomolov.vote_restaurant.repository")
 @PropertySource(value = "classpath:db/postgres.properties")
 public class DataBaseConfiguration {
 
@@ -29,9 +27,9 @@ public class DataBaseConfiguration {
 
     private Properties postgresProperties() {
         Properties properties = new Properties();
-        properties.put("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
         properties.put("hibernate.show_sql", environment.getRequiredProperty("hibernate.show_sql"));
         properties.put("hibernate.format_sql", environment.getRequiredProperty("hibernate.format_sql"));
+        properties.put("hibernate.use_sql_comments", environment.getRequiredProperty("hibernate.use_sql_comments"));
         return properties;
     }
 
@@ -50,7 +48,7 @@ public class DataBaseConfiguration {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource());
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        entityManagerFactoryBean.setPackagesToScan("com.aleksandrbogomolov.vote_restaurant");
+        entityManagerFactoryBean.setPackagesToScan("com.aleksandrbogomolov.vote_restaurant.model");
         entityManagerFactoryBean.setJpaProperties(postgresProperties());
         return entityManagerFactoryBean;
     }
