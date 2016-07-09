@@ -5,10 +5,12 @@ import com.aleksandrbogomolov.vote_restaurant.repository.restaurant.RestaurantRe
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Repository
+@Transactional(readOnly = true)
 public class DataJpaRestaurantRepositoryImpl implements RestaurantRepository {
 
     private static final Sort RESTAURANT_NAME = new Sort("name");
@@ -17,11 +19,13 @@ public class DataJpaRestaurantRepositoryImpl implements RestaurantRepository {
     private ProxyRestaurantRepository proxy;
 
     @Override
+    @Transactional
     public Restaurant save(Restaurant entity) {
         return proxy.save(entity);
     }
 
     @Override
+    @Transactional
     public boolean delete(int id) {
         return proxy.delete(id) != 0;
     }

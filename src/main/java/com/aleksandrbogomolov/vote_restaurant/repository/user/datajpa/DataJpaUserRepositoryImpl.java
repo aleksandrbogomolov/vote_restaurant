@@ -5,10 +5,12 @@ import com.aleksandrbogomolov.vote_restaurant.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Repository
+@Transactional(readOnly = true)
 public class DataJpaUserRepositoryImpl implements UserRepository {
 
     private static final Sort USER_NAME = new Sort("name");
@@ -17,16 +19,13 @@ public class DataJpaUserRepositoryImpl implements UserRepository {
     private ProxyUserRepository proxy;
 
     @Override
-    public User getByEmail(String email) {
-        return proxy.findOneByEmail(email);
-    }
-
-    @Override
+    @Transactional
     public User save(User entity) {
         return proxy.save(entity);
     }
 
     @Override
+    @Transactional
     public boolean delete(int id) {
         return proxy.delete(id) != 0;
     }
@@ -34,6 +33,11 @@ public class DataJpaUserRepositoryImpl implements UserRepository {
     @Override
     public User get(int id) {
         return proxy.findOne(id);
+    }
+
+    @Override
+    public User getByEmail(String email) {
+        return proxy.findOneByEmail(email);
     }
 
     @Override

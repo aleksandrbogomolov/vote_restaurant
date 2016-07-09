@@ -5,12 +5,14 @@ import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Restaurant;
 import com.aleksandrbogomolov.vote_restaurant.repository.restaurant.DishRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
+@Transactional
 public class DataJpaDishRepositoryImpl implements DishRepository {
 
     @Autowired
@@ -20,6 +22,7 @@ public class DataJpaDishRepositoryImpl implements DishRepository {
     private EntityManager em;
 
     @Override
+    @Transactional
     public Dish save(Dish entity, int restaurant_id) {
         if (!entity.isNew() && get(entity.getId(), restaurant_id) == null) {
             return null;
@@ -29,6 +32,7 @@ public class DataJpaDishRepositoryImpl implements DishRepository {
     }
 
     @Override
+    @Transactional
     public boolean delete(int id, int menu_id) {
         return proxy.delete(id, menu_id) != 0;
     }
