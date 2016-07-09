@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -24,6 +25,14 @@ public class SpringWebConfiguration extends WebMvcConfigurerAdapter implements A
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.context = applicationContext;
+    }
+
+    @Bean
+    public ResourceBundleMessageSource messageSource() {
+        ResourceBundleMessageSource resourceBundleMessageSource = new ResourceBundleMessageSource();
+        resourceBundleMessageSource.setBasenames("messages/user_page", "messages/footer");
+        resourceBundleMessageSource.setDefaultEncoding("UTF-8");
+        return resourceBundleMessageSource;
     }
 
     @Bean

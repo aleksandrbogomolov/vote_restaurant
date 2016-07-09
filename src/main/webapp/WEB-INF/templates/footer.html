@@ -3,11 +3,10 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <!--<link rel="stylesheet" href="../../css/bootstrap.min.css"/>-->
 </head>
 <body>
 <div class="container" th:fragment="copy">
-    <small class="text-muted">&copy; 2016 Aleksandr Bogomolov</small>
+    <small class="text-muted">&copy; 2016 <span th:text="#{footer.name}"></span></small>
     <a href="https://ua.linkedin.com/pub/aleksandr-bogomolov/116/640/81">
         <img src="https://static.licdn.com/scds/common/u/img/webpromo/btn_profile_greytxt_80x15.png" width="80"
              height="15" border="0" alt="View Aleksandr Bogomolov's profile on LinkedIn">
