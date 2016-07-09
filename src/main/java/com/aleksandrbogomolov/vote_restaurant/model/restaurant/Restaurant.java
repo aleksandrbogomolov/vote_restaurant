@@ -22,16 +22,20 @@ public class Restaurant extends NamedEntity {
     @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
     private List<Dish> dishes;
 
+    @Column(name = "votes")
+    protected int votes;
+
     public Restaurant() {
     }
 
     public Restaurant(Restaurant r) {
-        this(r.getId(), r.getName(), r.getAddress());
+        this(r.getId(), r.getName(), r.getAddress(), r.getVotes());
     }
 
-    public Restaurant(Integer id, String name, String address) {
+    public Restaurant(Integer id, String name, String address, Integer votes) {
         super(id, name);
         this.address = address;
+        this.votes = votes;
     }
 
     @Override
@@ -39,6 +43,7 @@ public class Restaurant extends NamedEntity {
         return "Restaurant{" +
                 "name='" + name + '\'' +
                 "address='" + address + '\'' +
+                "votes='" + votes + '\'' +
                 '}';
     }
 }

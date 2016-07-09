@@ -20,7 +20,8 @@ CREATE UNIQUE INDEX users_unique_email_idx ON users (email);
 CREATE TABLE restaurants (
   id      INTEGER     NOT NULL PRIMARY KEY DEFAULT nextval('global_seq'),
   name    VARCHAR(50) NOT NULL,
-  address VARCHAR(50) NOT NULL
+  address VARCHAR(50) NOT NULL,
+  votes   NUMERIC
 );
 
 CREATE TABLE dishes (

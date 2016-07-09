@@ -10,9 +10,9 @@ INSERT INTO users (name, email, password, role)
 VALUES ('Admin', 'admin@yandex.ru', 'admin', 'ADMIN');
 
 
-INSERT INTO restaurants (name, address) VALUES ('Кавказ', 'Днепровка');
+INSERT INTO restaurants (name, address, votes) VALUES ('Кавказ', 'Днепровка', 3);
 
-INSERT INTO restaurants (name, address) VALUES ('Скиф', 'Энергодар');
+INSERT INTO restaurants (name, address, votes) VALUES ('Скиф', 'Энергодар', 5);
 
 
 INSERT INTO dishes (name, type_dish, price, restaurant_id) VALUES ('Борщ', 1, 50, 100002);
