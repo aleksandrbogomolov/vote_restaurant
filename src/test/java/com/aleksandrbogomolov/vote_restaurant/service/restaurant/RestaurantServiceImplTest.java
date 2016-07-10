@@ -14,6 +14,7 @@ import static com.aleksandrbogomolov.vote_restaurant.test_data.RestaurantTestDat
 
 public class RestaurantServiceImplTest extends AbstractServiceTest {
 
+    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
     private RestaurantService service;
 
@@ -42,7 +43,6 @@ public class RestaurantServiceImplTest extends AbstractServiceTest {
     @Test(expected = NotFoundException.class)
     public void notFoundDelete() throws Exception {
         service.delete(1);
-        throw new NotFoundException("");
     }
 
     @Test
@@ -53,7 +53,6 @@ public class RestaurantServiceImplTest extends AbstractServiceTest {
     @Test(expected = NotFoundException.class)
     public void notFoundGet() throws Exception {
         service.get(1);
-        throw new NotFoundException("");
     }
 
     @Test

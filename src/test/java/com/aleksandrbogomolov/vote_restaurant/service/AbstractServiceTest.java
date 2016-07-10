@@ -4,7 +4,6 @@ import com.aleksandrbogomolov.vote_restaurant.configuration.DataBaseConfiguratio
 import com.aleksandrbogomolov.vote_restaurant.configuration.SpringWebConfiguration;
 import com.aleksandrbogomolov.vote_restaurant.service.user.UserServiceImplTest;
 import org.junit.Rule;
-import org.junit.rules.ExpectedException;
 import org.junit.rules.Stopwatch;
 import org.junit.runner.Description;
 import org.junit.runner.RunWith;
@@ -25,9 +24,6 @@ import java.util.concurrent.TimeUnit;
 public abstract class AbstractServiceTest {
 
     private static Logger log = LoggerFactory.getLogger(UserServiceImplTest.class);
-
-    @Rule
-    public ExpectedException exception = ExpectedException.none();
 
     @Rule
     public Stopwatch stopwatch = new Stopwatch() {

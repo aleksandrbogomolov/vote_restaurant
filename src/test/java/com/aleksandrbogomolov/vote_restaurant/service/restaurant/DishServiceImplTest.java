@@ -14,6 +14,7 @@ import static com.aleksandrbogomolov.vote_restaurant.test_data.DishTestData.*;
 
 public class DishServiceImplTest extends AbstractServiceTest {
 
+    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
     private DishService service;
 
@@ -34,9 +35,8 @@ public class DishServiceImplTest extends AbstractServiceTest {
         MATCHER.assertEquals(updateDish, service.get(100004, 100002));
     }
 
-    @Test
+    @Test(expected = NotFoundException.class)
     public void notFoundUpdate() {
-        exception.expect(NotFoundException.class);
         Dish dish = service.get(100004, 100002);
         service.update(dish, 100003);
     }
@@ -47,9 +47,8 @@ public class DishServiceImplTest extends AbstractServiceTest {
         MATCHER.assertCollectionEquals(sortArrays().subList(1, sortArrays().size()), service.getAll(100002));
     }
 
-    @Test
+    @Test(expected = NotFoundException.class)
     public void notFoundDelete() {
-        exception.expect(NotFoundException.class);
         service.delete(1, 100002);
     }
 
@@ -58,9 +57,8 @@ public class DishServiceImplTest extends AbstractServiceTest {
         MATCHER.assertEquals(DISH_1, service.get(100004, 100002));
     }
 
-    @Test
+    @Test(expected = NotFoundException.class)
     public void notFoundGet() {
-        exception.expect(NotFoundException.class);
         service.get(1, 100002);
     }
 

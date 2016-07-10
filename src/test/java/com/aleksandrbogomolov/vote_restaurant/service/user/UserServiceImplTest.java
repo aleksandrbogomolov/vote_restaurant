@@ -16,12 +16,13 @@ import static com.aleksandrbogomolov.vote_restaurant.test_data.UserTestData.*;
 
 public class UserServiceImplTest extends AbstractServiceTest {
 
+    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
     private UserService<User> userService;
 
     @Test
     public void save() throws Exception {
-        UserTestData.TestUser testUser = new UserTestData.TestUser(null, "New", "new@yandex.ru", "testPass", false, Role.USER);
+        UserTestData.TestUser testUser = new UserTestData.TestUser(null, "New", "new@yandex.ru", "testPass", false, Role.USER, null);
         User created = userService.save(testUser.asUser());
         testUser.setId(created.getId());
         USER_MATCHER.assertCollectionEquals(Arrays.asList(ADMIN, testUser, USER), userService.getAll());
@@ -29,7 +30,7 @@ public class UserServiceImplTest extends AbstractServiceTest {
 
     @Test(expected = DataAccessException.class)
     public void duplicateMailSave() throws Exception {
-        userService.save(new User(null, "New", "user@yandex.ru", "testPass", false, Role.USER));
+        userService.save(new User(null, "New", "user@yandex.ru", "testPass", false, Role.USER, null));
     }
 
     @Test
@@ -49,7 +50,6 @@ public class UserServiceImplTest extends AbstractServiceTest {
     @Test(expected = NotFoundException.class)
     public void notFoundDelete() throws Exception {
         userService.delete(1);
-        throw new NotFoundException("");
     }
 
     @Test
@@ -59,9 +59,8 @@ public class UserServiceImplTest extends AbstractServiceTest {
     }
 
     @Test(expected = NotFoundException.class)
-    public void notFoundGet() {
+    public void notFoundGet() throws Exception {
         userService.get(1);
-        throw new NotFoundException("");
     }
 
     @Test

@@ -2,6 +2,7 @@ package com.aleksandrbogomolov.vote_restaurant.service.user;
 
 import com.aleksandrbogomolov.vote_restaurant.model.user.User;
 import com.aleksandrbogomolov.vote_restaurant.repository.user.UserRepository;
+import com.aleksandrbogomolov.vote_restaurant.util.exception.ExceptionUtil;
 import com.aleksandrbogomolov.vote_restaurant.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,17 +27,17 @@ public class UserServiceImpl implements UserService<User> {
 
     @Override
     public void delete(int id) throws NotFoundException {
-        repository.delete(id);
+        ExceptionUtil.checkNotFoundWithId(repository.delete(id), id);
     }
 
     @Override
-    public User get(int id) {
-        return repository.get(id);
+    public User get(int id) throws NotFoundException {
+        return ExceptionUtil.checkNotFoundWithId(repository.get(id), id);
     }
 
     @Override
     public User getByEmail(String email) throws NotFoundException {
-        return repository.getByEmail(email);
+        return ExceptionUtil.checkNotFound(repository.getByEmail(email), "email=" + email);
     }
 
     @Override
