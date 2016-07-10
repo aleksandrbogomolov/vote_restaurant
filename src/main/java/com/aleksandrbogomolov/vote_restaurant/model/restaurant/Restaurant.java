@@ -18,6 +18,7 @@ public class Restaurant extends NamedEntity {
     @Column(name = "address")
     protected String address;
 
+    @SuppressWarnings("JpaQlInspection")
     @OrderBy(value = "typeDish ASC")
     @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
     private List<Dish> dishes;
