@@ -53,7 +53,7 @@ public class UserServiceImplTest extends AbstractServiceTest {
     }
 
     @Test
-    public void get() throws Exception {
+    public void getOne() throws Exception {
         User user = userService.getOne(USER_ID);
         USER_MATCHER.assertEquals(USER, user);
     }

@@ -14,7 +14,7 @@ import java.util.List;
 @Controller
 public class RestaurantRepositoryController {
 
-    private static Logger log = LoggerFactory.getLogger(RestaurantRepositoryController.class);
+    private static Logger logger = LoggerFactory.getLogger(RestaurantRepositoryController.class);
 
     @Autowired
     private BaseService<Restaurant> service;
@@ -25,31 +25,31 @@ public class RestaurantRepositoryController {
     }
 
     public Restaurant create(Restaurant restaurant) {
-        log.info("create restaurant {}", restaurant);
+        logger.info("create restaurant {}", restaurant);
         restaurant.setId(null);
         service.save(restaurant);
         return restaurant;
     }
 
     public void update(Restaurant restaurant, int id) {
-        log.info("update restaurant with id {}", id);
+        logger.info("update restaurant with id {}", id);
         restaurant.setId(id);
         service.update(restaurant);
     }
 
     public void delete(int id) {
-        log.info("delete restaurant with id {}", id);
+        logger.info("delete restaurant with id {}", id);
         service.delete(id);
     }
 
-    public Restaurant get(int id) {
-        log.info("getOne restaurant with id {}", id);
+    public Restaurant getOne(int id) {
+        logger.info("getOne restaurant with id {}", id);
         return service.getOne(id);
     }
 
     @RequestMapping(value = "/")
     public String getAll(Restaurant restaurant) {
-        log.info("getOne all restaurants");
+        logger.info("getOne all restaurants");
         return "user_page";
     }
 }

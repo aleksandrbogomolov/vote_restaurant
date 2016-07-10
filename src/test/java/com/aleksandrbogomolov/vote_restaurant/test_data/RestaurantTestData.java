@@ -52,10 +52,10 @@ public class RestaurantTestData {
                 return false;
             }
 
-            RestaurantTestData.TestRestaurant that = (RestaurantTestData.TestRestaurant) o;
-            return Objects.equals(this.id, that.id)
-                    && Objects.equals(this.name, that.name)
-                    && Objects.equals(this.address, that.address);
+            RestaurantTestData.TestRestaurant testRestaurant = (RestaurantTestData.TestRestaurant) o;
+            return Objects.equals(this.id, testRestaurant.id)
+                    && Objects.equals(this.name, testRestaurant.name)
+                    && Objects.equals(this.address, testRestaurant.address);
         }
     }
 }

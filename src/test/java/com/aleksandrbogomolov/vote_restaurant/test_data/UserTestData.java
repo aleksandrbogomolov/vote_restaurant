@@ -50,22 +50,21 @@ public class UserTestData {
         }
 
         @Override
-        public boolean equals(Object o) {
-            if (this == o) {
+        public boolean equals(Object obj) {
+            if (this == obj) {
                 return true;
             }
-            if (o == null || getClass() != o.getClass()) {
+            if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
 
-            TestUser that = (TestUser) o;
-            return Objects.equals(this.password, that.password)
-                    && Objects.equals(this.id, that.id)
-                    && Objects.equals(this.name, that.name)
-                    && Objects.equals(this.email, that.email)
-                    && Objects.equals(this.enabled, that.enabled)
-                    && Objects.equals(this.role, that.role);
+            TestUser testUser = (TestUser) obj;
+            return Objects.equals(this.password, testUser.password)
+                    && Objects.equals(this.id, testUser.id)
+                    && Objects.equals(this.name, testUser.name)
+                    && Objects.equals(this.email, testUser.email)
+                    && Objects.equals(this.enabled, testUser.enabled)
+                    && Objects.equals(this.role, testUser.role);
         }
     }
-
 }

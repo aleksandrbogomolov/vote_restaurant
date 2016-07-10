@@ -9,17 +9,11 @@ public interface BaseService<T extends BaseEntity> {
 
     T save(T entity);
 
-    default void update(T entity) {
-        throw new UnsupportedOperationException();
-    }
+    void update(T entity);
 
     void delete(int id) throws NotFoundException;
 
-    default T getOne(int id) throws NotFoundException {
-        throw new UnsupportedOperationException();
-    }
+    T getOne(int id) throws NotFoundException;
 
-    default List<T> getAll() {
-        throw new UnsupportedOperationException();
-    }
+    List<T> getAll();
 }

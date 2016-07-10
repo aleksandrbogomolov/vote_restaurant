@@ -45,12 +45,12 @@ public class DataBaseConfiguration {
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-        entityManagerFactoryBean.setDataSource(dataSource());
-        entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        entityManagerFactoryBean.setPackagesToScan("com.aleksandrbogomolov.vote_restaurant.model");
-        entityManagerFactoryBean.setJpaProperties(postgresProperties());
-        return entityManagerFactoryBean;
+        LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+        factoryBean.setDataSource(dataSource());
+        factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+        factoryBean.setPackagesToScan("com.aleksandrbogomolov.vote_restaurant.model");
+        factoryBean.setJpaProperties(postgresProperties());
+        return factoryBean;
     }
 
     @Bean

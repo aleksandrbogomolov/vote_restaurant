@@ -1,6 +1,7 @@
 package com.aleksandrbogomolov.vote_restaurant.util.exception;
 
 public class ExceptionUtil {
+
     private ExceptionUtil() {
     }
 
@@ -17,7 +18,7 @@ public class ExceptionUtil {
         return object;
     }
 
-    public static void checkNotFound(boolean found, String msg) {
+    private static void checkNotFound(boolean found, String msg) {
         if (!found) {
             throw new NotFoundException("Not found entity with " + msg);
         }

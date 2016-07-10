@@ -46,7 +46,7 @@ public class RestaurantServiceImplTest extends AbstractServiceTest {
     }
 
     @Test
-    public void get() throws Exception {
+    public void getOne() throws Exception {
         RESTAURANT_MATCHER.assertEquals(RESTAURANT_1, service.getOne(RESTAURANT_ID));
     }
 

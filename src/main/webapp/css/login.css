@@ -10,4 +10,4 @@ body {
     opacity: 0.9;
     margin-top:30px;
 }
-.form-group.last { margin-bottom:0px; }
+.form-group.last { margin-bottom:0; }

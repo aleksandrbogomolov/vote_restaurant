@@ -33,13 +33,13 @@ public class BaseEntity {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof BaseEntity)) return false;
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof BaseEntity)) return false;
 
-        BaseEntity that = (BaseEntity) o;
+        BaseEntity baseEntity = (BaseEntity) obj;
 
-        return id != null ? id.equals(that.id) : that.id == null;
+        return id != null ? id.equals(baseEntity.id) : baseEntity.id == null;
 
     }
 

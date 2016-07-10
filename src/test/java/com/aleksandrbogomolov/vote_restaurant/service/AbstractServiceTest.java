@@ -23,12 +23,12 @@ import java.util.concurrent.TimeUnit;
 @Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
 public abstract class AbstractServiceTest {
 
-    private static Logger log = LoggerFactory.getLogger(UserServiceImplTest.class);
+    private static Logger logger = LoggerFactory.getLogger(UserServiceImplTest.class);
 
     @Rule
     public Stopwatch stopwatch = new Stopwatch() {
         private void logInfo(Description description, long nanos) {
-            log.info(String.format("+++ Test %s spent %d microseconds",
+            logger.info(String.format("+++ Test %s spent %d microseconds",
                     description.getMethodName(), TimeUnit.NANOSECONDS.toMicros(nanos)));
         }
 
