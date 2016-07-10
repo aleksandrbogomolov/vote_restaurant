@@ -19,7 +19,7 @@ public class RestaurantServiceImplTest extends AbstractServiceTest {
 
     @Test
     public void save() throws Exception {
-        RestaurantTestData.TestRestaurant testRestaurant = new RestaurantTestData.TestRestaurant(null, "New", "Moscow", 1);
+        RestaurantTestData.TestRestaurant testRestaurant = new RestaurantTestData.TestRestaurant(null, "New", "Moscow");
         Restaurant restaurant = service.save(testRestaurant.asRestaurant());
         testRestaurant.setId(restaurant.getId());
         RESTAURANT_MATCHER.assertCollectionEquals(Arrays.asList(testRestaurant, RESTAURANT_1, RESTAURANT_2), service.getAll());

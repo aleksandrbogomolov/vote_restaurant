@@ -13,7 +13,8 @@ CREATE TABLE users (
   password   VARCHAR(16) NOT NULL,
   registered TIMESTAMP                        DEFAULT now(),
   enabled    BOOL                             DEFAULT TRUE,
-  role       VARCHAR(16) NOT NULL
+  role       VARCHAR(16) NOT NULL,
+  vote       INTEGER
 );
 CREATE UNIQUE INDEX users_unique_email_idx ON users (email);
 
@@ -21,7 +22,7 @@ CREATE TABLE restaurants (
   id      INTEGER     NOT NULL PRIMARY KEY DEFAULT nextval('global_seq'),
   name    VARCHAR(50) NOT NULL,
   address VARCHAR(50) NOT NULL,
-  votes   NUMERIC
+  vote    INTEGER
 );
 
 CREATE TABLE dishes (
@@ -34,6 +35,7 @@ CREATE TABLE dishes (
 );
 
 CREATE TABLE votes (
+  id            INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('global_seq'),
   user_id       INTEGER NOT NULL,
   restaurant_id INTEGER NOT NULL,
   CONSTRAINT user_id_idx UNIQUE (user_id),

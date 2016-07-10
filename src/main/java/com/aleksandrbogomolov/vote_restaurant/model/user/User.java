@@ -39,6 +39,10 @@ public class User extends NamedEntity {
     @Column(name = "role")
     protected Role role;
 
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "vote")
+    protected Vote vote;
+
     public User() {
     }
 

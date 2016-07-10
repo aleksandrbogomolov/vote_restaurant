@@ -1,12 +1,14 @@
 package com.aleksandrbogomolov.vote_restaurant.model.restaurant;
 
 import com.aleksandrbogomolov.vote_restaurant.model.NamedEntity;
+import com.aleksandrbogomolov.vote_restaurant.model.user.Vote;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -21,22 +23,21 @@ public class Restaurant extends NamedEntity {
     @SuppressWarnings("JpaQlInspection")
     @OrderBy(value = "typeDish ASC")
     @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
-    private List<Dish> dishes;
+    private List<Dish> dishes; //TODO mb change to Set
 
-    @Column(name = "votes")
-    protected int votes;
+    @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
+    protected Set<Vote> votes;
 
     public Restaurant() {
     }
 
     public Restaurant(Restaurant r) {
-        this(r.getId(), r.getName(), r.getAddress(), r.getVotes());
+        this(r.getId(), r.getName(), r.getAddress());
     }
 
-    public Restaurant(Integer id, String name, String address, Integer votes) {
+    public Restaurant(Integer id, String name, String address) {
         super(id, name);
         this.address = address;
-        this.votes = votes;
     }
 
     @Override
