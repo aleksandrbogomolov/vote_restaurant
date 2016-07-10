@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface DishService {
 
-    Dish save(Dish entity, int parent_id);
+    Dish save(Dish entity, int restaurantId);
 
-    Dish update(Dish entity, int parent_id);
+    Dish update(Dish entity, int restaurantId);
 
-    void delete(int id, int parent_id) throws NotFoundException;
+    void delete(int id, int restaurantId) throws NotFoundException;
 
-    Dish get(int id, int parent_id) throws NotFoundException;
+    Dish getOne(int id, int restaurantId) throws NotFoundException;
 
-    List<Dish> getAll(int parent_id);
+    List<Dish> getAll(int restaurantId);
 }

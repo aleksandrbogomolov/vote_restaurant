@@ -13,37 +13,37 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class DataJpaDishRepositoryImpl implements DishRepository {
+public class DishRepositoryImpl implements DishRepository {
 
     @Autowired
     private ProxyDishRepository proxy;
 
     @PersistenceContext
-    private EntityManager em;
+    private EntityManager entityManager;
 
     @Override
     @Transactional
-    public Dish save(Dish entity, int restaurant_id) {
-        if (!entity.isNew() && get(entity.getId(), restaurant_id) == null) {
+    public Dish save(Dish entity, int restaurantId) {
+        if (!entity.isNew() && getOne(entity.getId(), restaurantId) == null) {
             return null;
         }
-        entity.setRestaurant(em.getReference(Restaurant.class, restaurant_id));
+        entity.setRestaurant(entityManager.getReference(Restaurant.class, restaurantId));
         return proxy.save(entity);
     }
 
     @Override
     @Transactional
-    public boolean delete(int id, int menu_id) {
-        return proxy.delete(id, menu_id) != 0;
+    public boolean delete(int id, int restaurantId) {
+        return proxy.delete(id, restaurantId) != 0;
     }
 
     @Override
-    public Dish get(int id, int menu_id) {
-        return proxy.findOne(id, menu_id);
+    public Dish getOne(int id, int restaurantId) {
+        return proxy.findOne(id, restaurantId);
     }
 
     @Override
-    public List<Dish> getAll(int menu_id) {
-        return proxy.findAll(menu_id);
+    public List<Dish> getAll(int restaurantId) {
+        return proxy.findAll(restaurantId);
     }
 }

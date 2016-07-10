@@ -16,27 +16,27 @@ public class DishServiceImpl implements DishService {
     private DishRepository repository;
 
     @Override
-    public Dish save(Dish dish, int restaurant_id) {
-        return repository.save(dish, restaurant_id);
+    public Dish save(Dish entity, int restaurantId) {
+        return repository.save(entity, restaurantId);
     }
 
     @Override
-    public Dish update(Dish dish, int restaurant_id) {
-        return ExceptionUtil.checkNotFoundWithId(repository.save(dish, restaurant_id), dish.getId());
+    public Dish update(Dish entity, int restaurantId) {
+        return ExceptionUtil.checkNotFoundWithId(repository.save(entity, restaurantId), entity.getId());
     }
 
     @Override
-    public void delete(int id, int restaurant_id) throws NotFoundException {
-        ExceptionUtil.checkNotFoundWithId(repository.delete(id, restaurant_id), id);
+    public void delete(int id, int restaurantId) throws NotFoundException {
+        ExceptionUtil.checkNotFoundWithId(repository.delete(id, restaurantId), id);
     }
 
     @Override
-    public Dish get(int id, int restaurant_id) throws NotFoundException {
-        return ExceptionUtil.checkNotFoundWithId(repository.get(id, restaurant_id), id);
+    public Dish getOne(int id, int restaurantId) throws NotFoundException {
+        return ExceptionUtil.checkNotFoundWithId(repository.getOne(id, restaurantId), id);
     }
 
     @Override
-    public List<Dish> getAll(int restaurant_id) {
-        return repository.getAll(restaurant_id);
+    public List<Dish> getAll(int restaurantId) {
+        return repository.getAll(restaurantId);
     }
 }

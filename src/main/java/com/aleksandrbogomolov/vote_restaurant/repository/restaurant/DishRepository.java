@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface DishRepository {
 
-    Dish save(Dish entity, int restaurant_id);
+    Dish save(Dish entity, int restaurantId);
 
-    boolean delete(int id, int restaurant_id);
+    boolean delete(int id, int restaurantId);
 
-    Dish get(int id, int restaurant_id);
+    Dish getOne(int id, int restaurantId);
 
-    List<Dish> getAll(int restaurant_id);
+    List<Dish> getAll(int restaurantId);
 }

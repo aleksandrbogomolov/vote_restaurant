@@ -10,7 +10,11 @@ public interface BaseRepository<T extends BaseEntity> {
 
     boolean delete(int id);
 
-    T get(int id);
+    default T getOne(int id) {
+        throw new UnsupportedOperationException();
+    }
 
-    List<T> getAll();
+    default List<T> getAll() {
+        throw new UnsupportedOperationException();
+    }
 }

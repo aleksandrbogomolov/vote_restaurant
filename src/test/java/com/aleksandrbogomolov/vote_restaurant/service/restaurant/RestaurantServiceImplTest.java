@@ -31,7 +31,7 @@ public class RestaurantServiceImplTest extends AbstractServiceTest {
         RestaurantTestData.TestRestaurant updateRestaurant = new TestRestaurant(RESTAURANT_1);
         updateRestaurant.setName("У Галины");
         service.update(updateRestaurant.asRestaurant());
-        RESTAURANT_MATCHER.assertEquals(updateRestaurant, service.get(RESTAURANT_ID));
+        RESTAURANT_MATCHER.assertEquals(updateRestaurant, service.getOne(RESTAURANT_ID));
     }
 
     @Test
@@ -47,12 +47,12 @@ public class RestaurantServiceImplTest extends AbstractServiceTest {
 
     @Test
     public void get() throws Exception {
-        RESTAURANT_MATCHER.assertEquals(RESTAURANT_1, service.get(RESTAURANT_ID));
+        RESTAURANT_MATCHER.assertEquals(RESTAURANT_1, service.getOne(RESTAURANT_ID));
     }
 
     @Test(expected = NotFoundException.class)
     public void notFoundGet() throws Exception {
-        service.get(1);
+        service.getOne(1);
     }
 
     @Test

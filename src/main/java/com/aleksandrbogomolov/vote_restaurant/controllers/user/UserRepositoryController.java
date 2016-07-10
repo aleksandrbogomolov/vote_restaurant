@@ -43,18 +43,18 @@ public class UserRepositoryController {
     }
 
     public User get(int id) {
-        log.info("get user with id {}", id);
-        return service.get(id);
+        log.info("getOne user with id {}", id);
+        return service.getOne(id);
     }
 
     public User getByEmail(String email) {
-        log.info("get user with email {}", email);
+        log.info("getOne user with email {}", email);
         return service.getByEmail(email);
     }
 
     @RequestMapping(value = "/allUsers")
     public String getAll(User user) {
-        log.info("get all users");
+        log.info("getOne all users");
         return "user_page";
     }
 }

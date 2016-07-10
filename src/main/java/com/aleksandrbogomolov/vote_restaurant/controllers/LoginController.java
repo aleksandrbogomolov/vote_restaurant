@@ -12,7 +12,7 @@ public class LoginController {
 
     @RequestMapping(value = "/login")
     public String getLoginPage() {
-        log.info("get login page");
+        log.info("getOne login page");
         return "login";
     }
 }

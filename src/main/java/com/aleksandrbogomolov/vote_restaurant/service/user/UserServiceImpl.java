@@ -16,13 +16,13 @@ public class UserServiceImpl implements UserService<User> {
     private UserRepository repository;
 
     @Override
-    public User save(User user) {
-        return repository.save(user);
+    public User save(User entity) {
+        return repository.save(entity);
     }
 
     @Override
-    public void update(User user) {
-        repository.save(user);
+    public void update(User entity) {
+        repository.save(entity);
     }
 
     @Override
@@ -31,8 +31,8 @@ public class UserServiceImpl implements UserService<User> {
     }
 
     @Override
-    public User get(int id) throws NotFoundException {
-        return ExceptionUtil.checkNotFoundWithId(repository.get(id), id);
+    public User getOne(int id) throws NotFoundException {
+        return ExceptionUtil.checkNotFoundWithId(repository.getOne(id), id);
     }
 
     @Override

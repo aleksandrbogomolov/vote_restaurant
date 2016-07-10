@@ -38,7 +38,7 @@ public class UserServiceImplTest extends AbstractServiceTest {
         TestUser updateUser = new TestUser(USER);
         updateUser.setName("UpdateUser");
         userService.update(updateUser.asUser());
-        USER_MATCHER.assertEquals(updateUser, userService.get(USER_ID));
+        USER_MATCHER.assertEquals(updateUser, userService.getOne(USER_ID));
     }
 
     @Test
@@ -54,13 +54,13 @@ public class UserServiceImplTest extends AbstractServiceTest {
 
     @Test
     public void get() throws Exception {
-        User user = userService.get(USER_ID);
+        User user = userService.getOne(USER_ID);
         USER_MATCHER.assertEquals(USER, user);
     }
 
     @Test(expected = NotFoundException.class)
     public void notFoundGet() throws Exception {
-        userService.get(1);
+        userService.getOne(1);
     }
 
     @Test

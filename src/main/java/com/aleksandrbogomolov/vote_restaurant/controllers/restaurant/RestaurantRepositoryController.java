@@ -43,13 +43,13 @@ public class RestaurantRepositoryController {
     }
 
     public Restaurant get(int id) {
-        log.info("get restaurant with id {}", id);
-        return service.get(id);
+        log.info("getOne restaurant with id {}", id);
+        return service.getOne(id);
     }
 
     @RequestMapping(value = "/")
     public String getAll(Restaurant restaurant) {
-        log.info("get all restaurants");
+        log.info("getOne all restaurants");
         return "user_page";
     }
 }

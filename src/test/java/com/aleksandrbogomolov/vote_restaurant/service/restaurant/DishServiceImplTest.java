@@ -24,7 +24,7 @@ public class DishServiceImplTest extends AbstractServiceTest {
         Dish dish = service.save(testDish.asDish(), 100002);
         testDish.setId(dish.getId());
         testDish.setRestaurant(dish.getRestaurant());
-        MATCHER.assertEquals(testDish, service.get(100012, 100002));
+        MATCHER.assertEquals(testDish, service.getOne(100013, 100002));
     }
 
     @Test
@@ -32,12 +32,12 @@ public class DishServiceImplTest extends AbstractServiceTest {
         DishTestData.TestDish updateDish = new DishTestData.TestDish(DISH_1);
         updateDish.setName("Гороховый суп");
         service.update(updateDish.asDish(), 100002);
-        MATCHER.assertEquals(updateDish, service.get(100004, 100002));
+        MATCHER.assertEquals(updateDish, service.getOne(100004, 100002));
     }
 
     @Test(expected = NotFoundException.class)
     public void notFoundUpdate() {
-        Dish dish = service.get(100004, 100002);
+        Dish dish = service.getOne(100004, 100002);
         service.update(dish, 100003);
     }
 
@@ -53,13 +53,13 @@ public class DishServiceImplTest extends AbstractServiceTest {
     }
 
     @Test
-    public void get() throws Exception {
-        MATCHER.assertEquals(DISH_1, service.get(100004, 100002));
+    public void getOne() throws Exception {
+        MATCHER.assertEquals(DISH_1, service.getOne(100004, 100002));
     }
 
     @Test(expected = NotFoundException.class)
     public void notFoundGet() {
-        service.get(1, 100002);
+        service.getOne(1, 100002);
     }
 
     @Test

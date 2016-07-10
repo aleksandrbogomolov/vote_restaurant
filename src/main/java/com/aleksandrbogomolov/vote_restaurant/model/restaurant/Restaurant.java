@@ -43,9 +43,9 @@ public class Restaurant extends NamedEntity {
     @Override
     public String toString() {
         return "Restaurant{" +
+                "id='" + id + '\'' +
                 "name='" + name + '\'' +
                 "address='" + address + '\'' +
-                "votes='" + votes + '\'' +
                 '}';
     }
 }

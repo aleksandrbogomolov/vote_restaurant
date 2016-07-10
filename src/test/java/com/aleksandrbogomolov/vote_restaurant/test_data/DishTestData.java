@@ -9,7 +9,7 @@ import static com.aleksandrbogomolov.vote_restaurant.model.BaseEntity.START_SEQ;
 
 public class DishTestData {
 
-    public static final int DISH_ID = START_SEQ + 4;
+    private static final int DISH_ID = START_SEQ + 4;
 
     public static final Dish DISH_1 = new Dish(DISH_ID, "Борщ", 50, 1);
     public static final Dish DISH_3 = new Dish(DISH_ID + 1, "Пюре", 30, 2);
@@ -32,7 +32,7 @@ public class DishTestData {
             this(null, name, price, typeDish);
         }
 
-        public TestDish(Integer id, String name, Integer price, Integer typeDish) {
+        TestDish(Integer id, String name, Integer price, Integer typeDish) {
             super(id, name, price, typeDish);
         }
 
@@ -58,10 +58,10 @@ public class DishTestData {
                 return false;
             }
 
-            DishTestData.TestDish that = (DishTestData.TestDish) o;
-            return Objects.equals(this.id, that.id)
-                    && Objects.equals(this.name, that.name)
-                    && Objects.equals(this.price, that.price);
+            DishTestData.TestDish testDish = (DishTestData.TestDish) o;
+            return Objects.equals(this.id, testDish.id)
+                    && Objects.equals(this.name, testDish.name)
+                    && Objects.equals(this.price, testDish.price);
         }
     }
 }

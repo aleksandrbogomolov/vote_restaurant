@@ -36,12 +36,12 @@ public class DishRepositoryController {
     }
 
     public Dish get(int id, int menu_id) {
-        log.info("get dish with id {}", id);
-        return service.get(id, menu_id);
+        log.info("getOne dish with id {}", id);
+        return service.getOne(id, menu_id);
     }
 
     public List<Dish> getAll(int menu_id) {
-        log.info("get all dishes");
+        log.info("getOne all dishes");
         return service.getAll(menu_id);
     }
 }

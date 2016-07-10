@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 @Transactional(readOnly = true)
-public class DataJpaRestaurantRepositoryImpl implements RestaurantRepository {
+public class RestaurantRepositoryImpl implements RestaurantRepository {
 
     private static final Sort RESTAURANT_NAME = new Sort("name");
 
@@ -31,7 +31,7 @@ public class DataJpaRestaurantRepositoryImpl implements RestaurantRepository {
     }
 
     @Override
-    public Restaurant get(int id) {
+    public Restaurant getOne(int id) {
         return proxy.findOne(id);
     }
 

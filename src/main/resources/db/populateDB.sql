@@ -1,3 +1,4 @@
+DELETE FROM votes;
 DELETE FROM users;
 DELETE FROM dishes;
 DELETE FROM restaurants;
@@ -30,3 +31,6 @@ INSERT INTO dishes (name, type_dish, price, restaurant_id) VALUES ('Макаро
 INSERT INTO dishes (name, type_dish, price, restaurant_id) VALUES ('Бифштекс', 3, 60, 100003);
 
 INSERT INTO dishes (name, type_dish, price, restaurant_id) VALUES ('Компот', 4, 10, 100003);
+
+
+INSERT INTO votes (user_id, restaurant_id) VALUES (100000, 100003);

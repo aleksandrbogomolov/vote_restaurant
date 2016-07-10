@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 @Transactional(readOnly = true)
-public class DataJpaUserRepositoryImpl implements UserRepository {
+public class UserRepositoryImpl implements UserRepository {
 
     private static final Sort USER_NAME = new Sort("name");
 
@@ -31,7 +31,7 @@ public class DataJpaUserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public User get(int id) {
+    public User getOne(int id) {
         return proxy.findOne(id);
     }
 
