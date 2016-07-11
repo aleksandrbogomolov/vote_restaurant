@@ -1,5 +1,6 @@
 package com.aleksandrbogomolov.vote_restaurant.repository.restaurant.datajpa;
 
+import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Restaurant;
 import com.aleksandrbogomolov.vote_restaurant.model.user.User;
 import com.aleksandrbogomolov.vote_restaurant.model.user.Vote;
 import com.aleksandrbogomolov.vote_restaurant.repository.restaurant.VoteRepository;
@@ -21,14 +22,11 @@ public class VoteRepositoryIml implements VoteRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Autowired
-    private ProxyRestaurantRepository proxyRestaurantRepository;
-
     @Override
     @Transactional
     public Vote save(Vote vote, int userId, int restaurantId) {
         vote.setUser(entityManager.getReference(User.class, userId));
-        vote.setRestaurant(proxyRestaurantRepository.getOne(restaurantId));
+        vote.setRestaurant(entityManager.getReference(Restaurant.class, restaurantId));
         return proxy.save(vote);
     }
 
