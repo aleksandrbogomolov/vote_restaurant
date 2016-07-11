@@ -7,10 +7,10 @@
 <body>
 <div class="container" th:fragment="top_header">
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-7">
             <h1><a href="#" th:text="#{header.title}"></a></h1>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-5">
             <div class="pull-right  hidden-xs">
                 <div class="nav nav-pills">
                     <div class="dropdown">
@@ -18,11 +18,16 @@
                             <h3><i class="glyphicon glyphicon-user"></i></h3>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                            <li><a href="#" title="Update profile"><i class="glyphicon glyphicon-pencil"></i> Update
-                                profile</a></li>
+                            <li><a href="#" title="Update profile">
+                                <i class="glyphicon glyphicon-pencil"> <strong><span th:text="#{header.update}"></span></strong></i>
+                            </a></li>
                             <li id="remove" title="Remove profile"><a href="#"><i
-                                    class="glyphicon glyphicon-remove"></i> Remove profile</a></li>
-                            <li><a href="login.html" title="Log out"><i class="glyphicon glyphicon-log-out"></i> Log out</a>
+                                    class="glyphicon glyphicon-remove"> <strong><span th:text="#{header.delete}"></span></strong></i>
+                            </a></li>
+                            <li><a href="login.html" title="Log out"><i class="glyphicon glyphicon-log-out">
+                                <strong><span
+                                        th:text="#{header.logout}"></span></strong></i>
+                            </a>
                             </li>
                         </ul>
                     </div>

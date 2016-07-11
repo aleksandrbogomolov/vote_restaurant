@@ -53,13 +53,13 @@ body {
 
 h1, h2, h3, h4 {
     font-family: 'Kreon', serif;
-    vertical-align: middle;
 }
 
 header {
     background: #f16251;
     height: 150px;
     color: #000000;
+    vertical-align: middle;
 }
 
 header h1, header h2, header h3 a, header a, header a:hover {
