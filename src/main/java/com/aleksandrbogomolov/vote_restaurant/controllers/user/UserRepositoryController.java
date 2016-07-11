@@ -19,7 +19,7 @@ public class UserRepositoryController {
     @Autowired
     private UserService<User> service;
 
-    @ModelAttribute("allUsers")
+    @ModelAttribute("users")
     public List<User> getAllUsers() {
         return service.getAll();
     }
@@ -52,9 +52,9 @@ public class UserRepositoryController {
         return service.getByEmail(email);
     }
 
-    @RequestMapping(value = "/allUsers")
+    @RequestMapping(value = "users")
     public String getAll(User user) {
-        logger.info("getOne all users");
+        logger.info("get all users");
         return "user_page";
     }
 }

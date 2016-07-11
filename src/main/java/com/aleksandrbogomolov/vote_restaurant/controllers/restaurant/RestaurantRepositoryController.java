@@ -20,7 +20,7 @@ public class RestaurantRepositoryController {
     @Autowired
     private BaseService<Restaurant> service;
 
-    @ModelAttribute("allRestaurant")
+    @ModelAttribute("restaurants")
     public List<Restaurant> getAllRestaurants() {
         return service.getAll().stream().sorted((r1, r2) -> Integer.compare(r2.getVotes().size(), r1.getVotes().size())).collect(Collectors.toList());
     }
@@ -51,6 +51,6 @@ public class RestaurantRepositoryController {
     @RequestMapping(value = "/")
     public String getAll(Restaurant restaurant) {
         logger.info("get all restaurants");
-        return "user_page";
+        return "index";
     }
 }

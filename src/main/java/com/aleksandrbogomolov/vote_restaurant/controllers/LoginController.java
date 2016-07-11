@@ -10,9 +10,9 @@ public class LoginController {
 
     private static Logger logger = LoggerFactory.getLogger(LoginController.class);
 
-    @RequestMapping(value = "/login")
+    @RequestMapping(value = "login")
     public String getLoginPage() {
-        logger.info("getOne login page");
-        return "login";
+        logger.info("login page");
+        return "index_signin";
     }
 }
