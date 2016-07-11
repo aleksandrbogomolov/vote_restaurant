@@ -121,7 +121,7 @@ h1 {
 section {
     color: #ffffff;
     min-height: 400px;
-    /*height: auto !important;*/
+    height: auto !important;
     height: 100%;
     padding-top: 100px;
 }

@@ -28,7 +28,7 @@
     <div class="container bg">
         <div class="row">
             <div th:each="restaurant:${allRestaurant}">
-                <div class="col-sm-6 col-md-4">
+                <div class="col-sm-4 col-md-3">
                     <div class="thumbnail">
                         <div class="caption">
                             <strong><h2 class="text-center" th:text="${{restaurant.name}}"></h2></strong>
@@ -39,10 +39,10 @@
                             </div>
                             <p>
                                 <h3>
-                                    <a href="#">
+                                    <a href="user_page.html" th:href="@{/vote/add(restaurant=${restaurant.id})}">
                                         <span class="glyphicon glyphicon-thumbs-up"></span>
                                     </a>
-                            <!--<p class="pull-right" th:text="${{restaurant.votes.size()}}">0</p>-->
+                            <p class="pull-right" th:text="${{restaurant.votes.size()}}">0</p>
                             </h3>
                             </p>
                         </div>

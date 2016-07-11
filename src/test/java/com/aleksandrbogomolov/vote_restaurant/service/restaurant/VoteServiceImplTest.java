@@ -6,12 +6,9 @@ import com.aleksandrbogomolov.vote_restaurant.test_data.VoteTestData;
 import com.aleksandrbogomolov.vote_restaurant.util.exception.NotFoundException;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 
 import java.util.Collections;
 
-import static com.aleksandrbogomolov.vote_restaurant.test_data.RestaurantTestData.RESTAURANT_1;
-import static com.aleksandrbogomolov.vote_restaurant.test_data.UserTestData.USER;
 import static com.aleksandrbogomolov.vote_restaurant.test_data.VoteTestData.MATCHER;
 import static com.aleksandrbogomolov.vote_restaurant.test_data.VoteTestData.VOTE;
 
@@ -27,11 +24,6 @@ public class VoteServiceImplTest extends AbstractServiceTest {
         Vote vote = service.save(testVote.asVote(), 100001, 100003);
         testVote.setId(vote.getId());
         MATCHER.assertEquals(testVote, service.getOne(100001));
-    }
-
-    @Test(expected = DataAccessException.class)
-    public void duplicateVoteSave() throws Exception {
-        service.save(new Vote(null, USER, RESTAURANT_1), 100000, 100002);
     }
 
     @Test

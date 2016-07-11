@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class RestaurantRepositoryController {
@@ -21,7 +22,7 @@ public class RestaurantRepositoryController {
 
     @ModelAttribute("allRestaurant")
     public List<Restaurant> getAllRestaurants() {
-        return service.getAll();
+        return service.getAll().stream().sorted((r1, r2) -> Integer.compare(r2.getVotes().size(), r1.getVotes().size())).collect(Collectors.toList());
     }
 
     public Restaurant create(Restaurant restaurant) {
@@ -49,7 +50,7 @@ public class RestaurantRepositoryController {
 
     @RequestMapping(value = "/")
     public String getAll(Restaurant restaurant) {
-        logger.info("getOne all restaurants");
+        logger.info("get all restaurants");
         return "user_page";
     }
 }
