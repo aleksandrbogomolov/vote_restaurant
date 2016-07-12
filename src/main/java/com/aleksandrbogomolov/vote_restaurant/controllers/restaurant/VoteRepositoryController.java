@@ -36,6 +36,7 @@ public class VoteRepositoryController {
             service.save(new Vote(), 100001, restaurantId);
         }
         logger.info("add new vote user.id={}, restaurant.id={}", 100001, restaurantId);
+
         return "redirect:/";
     }
 }
