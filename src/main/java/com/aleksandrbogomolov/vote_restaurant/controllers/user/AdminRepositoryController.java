@@ -13,6 +13,7 @@ public class AdminRepositoryController {
 
     @RequestMapping(value = "page")
     public String getAdminPage() {
+        logger.info("get admin page");
         return "admin";
     }
 }
