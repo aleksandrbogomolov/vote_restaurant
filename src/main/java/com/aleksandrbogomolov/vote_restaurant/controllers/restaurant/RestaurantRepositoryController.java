@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
+@RequestMapping(value = "restaurant")
 public class RestaurantRepositoryController {
 
     private static Logger logger = LoggerFactory.getLogger(RestaurantRepositoryController.class);
@@ -48,7 +49,7 @@ public class RestaurantRepositoryController {
         return service.getOne(id);
     }
 
-    @RequestMapping(value = "/")
+    @RequestMapping(value = "all")
     public String getAll(Restaurant restaurant) {
         logger.info("get all restaurants");
         return "index";

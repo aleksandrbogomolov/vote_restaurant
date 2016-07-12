@@ -37,6 +37,6 @@ public class VoteRepositoryController {
         }
         logger.info("add new vote user.id={}, restaurant.id={}", 100001, restaurantId);
 
-        return "redirect:/";
+        return "redirect:/restaurant/all";
     }
 }

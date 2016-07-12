@@ -17,13 +17,36 @@
 
 <div class="container">
 
-    <form class="form-signin" method="post" th:action="@{/user/save}">
+    <!--Signin form-->
+    <form class="form-signin collapse in" method="post" th:action="@{/user/email}">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h2 class="form-signin-heading">Please sign in</h2>
             </div>
             <div class="panel-body">
-                <div id="collapseRegister" class="collapse">
+                <input type="text" class="form-control" placeholder="Email address" name="email" autofocus>
+                <input type="password" class="form-control" placeholder="Password" name="password">
+                <label class="checkbox">
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+                <label class="checkbox">
+                    <a data-toggle="collapse" data-target=".collapse"> Register me</a>
+                </label>
+            </div>
+            <div class="panel-footer">
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            </div>
+        </div>
+    </form>
+
+    <!--Registration form-->
+    <form class="form-signin collapse" method="post" th:action="@{/user/save}">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="form-signin-heading">Please enter</h2>
+            </div>
+            <div class="panel-body">
+                <div class="collapse">
                     <input type="text" class="form-control" placeholder="Name" name="name">
                 </div>
                 <input type="text" class="form-control" placeholder="Email address" name="email" autofocus>
@@ -32,18 +55,14 @@
                     <input type="password" class="form-control" placeholder="Confirm password">
                 </div>
                 <label class="checkbox">
-                    <input type="checkbox" id="collapseButton" data-toggle="collapse" data-target=".collapse"> Register
-                    me
-                </label>
-                <label class="checkbox">
                     <input type="checkbox" value="remember-me"> Remember me
                 </label>
+                <label class="checkbox">
+                    <a data-toggle="collapse" data-target=".collapse"> Register me</a>
+                </label>
             </div>
-            <div class="panel-footer collapse in">
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-            </div>
-            <div class="panel-footer collapse">
-                <button class="btn btn-lg btn-default btn-block" type="submit">Register</button>
+            <div class="panel-footer">
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
             </div>
         </div>
     </form>

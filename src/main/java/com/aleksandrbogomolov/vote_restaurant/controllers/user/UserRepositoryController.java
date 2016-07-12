@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -45,7 +46,7 @@ public class UserRepositoryController {
     }
 
     @RequestMapping(value = "save", method = RequestMethod.POST)
-    public String save(User user) {
+    public String save(User user, HttpServletRequest request) {
         if (user.getId() != null) {
             if (!user.getPassword().equals(service.getOne(user.getId()).getPassword())) {
                 return "user";
@@ -58,7 +59,7 @@ public class UserRepositoryController {
         } else {
             user.setRole(Role.USER);
             service.save(user);
-            return "redirect:/";
+            return "redirect:/restaurant/all";
         }
         return "404";
     }
@@ -67,17 +68,29 @@ public class UserRepositoryController {
     public String delete(@RequestParam(name = "userId") int userId) {
         logger.info("delete user with userId {}", userId);
         service.delete(userId);
-        return "redirect:/login";
+        return "redirect:/";
     }
 
-    public User getOne(int userId) {
-        logger.info("getOne user with userId {}", userId);
-        return service.getOne(userId);
+    @RequestMapping(value = "one")
+    public User getOne(HttpServletRequest request) {
+        logger.info("getOne user with userId {}");
+        return null;
     }
 
-    public User getByEmail(String email) {
+    @RequestMapping(value = "email")
+    public String getByEmail(@RequestParam(name = "email") String email, @RequestParam(name = "password") String pass) {
         logger.info("getOne user with email {}", email);
-        return service.getByEmail(email);
+        User user = service.getByEmail(email);
+        if (user.getPassword().equals(pass)) {
+            if (user.getRole().equals(Role.USER)) {
+                return "redirect:/restaurant/all";
+            } else if (user.getRole().equals(Role.ADMIN)) {
+                return "admin";
+            }
+        } else {
+            return "access_denied";
+        }
+        return "404";
     }
 
     @RequestMapping(value = "users")
