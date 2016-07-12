@@ -13,6 +13,6 @@ public class LoginController {
     @RequestMapping(value = "login")
     public String getLoginPage() {
         logger.info("login page");
-        return "index_signin";
+        return "signin";
     }
 }

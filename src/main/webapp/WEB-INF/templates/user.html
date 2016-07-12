@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Vote Restaurant</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../../css/theme.css" rel="stylesheet" media="screen">
+    <link href="../../css/style.css" rel="stylesheet">
+    <link rel="shortcut icon" href="../../images/favicon.png">
+    <style>
+        body {
+            padding-top: 70px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="wrap">
+    <nav class="navbar navbar-inverse navbar-fixed-top " role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">VOTERESTAURANT.COM</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <a class="btn btn-danger btn-sm navbar-btn" href="/login" th:text="#{header.logout}"></a>
+                    <div class="btn-group ">
+                        <button class="btn btn-info navbar-btn btn-sm">En</button>
+                        <button class="btn dropdown-toggle navbar-btn btn-info btn-sm" data-toggle="dropdown">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" style="min-width:30px;">
+                            <!-- dropdown menu links -->
+                            <li><a href="">Ru</a></li>
+                        </ul>
+                    </div>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div>
+    </nav>
+
+    <div class="jumbotron" style="margin-top:-20px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                    <h2 class="text-center">Изменение данных профиля</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-default" id="forms">
+                    <div class="panel-heading">Profile
+                    </div>
+                    <div class="panel-body">
+                        <form method="post" action="#" th:action="@{/user/save}" th:object="${user}">
+                            <fieldset>
+                                <legend>Legend</legend>
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" id="userId" th:field="*{id}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputName">Name</label>
+                                    <input type="text" class="form-control" id="inputName"
+                                           th:field="*{name}" placeholder="Enter name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail">Email address</label>
+                                    <input type="email" class="form-control" id="inputEmail"
+                                           th:field="*{email}" placeholder="Enter email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword">Password</label>
+                                    <input type="password" class="form-control" id="inputPassword"
+                                           th:field="*{password}"
+                                           placeholder="Password">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <a href="user.html" th:href="@{/user/delete(userId=100000)}" class="btn btn-danger">Delete
+                                    profile</a>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div id="footer" class="text-center" th:include="footer::copy"></div>
+<script src="../../js/jquery-2.2.4.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+</body>
+</html>

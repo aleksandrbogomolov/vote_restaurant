@@ -27,9 +27,6 @@ public class User extends NamedEntity {
     @Column(name = "password")
     protected String password;
 
-    @Column(name = "registered", columnDefinition = "timestamp default now()")
-    private Date registered = new Date();
-
     @NotNull
     @Column(name = "enabled")
     protected boolean enabled = true;
@@ -38,6 +35,9 @@ public class User extends NamedEntity {
     @Enumerated(value = EnumType.STRING)
     @Column(name = "role")
     protected Role role;
+
+    @Column(name = "registered", columnDefinition = "timestamp default now()")
+    private Date registered = new Date();
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "vote")

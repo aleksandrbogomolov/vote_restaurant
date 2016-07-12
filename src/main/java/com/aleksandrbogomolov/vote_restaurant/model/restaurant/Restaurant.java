@@ -19,14 +19,12 @@ public class Restaurant extends NamedEntity {
     @NotEmpty
     @Column(name = "address")
     protected String address;
-
+    @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
+    protected Set<Vote> votes;
     @SuppressWarnings("JpaQlInspection")
     @OrderBy(value = "typeDish ASC")
     @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
     private List<Dish> dishes; //TODO mb change to Set
-
-    @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
-    protected Set<Vote> votes;
 
     public Restaurant() {
     }
