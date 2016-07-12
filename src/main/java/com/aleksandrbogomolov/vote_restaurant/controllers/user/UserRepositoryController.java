@@ -46,7 +46,7 @@ public class UserRepositoryController {
     }
 
     @RequestMapping(value = "save", method = RequestMethod.POST)
-    public String save(User user, HttpServletRequest request) {
+    public String save(User user) {
         if (user.getId() != null) {
             if (!user.getPassword().equals(service.getOne(user.getId()).getPassword())) {
                 return "user";
@@ -85,7 +85,7 @@ public class UserRepositoryController {
             if (user.getRole().equals(Role.USER)) {
                 return "redirect:/restaurant/all";
             } else if (user.getRole().equals(Role.ADMIN)) {
-                return "admin";
+                return "redirect:/admin/page";
             }
         } else {
             return "access_denied";
