@@ -72,6 +72,7 @@ public class User extends NamedEntity {
                 ", password='" + password + '\'' +
                 ", enabled=" + enabled +
                 ", role=" + role +
+                ", registered=" + registered +
                 '}';
     }
 }

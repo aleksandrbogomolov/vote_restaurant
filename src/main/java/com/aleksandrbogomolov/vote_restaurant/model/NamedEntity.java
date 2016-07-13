@@ -1,5 +1,7 @@
 package com.aleksandrbogomolov.vote_restaurant.model;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Access;
@@ -7,6 +9,8 @@ import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
+@Getter
+@Setter
 @MappedSuperclass
 @Access(AccessType.FIELD)
 public class NamedEntity extends BaseEntity {
@@ -21,20 +25,5 @@ public class NamedEntity extends BaseEntity {
     public NamedEntity(Integer id, String name) {
         super(id);
         this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "NamedEntity{" +
-                "name='" + name + '\'' +
-                '}';
     }
 }

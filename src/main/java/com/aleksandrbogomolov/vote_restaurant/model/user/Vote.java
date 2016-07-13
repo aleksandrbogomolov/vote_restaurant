@@ -2,15 +2,15 @@ package com.aleksandrbogomolov.vote_restaurant.model.user;
 
 import com.aleksandrbogomolov.vote_restaurant.model.BaseEntity;
 import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Restaurant;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Data
-@EqualsAndHashCode(callSuper = true)
+@Getter
+@Setter
 @Table(name = "votes")
 public class Vote extends BaseEntity {
 
@@ -39,5 +39,14 @@ public class Vote extends BaseEntity {
         super(id);
         this.user = user;
         this.restaurant = restaurant;
+    }
+
+    @Override
+    public String toString() {
+        return "Vote{" +
+                "id=" + id +
+                "user=" + user +
+                ", restaurant=" + restaurant +
+                '}';
     }
 }
