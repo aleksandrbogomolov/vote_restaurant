@@ -4,6 +4,7 @@ import com.aleksandrbogomolov.vote_restaurant.model.user.Role;
 import com.aleksandrbogomolov.vote_restaurant.model.user.User;
 import com.aleksandrbogomolov.vote_restaurant.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,14 +38,14 @@ public class UserRepositoryController {
 
     @RequestMapping(value = "update")
     public String update(@RequestParam(name = "userId") int userId, Model model) {
-        User user = service.getOne(userId);
+        val user = service.getOne(userId);
         model.addAttribute("user", user);
         logger.info("update user {}", user);
         return "user";
     }
 
     @RequestMapping(value = "save", method = RequestMethod.POST)
-    public String save(User user) {
+    public String save(User user, Model model) {
         if (user.getId() != null) {
             if (!user.getPassword().equals(service.getOne(user.getId()).getPassword())) {
                 return "user";
@@ -53,13 +54,14 @@ public class UserRepositoryController {
                 if (user.getName() != null) updateUser.setName(user.getName());
                 if (user.getEmail() != null) updateUser.setEmail(user.getEmail());
                 service.update(updateUser);
+                model.addAttribute("user", updateUser);
+                return "user";
             }
         } else {
             user.setRole(Role.USER);
             service.save(user);
             return "redirect:/restaurant/all";
         }
-        return "404";
     }
 
     @RequestMapping(value = "delete")
@@ -76,9 +78,9 @@ public class UserRepositoryController {
     }
 
     @RequestMapping(value = "email")
-    public String getByEmail(@RequestParam(name = "email") String email, @RequestParam(name = "password") String pass) {
+    public String getByEmail(@RequestParam(name = "email") String email, @RequestParam(name = "password") String pass, Model model) {
         logger.info("getOne user with email {}", email);
-        User user = service.getByEmail(email);
+        val user = service.getByEmail(email);
         if (user.getPassword().equals(pass)) {
             if (user.getRole().equals(Role.USER)) {
                 return "redirect:/restaurant/all";

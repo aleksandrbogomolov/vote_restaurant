@@ -15,82 +15,82 @@
 
 <body>
 
-<div id="wrap">
-
-    <nav class="navbar navbar-inverse navbar-fixed-top " role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/restaurant/all">VOTERESTAURANT.COM</a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <a class="btn btn-success btn-sm navbar-btn" style="margin-left:10px;" href="user.html"
-                       th:href="@{/user/update(userId=100000)}"
-                       th:text="#{header.update}"></a>
-                    <a class="btn btn-danger btn-sm navbar-btn" href="/" th:text="#{header.logout}"></a>
-                    <div class="btn-group ">
-                        <button class="btn btn-info navbar-btn btn-sm">En</button>
-                        <button class="btn dropdown-toggle navbar-btn btn-info btn-sm" data-toggle="dropdown">
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" style="min-width:30px;">
-                            <!-- dropdown menu links -->
-                            <li><a href="">Ru</a></li>
-                        </ul>
-                    </div>
-                </ul>
-            </div>
+<nav class="navbar navbar-inverse navbar-fixed-top " role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/restaurant/all">VOTERESTAURANT.COM</a>
         </div>
-    </nav>
-    <section>
 
-        <div class="jumbotron" style="margin-top:-20px;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12 col-lg-12">
-                        <h2 th:text="#{user_page.title}"></h2>
-                        <h4 th:text="#{user_page.title.description}"></h4>
-                        <p th:text="#{user_page.description}"></p>
-                    </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <a class="btn btn-success btn-sm navbar-btn" style="margin-left:10px;" href="user.html"
+                   th:href="@{/user/update(userId=100000)}"
+                   th:text="#{header.update}"></a>
+                <a class="btn btn-danger btn-sm navbar-btn" href="/" th:text="#{header.logout}"></a>
+                <div class="btn-group ">
+                    <button class="btn btn-info navbar-btn btn-sm">En</button>
+                    <button class="btn dropdown-toggle navbar-btn btn-info btn-sm" data-toggle="dropdown">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" style="min-width:30px;">
+                        <!-- dropdown menu links -->
+                        <li><a href="">Ru</a></li>
+                    </ul>
+                </div>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section>
+    <div class="jumbotron" style="margin-top:-20px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                    <h2 th:text="#{user_page.title}"></h2>
+                    <h4 th:text="#{user_page.title.description}"></h4>
+                    <p th:text="#{user_page.description}"></p>
                 </div>
             </div>
         </div>
-        <div class="container">
+    </div>
 
-            <div class="panel panel-default">
-                <div class="panel-heading">Restaurants</div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div th:each="restaurant:${restaurants}">
-                            <div class="col-lg-4">
-                                <div class="thumbnail">
-                                    <img class="img-responsive" src="images/thumb.png" alt="">
-                                    <div class="caption">
-                                        <h3 class="caption-label" th:text="${{restaurant.name}}"></h3>
-                                        <h4 class="caption-label" th:text="${{restaurant.address}}"></h4>
-                                        <div th:each="dish:${restaurant.dishes}" class="list-inline">
-                                            <span th:text="${{dish.name}}"></span>
-                                            <span class="pull-right" th:text="${{dish.price}}"></span>
-                                        </div>
-                                        <p>
-                                            <h3>
-                                                <a href="restaurant.html"
-                                                   th:href="@{/vote/add(restaurant=${restaurant.id})}">
-                                                    <span class="glyphicon glyphicon-thumbs-up"></span>
-                                                </a>
-                                        <p class="pull-right" th:text="${{restaurant.votes.size()}}">0</p>
-                                        </h3>
-                                        </p>
+    <div class="container" id="user_info"></div>
+
+    <div class="container">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Restaurants</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div th:each="restaurant:${restaurants}">
+                        <div class="col-lg-4">
+                            <div class="thumbnail">
+                                <img class="img-responsive" src="images/thumb.png" alt="">
+                                <div class="caption">
+                                    <h3 class="caption-label" th:text="${{restaurant.name}}"></h3>
+                                    <h4 class="caption-label" th:text="${{restaurant.address}}"></h4>
+                                    <div th:each="dish:${restaurant.dishes}" class="list-inline">
+                                        <span th:text="${{dish.name}}"></span>
+                                        <span class="pull-right" th:text="${{dish.price}}"></span>
                                     </div>
+                                    <p>
+                                        <h3>
+                                            <a href="restaurant.html"
+                                               th:href="@{/vote/add(restaurant=${restaurant.id})}">
+                                                <span class="glyphicon glyphicon-thumbs-up"></span>
+                                            </a>
+                                    <p class="pull-right" th:text="${{restaurant.votes.size()}}">0</p>
+                                    </h3>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -98,11 +98,12 @@
                 </div>
             </div>
         </div>
-    </section>
-    <ul class="nav pull-right scroll-top">
-        <li><a href="#" title="Scroll to top"><i class="glyphicon glyphicon-chevron-up"></i></a></li>
-    </ul>
-</div>
+    </div>
+</section>
+
+<ul class="nav pull-right scroll-top">
+    <li><a href="#" title="Scroll to top"><i class="glyphicon glyphicon-chevron-up"></i></a></li>
+</ul>
 <div id="footer" class="text-center" th:include="footer::copy"></div>
 
 <script src="../../js/jquery-2.2.4.min.js"></script>
