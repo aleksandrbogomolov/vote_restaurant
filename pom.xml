@@ -16,17 +16,17 @@
         <java.version>1.8</java.version>
         <thymeleaf.version>3.0.0.RELEASE</thymeleaf.version>
         <jta.version>1.1</jta.version>
-        <!--<javax.el-api.version>2.2.5</javax.el-api.version>-->
-        <!--<junit.version>4.12</junit.version>-->
-        <!--<hibernate.version>5.1.0.Final</hibernate.version>-->
-        <!--<hibernate.validator.version>5.2.4.Final</hibernate.validator.version>-->
-        <!--<logback.version>1.1.7</logback.version>-->
-        <!--<postgres.version>9.4.1208</postgres.version>-->
-        <!--<slf4j.version>1.7.21</slf4j.version>-->
-        <!--<spring.version>4.2.6.RELEASE</spring.version>-->
-        <!--<spring.security.version>4.1.0.RELEASE</spring.security.version>-->
-        <!--<spring.data.jpa.version>1.10.2.RELEASE</spring.data.jpa.version>-->
-        <!--<tomcat.version>8.5.3</tomcat.version>-->
+        <javax.el-api.version>2.2.5</javax.el-api.version>
+        <junit.version>4.12</junit.version>
+        <hibernate.version>5.2.1.Final</hibernate.version>
+        <hibernate.validator.version>5.2.4.Final</hibernate.validator.version>
+        <logback.version>1.1.7</logback.version>
+        <postgres.version>9.4.1208</postgres.version>
+        <slf4j.version>1.7.21</slf4j.version>
+        <spring.version>4.2.6.RELEASE</spring.version>
+        <spring.security.version>4.1.0.RELEASE</spring.security.version>
+        <spring.data.jpa.version>1.10.2.RELEASE</spring.data.jpa.version>
+        <tomcat.version>8.5.3</tomcat.version>
 
     </properties>
 
@@ -74,7 +74,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
-            <!--<version>${spring.version}</version>-->
+            <version>${spring.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>commons-logging</groupId>
@@ -86,38 +86,38 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
-            <!--<version>${spring.security.version}</version>-->
+            <version>${spring.security.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
-            <!--<version>${spring.security.version}</version>-->
+            <version>${spring.security.version}</version>
         </dependency>
 
         <!--DataBase-->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <!--<version>${postgres.version}</version>-->
+            <version>${postgres.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jdbc</artifactId>
-            <!--<version>${tomcat.version}</version>-->
+            <version>${tomcat.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
-            <!--<version>${spring.data.jpa.version}</version>-->
+            <version>${spring.data.jpa.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <!--<version>${hibernate.version}</version>-->
+            <version>${hibernate.version}</version>
         </dependency>
 
         <dependency>
@@ -129,7 +129,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <!--<version>${hibernate.validator.version}</version>-->
+            <version>${hibernate.validator.version}</version>
         </dependency>
 
         <dependency>
@@ -142,14 +142,14 @@
         <dependency>
             <groupId>javax.el</groupId>
             <artifactId>javax.el-api</artifactId>
-            <!--<version>${javax.el-api.version}</version>-->
+            <version>${javax.el-api.version}</version>
         </dependency>
 
         <!--WEB-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <!--<version>${spring.version}</version>-->
+            <version>${spring.version}</version>
         </dependency>
 
         <dependency>
@@ -173,7 +173,7 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <!--<version>3.1.0</version>-->
+            <version>3.1.0</version>
             <scope>provided</scope>
         </dependency>
 
@@ -181,28 +181,28 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <!--<version>${slf4j.version}</version>-->
+            <version>${slf4j.version}</version>
             <scope>compile</scope>
         </dependency>
 
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
-            <!--<version>${slf4j.version}</version>-->
+            <version>${slf4j.version}</version>
             <scope>runtime</scope>
         </dependency>
 
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jul-to-slf4j</artifactId>
-            <!--<version>${slf4j.version}</version>-->
+            <version>${slf4j.version}</version>
             <scope>runtime</scope>
         </dependency>
 
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <!--<version>${logback.version}</version>-->
+            <version>${logback.version}</version>
             <scope>runtime</scope>
         </dependency>
 
@@ -210,14 +210,14 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <!--<version>${junit.version}</version>-->
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
-            <!--<version>${spring.version}</version>-->
+            <version>${spring.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -225,22 +225,21 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <!--<version>1.16.6</version>-->
+            <version>1.16.6</version>
         </dependency>
-
 
     </dependencies>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>io.spring.platform</groupId>
-                <artifactId>platform-bom</artifactId>
-                <version>2.0.6.RELEASE</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+    <!--<dependencyManagement>-->
+        <!--<dependencies>-->
+            <!--<dependency>-->
+                <!--<groupId>io.spring.platform</groupId>-->
+                <!--<artifactId>platform-bom</artifactId>-->
+                <!--<version>2.0.6.RELEASE</version>-->
+                <!--<type>pom</type>-->
+                <!--<scope>import</scope>-->
+            <!--</dependency>-->
+        <!--</dependencies>-->
+    <!--</dependencyManagement>-->
 
 </project>
