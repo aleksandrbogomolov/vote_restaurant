@@ -1,5 +1,7 @@
 # vote_restaurant
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e19b70a1a840492abd2ce1539a1deb54)](https://www.codacy.com/app/ksandr-ua/vote_restaurant?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=aleksandrbogomolov/vote_restaurant&amp;utm_campaign=Badge_Grade)
+
 Solution in process
 
 Goal:
