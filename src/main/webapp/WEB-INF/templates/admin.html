@@ -151,7 +151,7 @@
                                     </h3>
                                     </p>
                                     <div class="btn-group" role="group" aria-label="Restaurant">
-                                        <a href="#" class="btn btn-primary">Add dish</a>
+                                        <a href="#" th:href="@{/dish/create(restaurantId=${{restaurant.id}})}" class="btn btn-primary">Add dish</a>
                                     </div>
                                 </div>
                             </div>
