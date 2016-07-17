@@ -79,7 +79,7 @@ public class UserRepositoryController {
 
     @RequestMapping(value = "email")
     public String getByEmail(@RequestParam(name = "email") String email, @RequestParam(name = "password") String pass, Model model) {
-        logger.info("getOne user with email {}", email);
+        logger.info("get user with email {}", email);
         val user = service.getByEmail(email);
         if (user.getPassword().equals(pass)) {
             if (user.getRole().equals(Role.USER)) {
