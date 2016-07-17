@@ -110,12 +110,14 @@
                                     <form action="#" th:action="@{/restaurant/update}">
                                         <input type="hidden" th:value="${{restaurant.id}}" name="id">
                                         <h3 class="caption-label"><input class="form-control input-lg" type="text"
-                                                                         th:value="${{restaurant.name}}" name="name"/></h3>
+                                                                         th:value="${{restaurant.name}}" name="name"/>
+                                        </h3>
                                         <h4 class="caption-label"><input class="form-control" type="text"
-                                                                         th:value="${{restaurant.address}}" name="address">
+                                                                         th:value="${{restaurant.address}}"
+                                                                         name="address">
                                         </h4>
                                         <div>
-                                            <button type="submit"  class="btn btn-success">Update</button>
+                                            <button type="submit" class="btn btn-success">Update</button>
                                             <a href="admin.html" th:href="@{/restaurant/delete(id=${restaurant.id})}"
                                                class="btn btn-danger">Delete</a>
                                         </div>
@@ -135,8 +137,9 @@
                                                     <input class="form-control pull-right text-right" type="text"
                                                            th:value="${{dish.typeDish}}"/>
                                                 </div>
-                                                <button class="btn btn-default" type="submit" href="#"><span
-                                                        class="glyphicon glyphicon-remove"></span></button>
+                                                <a class="btn btn-default" href="#"
+                                                   th:href="@{/dish/delete(id=${{dish.id}}, restaurantId=${{dish.restaurant.id}})}"><span
+                                                        class="glyphicon glyphicon-remove"></span></a>
                                                 <button class="btn btn-default" type="submit" href="#"><span
                                                         class="glyphicon glyphicon-ok"></span></button>
                                             </form>

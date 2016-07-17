@@ -2,17 +2,18 @@ package com.aleksandrbogomolov.vote_restaurant.controllers.restaurant;
 
 import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Dish;
 import com.aleksandrbogomolov.vote_restaurant.service.restaurant.DishService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
 @Controller
+@Slf4j
+@RequestMapping(value = "dish")
 public class DishRepositoryController {
-
-    private static Logger logger = LoggerFactory.getLogger(DishRepositoryController.class);
 
     @Autowired
     private DishService service;
@@ -30,9 +31,11 @@ public class DishRepositoryController {
         service.update(dish, restaurantId);
     }
 
-    public void delete(int id, int restaurantId) {
+    @RequestMapping(value = "delete")
+    public String delete(@RequestParam(value = "id") int id, @RequestParam(value = "restaurantId") int restaurantId) {
         logger.info("delete dish with id {}", id);
         service.delete(id, restaurantId);
+        return "redirect:/admin/page";
     }
 
     public Dish getOne(int id, int restaurantId) {
