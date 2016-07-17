@@ -55,17 +55,17 @@
                             Restaurant</a></li>
                         <li><a href="admin.html" th:href="@{/vote/clear}">Clear votes</a></li>
                         <!--<li class="dropdown">-->
-                            <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"-->
-                               <!--aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>-->
-                            <!--<ul class="dropdown-menu">-->
-                                <!--<li><a href="#">Action</a></li>-->
-                                <!--<li><a href="#">Another action</a></li>-->
-                                <!--<li><a href="#">Something else here</a></li>-->
-                                <!--<li role="separator" class="divider"></li>-->
-                                <!--<li><a href="#">Separated link</a></li>-->
-                                <!--<li role="separator" class="divider"></li>-->
-                                <!--<li><a href="#">One more separated link</a></li>-->
-                            <!--</ul>-->
+                        <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"-->
+                        <!--aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>-->
+                        <!--<ul class="dropdown-menu">-->
+                        <!--<li><a href="#">Action</a></li>-->
+                        <!--<li><a href="#">Another action</a></li>-->
+                        <!--<li><a href="#">Something else here</a></li>-->
+                        <!--<li role="separator" class="divider"></li>-->
+                        <!--<li><a href="#">Separated link</a></li>-->
+                        <!--<li role="separator" class="divider"></li>-->
+                        <!--<li><a href="#">One more separated link</a></li>-->
+                        <!--</ul>-->
                         <!--</li>-->
                     </ul>
                 </div>
@@ -107,16 +107,19 @@
                         <div class="col-lg-6">
                             <div class="thumbnail">
                                 <div class="caption">
-                                    <h3 class="caption-label"><input class="form-control input-lg" type="text"
-                                                                     th:value="${{restaurant.name}}"/></h3>
-                                    <h4 class="caption-label"><input class="form-control" type="text"
-                                                                     th:value="${{restaurant.address}}">
-                                    </h4>
-                                    <div>
-                                        <a href="#" class="btn btn-success">Save</a>
-                                        <a href="admin.html" th:href="@{/restaurant/delete(id=${restaurant.id})}"
-                                           class="btn btn-danger">Delete</a>
-                                    </div>
+                                    <form action="#" th:action="@{/restaurant/update}">
+                                        <input type="hidden" th:value="${{restaurant.id}}" name="id">
+                                        <h3 class="caption-label"><input class="form-control input-lg" type="text"
+                                                                         th:value="${{restaurant.name}}" name="name"/></h3>
+                                        <h4 class="caption-label"><input class="form-control" type="text"
+                                                                         th:value="${{restaurant.address}}" name="address">
+                                        </h4>
+                                        <div>
+                                            <button type="submit"  class="btn btn-success">Update</button>
+                                            <a href="admin.html" th:href="@{/restaurant/delete(id=${restaurant.id})}"
+                                               class="btn btn-danger">Delete</a>
+                                        </div>
+                                    </form>
                                     <br>
                                     <div th:each="dish:${restaurant.dishes}" class="list-inline">
                                         <div class="container">
