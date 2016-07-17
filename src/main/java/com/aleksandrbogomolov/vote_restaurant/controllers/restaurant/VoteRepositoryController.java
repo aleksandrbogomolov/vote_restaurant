@@ -38,4 +38,10 @@ public class VoteRepositoryController {
 
         return "redirect:/restaurant/all";
     }
+
+    @RequestMapping(value = "clear")
+    public String clear() {
+        service.deleteAll();
+        return "redirect:/admin/page";
+    }
 }

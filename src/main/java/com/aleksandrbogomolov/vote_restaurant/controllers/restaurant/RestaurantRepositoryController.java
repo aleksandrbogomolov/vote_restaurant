@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,11 +25,12 @@ public class RestaurantRepositoryController {
         return service.getAll().stream().sorted((r1, r2) -> Integer.compare(r2.getVotes().size(), r1.getVotes().size())).collect(Collectors.toList());
     }
 
-    public Restaurant create(Restaurant restaurant) {
+    @RequestMapping(value = "create")
+    public String create(Restaurant restaurant) {
         logger.info("create restaurant {}", restaurant);
         restaurant.setId(null);
         service.save(restaurant);
-        return restaurant;
+        return "redirect:/admin/page";
     }
 
     public void update(Restaurant restaurant, int id) {
@@ -37,13 +39,15 @@ public class RestaurantRepositoryController {
         service.update(restaurant);
     }
 
-    public void delete(int id) {
+    @RequestMapping(value = "delete")
+    public String delete(@RequestParam(value = "id") int id) {
         logger.info("delete restaurant with id {}", id);
         service.delete(id);
+        return "redirect:/admin/page";
     }
 
     public Restaurant getOne(int id) {
-        logger.info("getOne restaurant with id {}", id);
+        logger.info("get restaurant with id {}", id);
         return service.getOne(id);
     }
 

@@ -42,53 +42,62 @@
 
 <section>
 
-    <!--<div class="jumbotron" style="margin-top:-20px;">-->
-    <!--<div class="container">-->
-    <!--<div class="row">-->
-    <!--<div class="col-sm-12 col-lg-12">-->
-    <!--<h2 th:text="#{user_page.title}"></h2>-->
-    <!--<h4 th:text="#{user_page.title.description}"></h4>-->
-    <!--<p th:text="#{user_page.description}"></p>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-
     <div class="container">
 
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
                     <a class="navbar-brand" href="#">Admin tools</a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Create Restaurant</a></li>
-                        <li><a href="#">Clear votes <span class="sr-only">(current)</span></a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">One more separated link</a></li>
-                            </ul>
-                        </li>
+                        <li class="active"><a href="#" data-toggle="collapse" data-target="#new_restaurant">Create
+                            Restaurant</a></li>
+                        <li><a href="admin.html" th:href="@{/vote/clear}">Clear votes</a></li>
+                        <!--<li class="dropdown">-->
+                            <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"-->
+                               <!--aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>-->
+                            <!--<ul class="dropdown-menu">-->
+                                <!--<li><a href="#">Action</a></li>-->
+                                <!--<li><a href="#">Another action</a></li>-->
+                                <!--<li><a href="#">Something else here</a></li>-->
+                                <!--<li role="separator" class="divider"></li>-->
+                                <!--<li><a href="#">Separated link</a></li>-->
+                                <!--<li role="separator" class="divider"></li>-->
+                                <!--<li><a href="#">One more separated link</a></li>-->
+                            <!--</ul>-->
+                        <!--</li>-->
                     </ul>
                 </div>
             </div>
         </nav>
+
+        <div class="panel panel-default collapse" id="new_restaurant">
+            <div class="panel-heading">New restaurant</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-6 col-lg-offset-3">
+                        <div class="thumbnail">
+                            <div class="caption">
+                                <form action="#" th:action="@{/restaurant/create}">
+                                    <div class="form-group">
+                                        <label for="name">Name</label>
+                                        <input type="text" class="form-control input-lg" id="name" name="name"
+                                               placeholder="Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address">Address</label>
+                                        <input type="text" class="form-control" id="address" name="address"
+                                               placeholder="Address">
+                                    </div>
+                                    <button type="submit" class="btn btn-default">Add</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="panel panel-default">
             <div class="panel-heading">Restaurants</div>
@@ -103,20 +112,32 @@
                                     <h4 class="caption-label"><input class="form-control" type="text"
                                                                      th:value="${{restaurant.address}}">
                                     </h4>
+                                    <div>
+                                        <a href="#" class="btn btn-success">Save</a>
+                                        <a href="admin.html" th:href="@{/restaurant/delete(id=${restaurant.id})}"
+                                           class="btn btn-danger">Delete</a>
+                                    </div>
+                                    <br>
                                     <div th:each="dish:${restaurant.dishes}" class="list-inline">
-                                        <form class="form-inline">
-                                            <div class="form-group">
-                                                <input class="form-control" type="text" th:value="${{dish.name}}"/>
-                                            </div>
-                                            <div class="form-group">
-                                                <input class="form-control pull-right text-right" type="text"
-                                                       th:value="${{dish.price}}"/>
-                                            </div>
-                                            <button class="btn btn-default pull-right" type="submit" href="#"><span
-                                                    class="glyphicon glyphicon-remove"></span></button>
-                                            <button class="btn btn-default pull-right" type="submit" href="#"><span
-                                                    class="glyphicon glyphicon-ok"></span></button>
-                                        </form>
+                                        <div class="container">
+                                            <form class="form-inline">
+                                                <div class="form-group col-lg-5">
+                                                    <input class="form-control" type="text" th:value="${{dish.name}}"/>
+                                                </div>
+                                                <div class="form-group col-lg-2">
+                                                    <input class="form-control pull-right text-right" type="text"
+                                                           th:value="${{dish.price}}"/>
+                                                </div>
+                                                <div class="form-group col-lg-2">
+                                                    <input class="form-control pull-right text-right" type="text"
+                                                           th:value="${{dish.typeDish}}"/>
+                                                </div>
+                                                <button class="btn btn-default" type="submit" href="#"><span
+                                                        class="glyphicon glyphicon-remove"></span></button>
+                                                <button class="btn btn-default" type="submit" href="#"><span
+                                                        class="glyphicon glyphicon-ok"></span></button>
+                                            </form>
+                                        </div>
                                     </div>
                                     <p>
                                         <h3>Votes
@@ -124,10 +145,7 @@
                                     </h3>
                                     </p>
                                     <div class="btn-group" role="group" aria-label="Restaurant">
-                                        <!--<h3>Restaurant: </h3>-->
-                                        <a href="#" class="btn btn-primary">Add meal</a>
-                                        <a href="#" class="btn btn-success">Save</a>
-                                        <a href="#" class="btn btn-danger">Delete</a>
+                                        <a href="#" class="btn btn-primary">Add dish</a>
                                     </div>
                                 </div>
                             </div>
