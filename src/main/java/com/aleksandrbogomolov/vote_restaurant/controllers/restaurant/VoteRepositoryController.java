@@ -1,6 +1,5 @@
 package com.aleksandrbogomolov.vote_restaurant.controllers.restaurant;
 
-import com.aleksandrbogomolov.vote_restaurant.model.user.Role;
 import com.aleksandrbogomolov.vote_restaurant.model.user.Vote;
 import com.aleksandrbogomolov.vote_restaurant.service.restaurant.VoteService;
 import com.aleksandrbogomolov.vote_restaurant.util.exception.NotFoundException;
@@ -19,7 +18,7 @@ public class VoteRepositoryController {
     private VoteService service;
 
     @RequestMapping(value = "add")
-    public String newVote(@RequestParam(name = "restaurant") int restaurantId) {
+    public String newVote(@RequestParam(name = "restaurantId") int restaurantId) {
         Vote vote = null;
         try {
             vote = service.getOne(100001);

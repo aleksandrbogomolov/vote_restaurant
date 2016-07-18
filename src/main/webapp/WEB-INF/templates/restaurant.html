@@ -70,7 +70,7 @@
                                 </div>
                                 <h3>
                                     <a href="restaurant.html"
-                                       th:href="@{/vote/add(restaurant=${restaurant.id})}">
+                                       th:href="@{/vote/add(restaurantId=${restaurant.id})}">
                                         <i class="glyphicon glyphicon-thumbs-up"></i>
                                     </a>
                                     <span class="pull-right" th:text="${{restaurant.votes.size()}}">0</span>

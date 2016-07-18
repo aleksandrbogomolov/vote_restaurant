@@ -8,8 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
-
 @Controller
 @Slf4j
 @RequestMapping(value = "dish")
@@ -46,15 +44,5 @@ public class DishRepositoryController {
         logger.info("delete dish with id {}", id);
         service.delete(id, restaurantId);
         return "redirect:/admin/page";
-    }
-
-    public Dish getOne(int id, int restaurantId) {
-        logger.info("getOne dish with id {}", id);
-        return service.getOne(id, restaurantId);
-    }
-
-    public List<Dish> getAll(int restaurantId) {
-        logger.info("getOne all dishes");
-        return service.getAll(restaurantId);
     }
 }

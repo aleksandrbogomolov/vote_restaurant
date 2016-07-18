@@ -8,13 +8,9 @@ import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 @Controller
 @Slf4j
@@ -24,16 +20,13 @@ public class UserRepositoryController {
     @Autowired
     private UserService<User> service;
 
-    @ModelAttribute("users")
-    public List<User> getAllUsers() {
-        return service.getAll();
-    }
-
-    public User create(User user) {
+    @RequestMapping(value = "create")
+    public String create(User user) {
         user.setId(null);
+        user.setRole(Role.USER);
         logger.info("create user {}", user);
         service.save(user);
-        return user;
+        return "redirect:/restaurant/all";
     }
 
     @RequestMapping(value = "update")
@@ -46,21 +39,16 @@ public class UserRepositoryController {
 
     @RequestMapping(value = "save", method = RequestMethod.POST)
     public String save(User user, Model model) {
-        if (user.getId() != null) {
-            if (!user.getPassword().equals(service.getOne(user.getId()).getPassword())) {
-                return "user";
-            } else {
-                User updateUser = service.getOne(user.getId());
-                if (user.getName() != null) updateUser.setName(user.getName());
-                if (user.getEmail() != null) updateUser.setEmail(user.getEmail());
-                service.update(updateUser);
-                model.addAttribute("user", updateUser);
-                return "user";
-            }
+        if (user == null) return "404";
+        if (!user.getPassword().equals(service.getOne(user.getId()).getPassword())) {
+            return "access_denied";
         } else {
-            user.setRole(Role.USER);
-            service.save(user);
-            return "redirect:/restaurant/all";
+            User updateUser = service.getOne(user.getId());
+            if (user.getName() != null) updateUser.setName(user.getName());
+            if (user.getEmail() != null) updateUser.setEmail(user.getEmail());
+            service.update(updateUser);
+            model.addAttribute("user", updateUser);
+            return "user";
         }
     }
 
@@ -71,14 +59,8 @@ public class UserRepositoryController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "one")
-    public User getOne(HttpServletRequest request) {
-        logger.info("getOne user with userId {}");
-        return null;
-    }
-
     @RequestMapping(value = "email")
-    public String getByEmail(@RequestParam(name = "email") String email, @RequestParam(name = "password") String pass, Model model) {
+    public String getByEmail(@RequestParam(name = "email") String email, @RequestParam(name = "password") String pass) {
         logger.info("get user with email {}", email);
         val user = service.getByEmail(email);
         if (user.getPassword().equals(pass)) {
@@ -91,11 +73,5 @@ public class UserRepositoryController {
             return "access_denied";
         }
         return "404";
-    }
-
-    @RequestMapping(value = "users")
-    public String getAll(User user) {
-        logger.info("get all users");
-        return "user_page";
     }
 }

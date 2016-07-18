@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -33,7 +34,7 @@ public class RestaurantRepositoryController {
         return "redirect:/admin/page";
     }
 
-    @RequestMapping(value = "update")
+    @RequestMapping(value = "update", method = RequestMethod.POST)
     public String update(@RequestParam(value = "id") int id, @RequestParam(value = "name") String name, @RequestParam(value = "address") String address) {
         logger.info("update restaurant with id {}", id);
         Restaurant restaurant = new Restaurant();
@@ -49,11 +50,6 @@ public class RestaurantRepositoryController {
         logger.info("delete restaurant with id {}", id);
         service.delete(id);
         return "redirect:/admin/page";
-    }
-
-    public Restaurant getOne(int id) {
-        logger.info("get restaurant with id {}", id);
-        return service.getOne(id);
     }
 
     @RequestMapping(value = "all")
