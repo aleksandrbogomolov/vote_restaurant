@@ -23,3 +23,21 @@
 #footer a {
     color: rgba(252, 252, 252, 0);
 }
+
+#dish_form {
+    display: inline-block;
+}
+
+#dish_form input {
+    width: 26%;
+    height: 33px;
+    border: 1px;
+}
+
+#dish_form a {
+    color: black;
+}
+
+#count {
+    margin-right: 11px;
+}
