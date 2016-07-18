@@ -29,6 +29,4 @@ public class AdminRepositoryController {
         logger.info("get admin page");
         return "admin";
     }
-
-
 }
