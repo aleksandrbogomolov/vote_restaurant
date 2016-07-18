@@ -30,10 +30,15 @@ public class DishRepositoryController {
         return "redirect:/admin/page";
     }
 
-    public void update(Dish dish, int id, int restaurantId) {
+    @RequestMapping(value = "update")
+    public String update(@RequestParam(value = "id") int id, @RequestParam(value = "restaurantId") int restaurantId, @RequestParam(value = "name") String name, @RequestParam(value = "price") int price, @RequestParam(value = "typeDish") int type) {
         logger.info("update dish with id {}", id);
-        dish.setId(id);
+        Dish dish = service.getOne(id, restaurantId);
+        dish.setName(name.trim());
+        dish.setPrice(price);
+        dish.setTypeDish(type);
         service.update(dish, restaurantId);
+        return "redirect:/admin/page";
     }
 
     @RequestMapping(value = "delete")

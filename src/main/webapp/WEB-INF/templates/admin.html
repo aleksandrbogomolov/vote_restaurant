@@ -125,22 +125,26 @@
                                     <br>
                                     <div th:each="dish:${restaurant.dishes}" class="list-inline">
                                         <div class="container">
-                                            <form class="form-inline">
+                                            <form class="form-inline" action="#"
+                                                  th:action="@{/dish/update}">
+                                                <input type="hidden" th:value="${{dish.id}}" name="id">
+                                                <input type="hidden" th:value="${{dish.restaurant.id}}" name="restaurantId">
                                                 <div class="form-group col-lg-5">
-                                                    <input class="form-control" type="text" th:value="${{dish.name}}"/>
+                                                    <input class="form-control" type="text"
+                                                           th:value="${{dish.name}}" name="name"/>
                                                 </div>
                                                 <div class="form-group col-lg-2">
                                                     <input class="form-control pull-right text-right" type="text"
-                                                           th:value="${{dish.price}}"/>
+                                                           th:value="${{dish.price}}" name="price"/>
                                                 </div>
                                                 <div class="form-group col-lg-2">
                                                     <input class="form-control pull-right text-right" type="text"
-                                                           th:value="${{dish.typeDish}}"/>
+                                                           th:value="${{dish.typeDish}}" name="typeDish"/>
                                                 </div>
                                                 <a class="btn btn-default" href="#"
                                                    th:href="@{/dish/delete(id=${{dish.id}}, restaurantId=${{dish.restaurant.id}})}"><span
                                                         class="glyphicon glyphicon-remove"></span></a>
-                                                <button class="btn btn-default" type="submit" href="#"><span
+                                                <button class="btn btn-default" type="submit"><span
                                                         class="glyphicon glyphicon-ok"></span></button>
                                             </form>
                                         </div>
@@ -151,7 +155,8 @@
                                     </h3>
                                     </p>
                                     <div class="btn-group" role="group" aria-label="Restaurant">
-                                        <a href="#" th:href="@{/dish/create(restaurantId=${{restaurant.id}})}" class="btn btn-primary">Add dish</a>
+                                        <a href="#" th:href="@{/dish/create(restaurantId=${{restaurant.id}})}"
+                                           class="btn btn-primary">Add dish</a>
                                     </div>
                                 </div>
                             </div>
