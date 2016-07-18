@@ -1,16 +1,14 @@
 package com.aleksandrbogomolov.vote_restaurant.service.restaurant;
 
-import com.aleksandrbogomolov.vote_restaurant.model.user.Vote;
 import com.aleksandrbogomolov.vote_restaurant.service.AbstractServiceTest;
-import com.aleksandrbogomolov.vote_restaurant.test_data.VoteTestData;
 import com.aleksandrbogomolov.vote_restaurant.util.exception.NotFoundException;
+import lombok.val;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collections;
 
-import static com.aleksandrbogomolov.vote_restaurant.test_data.VoteTestData.MATCHER;
-import static com.aleksandrbogomolov.vote_restaurant.test_data.VoteTestData.VOTE;
+import static com.aleksandrbogomolov.vote_restaurant.test_data.VoteTestData.*;
 
 public class VoteServiceImplTest extends AbstractServiceTest {
 
@@ -20,8 +18,8 @@ public class VoteServiceImplTest extends AbstractServiceTest {
 
     @Test
     public void save() throws Exception {
-        VoteTestData.TestVote testVote = new VoteTestData.TestVote();
-        Vote vote = service.save(testVote.asVote(), 100001, 100003);
+        TestVote testVote = new TestVote();
+        val vote = service.save(testVote.asVote(), 100001, 100003);
         testVote.setId(vote.getId());
         MATCHER.assertEquals(testVote, service.getOne(100001));
     }

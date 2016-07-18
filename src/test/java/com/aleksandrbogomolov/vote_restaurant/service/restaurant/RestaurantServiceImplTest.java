@@ -1,9 +1,8 @@
 package com.aleksandrbogomolov.vote_restaurant.service.restaurant;
 
-import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Restaurant;
 import com.aleksandrbogomolov.vote_restaurant.service.AbstractServiceTest;
-import com.aleksandrbogomolov.vote_restaurant.test_data.RestaurantTestData;
 import com.aleksandrbogomolov.vote_restaurant.util.exception.NotFoundException;
+import lombok.val;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,15 +19,15 @@ public class RestaurantServiceImplTest extends AbstractServiceTest {
 
     @Test
     public void save() throws Exception {
-        RestaurantTestData.TestRestaurant testRestaurant = new RestaurantTestData.TestRestaurant(null, "New", "Moscow");
-        Restaurant restaurant = service.save(testRestaurant.asRestaurant());
+        TestRestaurant testRestaurant = new TestRestaurant(null, "New", "Moscow");
+        val restaurant = service.save(testRestaurant.asRestaurant());
         testRestaurant.setId(restaurant.getId());
         RESTAURANT_MATCHER.assertCollectionEquals(Arrays.asList(testRestaurant, RESTAURANT_1, RESTAURANT_2), service.getAll());
     }
 
     @Test
     public void update() throws Exception {
-        RestaurantTestData.TestRestaurant updateRestaurant = new TestRestaurant(RESTAURANT_1);
+        TestRestaurant updateRestaurant = new TestRestaurant(RESTAURANT_1);
         updateRestaurant.setName("У Галины");
         service.update(updateRestaurant.asRestaurant());
         RESTAURANT_MATCHER.assertEquals(updateRestaurant, service.getOne(RESTAURANT_ID));

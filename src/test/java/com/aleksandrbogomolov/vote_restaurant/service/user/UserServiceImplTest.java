@@ -3,8 +3,8 @@ package com.aleksandrbogomolov.vote_restaurant.service.user;
 import com.aleksandrbogomolov.vote_restaurant.model.user.Role;
 import com.aleksandrbogomolov.vote_restaurant.model.user.User;
 import com.aleksandrbogomolov.vote_restaurant.service.AbstractServiceTest;
-import com.aleksandrbogomolov.vote_restaurant.test_data.UserTestData;
 import com.aleksandrbogomolov.vote_restaurant.util.exception.NotFoundException;
+import lombok.val;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -22,8 +22,8 @@ public class UserServiceImplTest extends AbstractServiceTest {
 
     @Test
     public void save() throws Exception {
-        UserTestData.TestUser testUser = new UserTestData.TestUser(null, "New", "new@yandex.ru", "testPass", false, Role.USER, null);
-        User created = userService.save(testUser.asUser());
+        TestUser testUser = new TestUser(null, "New", "new@yandex.ru", "testPass", false, Role.USER, null);
+        val created = userService.save(testUser.asUser());
         testUser.setId(created.getId());
         USER_MATCHER.assertCollectionEquals(Arrays.asList(ADMIN, testUser, USER), userService.getAll());
     }
