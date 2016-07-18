@@ -46,6 +46,7 @@ public class DishTestData {
                     "id='" + id + '\'' +
                     "name='" + name + '\'' +
                     "price='" + price + '\'' +
+                    "typeDish='" + typeDish + '\'' +
                     '}';
         }
 
@@ -61,7 +62,8 @@ public class DishTestData {
             DishTestData.TestDish testDish = (DishTestData.TestDish) o;
             return Objects.equals(this.id, testDish.id)
                     && Objects.equals(this.name, testDish.name)
-                    && Objects.equals(this.price, testDish.price);
+                    && Objects.equals(this.price, testDish.price)
+                    && Objects.equals(this.typeDish, testDish.typeDish);
         }
     }
 }

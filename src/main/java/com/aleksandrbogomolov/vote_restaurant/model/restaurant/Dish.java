@@ -19,7 +19,7 @@ public class Dish extends NamedEntity {
 
     @NotNull
     @Column(name = "type_dish", nullable = false)
-    private int typeDish;
+    protected int typeDish;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "restaurant_id", nullable = false)
@@ -44,6 +44,7 @@ public class Dish extends NamedEntity {
                 "id=" + id +
                 "name=" + name +
                 "price=" + price +
+                "typeDish=" + typeDish +
                 '}';
     }
 }
