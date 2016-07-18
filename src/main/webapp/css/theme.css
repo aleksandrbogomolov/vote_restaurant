@@ -5259,6 +5259,7 @@ a.list-group-item.active > .badge,
     -webkit-box-shadow: 0 -3px 0px rgba(0, 0, 0, 0.075) inset;
     box-shadow: 0 -3px 0px rgba(0, 0, 0, 0.075) inset;
     display: block;
+    margin-bottom: 20px;
 }
 
 .thumbnail > img {

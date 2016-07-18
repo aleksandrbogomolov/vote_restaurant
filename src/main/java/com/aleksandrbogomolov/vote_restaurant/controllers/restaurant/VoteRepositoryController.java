@@ -26,7 +26,7 @@ public class VoteRepositoryController {
         } catch (NotFoundException e) {
             e.printStackTrace();
         }
-        if (vote != null && vote.getUser().getRole() == Role.USER) {
+        if (vote != null) {
             service.delete(100001);
             if (vote.getRestaurant().getId() != restaurantId) {
                 service.save(new Vote(), 100001, restaurantId);
