@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @Slf4j
-@RequestMapping(value = "user")
+@RequestMapping(value = "profile")
 public class UserRepositoryController {
 
     @Autowired
@@ -34,7 +34,7 @@ public class UserRepositoryController {
         val user = service.getOne(userId);
         model.addAttribute("user", user);
         logger.info("update user {}", user);
-        return "user";
+        return "profile";
     }
 
     @RequestMapping(value = "save", method = RequestMethod.POST)
@@ -48,7 +48,7 @@ public class UserRepositoryController {
             if (user.getEmail() != null) updateUser.setEmail(user.getEmail());
             service.update(updateUser);
             model.addAttribute("user", updateUser);
-            return "user";
+            return "profile";
         }
     }
 

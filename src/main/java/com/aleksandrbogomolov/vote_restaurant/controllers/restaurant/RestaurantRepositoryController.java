@@ -55,6 +55,6 @@ public class RestaurantRepositoryController {
     @RequestMapping(value = "all")
     public String getAll() {
         logger.info("get all restaurants");
-        return "restaurant";
+        return "user";
     }
 }

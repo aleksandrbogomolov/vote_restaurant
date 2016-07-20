@@ -37,6 +37,10 @@
     color: black;
 }
 
+#thumb-up {
+    margin-left: 3px;
+}
+
 #count {
     margin-right: 11px;
 }
