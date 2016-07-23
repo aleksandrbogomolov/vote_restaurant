@@ -32,7 +32,7 @@
     <div class="panel panel-default">
         <div class="panel-heading" th:text="#{user.table.title}"></div>
         <div class="panel-body">
-            <div class="row">
+            <div class="row" id="datatable">
                 <div th:each="restaurant:${restaurants}">
                     <div class="col-md-4">
                         <div class="thumbnail">
@@ -44,8 +44,7 @@
                                     <span class="pull-right" th:text="${dish.price}"></span>
                                 </div>
                                 <h3>
-                                    <a href="user.html"
-                                       th:href="@{/vote/add(restaurantId=${restaurant.id})}">
+                                    <a class="vote" th:id="${restaurant.id}">
                                         <i class="glyphicon glyphicon-thumbs-up"></i>
                                     </a>
                                     <span class="pull-right" th:text="${restaurant.votes.size()}">0</span>
@@ -65,8 +64,16 @@
 
 <div id="footer" class="text-center" th:include="footer::copy"></div>
 
+</body>
 <script src="../../js/jquery-2.2.4.min.js"></script>
 <script src="../../js/bootstrap.min.js"></script>
 <script src="../../js/app.js"></script>
-</body>
+<script>
+    var voteUrl = 'vote/';
+    var restaurantUrl = 'restaurant/';
+
+    $(document).ready(function () {
+        makeEditable();
+    })
+</script>
 </html>

@@ -3,3 +3,40 @@ $('.scroll-top').click(function () {
 });
 
 $('.collapse').collapse('toggle');
+
+function makeEditable() {
+    $('.vote').click(function () {
+        addVote($(this).attr('id'));
+    });
+
+    $('.voteClear').click(function () {
+        clearVote();
+    });
+}
+
+function updateDesk() {
+    $.get(restaurantUrl, function (data) {
+        $('#datatable').hide().html(data).fadeIn('fast');
+    });
+
+}
+
+function addVote(id) {
+    $.ajax({
+        url: voteUrl + 'add/' + id,
+        type: 'POST',
+        success: function () {
+            updateDesk();
+        }
+    });
+}
+
+function clearVote() {
+    $.ajax({
+        url:voteUrl + 'clear',
+        type:'DELETE',
+        success: function () {
+            updateDesk();
+        }
+    })
+}

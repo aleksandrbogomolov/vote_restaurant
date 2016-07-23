@@ -26,7 +26,7 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#" data-toggle="collapse" data-target="#new_restaurant"
                                           th:text="#{admin.create.new.restaurant}"></a></li>
-                    <li><a href="admin.html" th:href="@{/vote/clear}" th:text="#{admin.clear.votes}"></a></li>
+                    <li><a class="voteClear" th:text="#{admin.clear.votes}"></a></li>
                 </ul>
             </div>
         </div>
@@ -63,7 +63,7 @@
     <div class="panel panel-default">
         <div class="panel-heading" th:text="#{admin.table.title}"></div>
         <div class="panel-body">
-            <div th:each="restaurant:${restaurants}">
+            <div th:each="restaurant:${restaurants}" id="datatable">
                 <div class="col-lg-6">
                     <div class="thumbnail">
                         <div class="caption">
@@ -122,8 +122,16 @@
 
 <div id="footer" class="text-center" th:include="footer::copy"></div>
 
+</body>
 <script src="../../js/jquery-2.2.4.min.js"></script>
 <script src="../../js/bootstrap.min.js"></script>
 <script src="../../js/app.js"></script>
-</body>
+<script>
+    var voteUrl = 'vote/';
+    var restaurantUrl = 'restaurant/';
+
+    $(document).ready(function () {
+        makeEditable();
+    })
+</script>
 </html>

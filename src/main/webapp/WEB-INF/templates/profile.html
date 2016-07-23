@@ -14,29 +14,8 @@
 </head>
 
 <body>
+<div th:replace="header::headerBody"></div>
 
-<nav class="navbar navbar-inverse navbar-fixed-top " role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/restaurant/all">VOTERESTAURANT.COM</a>
-        </div>
-
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <a class="btn btn-danger btn-sm navbar-btn" href="/" th:text="#{header.logout}"></a>
-                <div class="btn-group ">
-                    <button class="btn btn-info navbar-btn btn-sm">En</button>
-                    <button class="btn dropdown-toggle navbar-btn btn-info btn-sm" data-toggle="dropdown">
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" style="min-width:30px;">
-                        <li><a href="">Ru</a></li>
-                    </ul>
-                </div>
-            </ul>
-        </div>
-    </div>
-</nav>
 
 <div class="jumbotron" style="margin-top:-20px;">
     <div class="container">

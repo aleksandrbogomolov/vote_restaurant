@@ -5,13 +5,9 @@ import com.aleksandrbogomolov.vote_restaurant.service.BaseService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @Slf4j
@@ -20,11 +16,6 @@ public class RestaurantRepositoryController {
 
     @Autowired
     private BaseService<Restaurant> service;
-
-    @ModelAttribute("restaurants")
-    public List<Restaurant> getAllRestaurants() {
-        return service.getAll().stream().sorted((r1, r2) -> Integer.compare(r2.getVotes().size(), r1.getVotes().size())).collect(Collectors.toList());
-    }
 
     @RequestMapping(value = "create")
     public String create(Restaurant restaurant) {
@@ -50,11 +41,5 @@ public class RestaurantRepositoryController {
         logger.info("delete restaurant with id {}", id);
         service.delete(id);
         return "redirect:/admin/page";
-    }
-
-    @RequestMapping(value = "all")
-    public String getAll() {
-        logger.info("get all restaurants");
-        return "user";
     }
 }
