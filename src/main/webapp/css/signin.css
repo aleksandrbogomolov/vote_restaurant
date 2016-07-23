@@ -18,6 +18,16 @@ body {
     font-weight: normal;
 }
 
+.checkbox {
+    box-sizing: border-box;
+    display: block;
+    min-height: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    vertical-align: middle;
+}
+
 .form-signin .form-control {
     position: relative;
     font-size: 16px;

@@ -25,24 +25,29 @@ public class DishRepositoryController {
         dish.setPrice(0);
         dish.setTypeDish(0);
         service.save(dish, restaurantId);
-        return "redirect:/admin/page";
+        return "redirect:/admin";
     }
 
     @RequestMapping(value = "update")
-    public String update(@RequestParam(value = "id") int id, @RequestParam(value = "restaurantId") int restaurantId, @RequestParam(value = "name") String name, @RequestParam(value = "price") int price, @RequestParam(value = "typeDish") int type) {
+    public String update(@RequestParam(value = "id") int id,
+                         @RequestParam(value = "restaurantId") int restaurantId,
+                         @RequestParam(value = "name") String name,
+                         @RequestParam(value = "price") int price,
+                         @RequestParam(value = "typeDish") int type) {
         logger.info("update dish with id {}", id);
         Dish dish = service.getOne(id, restaurantId);
         dish.setName(name.trim());
         dish.setPrice(price);
         dish.setTypeDish(type);
         service.update(dish, restaurantId);
-        return "redirect:/admin/page";
+        return "redirect:/admin";
     }
 
     @RequestMapping(value = "delete")
-    public String delete(@RequestParam(value = "id") int id, @RequestParam(value = "restaurantId") int restaurantId) {
+    public String delete(@RequestParam(value = "id") int id,
+                         @RequestParam(value = "restaurantId") int restaurantId) {
         logger.info("delete dish with id {}", id);
         service.delete(id, restaurantId);
-        return "redirect:/admin/page";
+        return "redirect:/admin";
     }
 }

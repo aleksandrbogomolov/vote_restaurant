@@ -26,7 +26,7 @@ public class UserRepositoryController {
         user.setRole(Role.USER);
         logger.info("create user {}", user);
         service.save(user);
-        return "redirect:/restaurant/all";
+        return "redirect:/restaurant";
     }
 
     @RequestMapping(value = "update")
@@ -67,9 +67,9 @@ public class UserRepositoryController {
         val user = service.getByEmail(email);
         if (user.getPassword().equals(pass)) {
             if (user.getRole().equals(Role.USER)) {
-                return "redirect:/restaurant/all";
+                return "redirect:/restaurant";
             } else if (user.getRole().equals(Role.ADMIN)) {
-                return "redirect:/admin/page";
+                return "redirect:/admin";
             }
         } else {
             return "access_denied";

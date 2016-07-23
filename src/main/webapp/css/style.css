@@ -1,3 +1,7 @@
+body {
+    padding-top: 70px;
+}
+
 .scroll-top {
     position: fixed;
     bottom: 0;
@@ -24,16 +28,16 @@
     color: rgba(252, 252, 252, 0);
 }
 
-#dish_form {
+#updateDish {
     display: inline-block;
 }
 
-#dish_form input {
+#updateDish input {
     width: 26%;
     height: 33px;
 }
 
-#dish_form a {
+#updateDish a {
     color: black;
 }
 
