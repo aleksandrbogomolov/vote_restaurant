@@ -12,6 +12,10 @@ function makeEditable() {
     $('.voteClear').click(function () {
         clearVote();
     });
+
+    $(document).ajaxError(function (event, jqXHR, options, jsExc) {
+        failNoty(event, jqXHR, options, jsExc);
+    });
 }
 
 function updateDesk() {
@@ -27,6 +31,7 @@ function addVote(id) {
         type: 'POST',
         success: function () {
             updateDesk();
+            successNoty('Add vote');
         }
     });
 }
@@ -37,6 +42,35 @@ function clearVote() {
         type:'DELETE',
         success: function () {
             updateDesk();
+            successNoty('Clear votes')
         }
     })
+}
+
+var failedNote;
+
+function closeNoty() {
+    if (failedNote) {
+        failedNote.close();
+        failedNote = undefined;
+    }
+}
+
+function successNoty(text) {
+    closeNoty();
+    noty({
+        text: text,
+        type: 'success',
+        layout: 'bottomRight',
+        timeout: 500
+    });
+}
+
+function failNoty(event, jqXHR, options, jsExc) {
+    closeNoty();
+    failedNote = noty({
+        text: 'Failed: ' + jqXHR.statusText + "<br>",
+        type: 'error',
+        layout: 'bottomRight'
+    });
 }
