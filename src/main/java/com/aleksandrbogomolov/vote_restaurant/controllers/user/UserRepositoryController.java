@@ -41,6 +41,7 @@ public class UserRepositoryController {
     public String save(User user, Model model) {
         if (user == null) return "404";
         if (!user.getPassword().equals(service.getOne(user.getId()).getPassword())) {
+            logger.info("access denied");
             return "access_denied";
         } else {
             User updateUser = service.getOne(user.getId());
@@ -48,6 +49,7 @@ public class UserRepositoryController {
             if (user.getEmail() != null) updateUser.setEmail(user.getEmail());
             service.update(updateUser);
             model.addAttribute("user", updateUser);
+            logger.info("update user with id {}", updateUser.getId());
             return "profile";
         }
     }

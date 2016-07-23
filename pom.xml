@@ -18,13 +18,13 @@
         <jta.version>1.1</jta.version>
         <javax.el-api.version>2.2.5</javax.el-api.version>
         <junit.version>4.12</junit.version>
-        <hibernate.version>5.1.0.Final</hibernate.version>
+        <hibernate.version>5.2.1.Final</hibernate.version>
         <hibernate.validator.version>5.2.4.Final</hibernate.validator.version>
         <logback.version>1.1.7</logback.version>
         <postgres.version>9.4.1208</postgres.version>
         <slf4j.version>1.7.21</slf4j.version>
-        <spring.version>4.2.6.RELEASE</spring.version>
-        <spring.security.version>4.1.0.RELEASE</spring.security.version>
+        <spring.version>4.3.1.RELEASE</spring.version>
+        <spring.security.version>4.1.1.RELEASE</spring.security.version>
         <spring.data.jpa.version>1.10.2.RELEASE</spring.data.jpa.version>
         <tomcat.version>8.5.3</tomcat.version>
 
@@ -116,15 +116,15 @@
 
         <dependency>
             <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
+            <artifactId>hibernate-core</artifactId>
             <version>${hibernate.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-java8</artifactId>
-            <version>5.2.1.Final</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.hibernate</groupId>-->
+            <!--<artifactId>hibernate-java8</artifactId>-->
+            <!--<version>5.2.1.Final</version>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -230,7 +230,18 @@
 
     </dependencies>
 
-    <!--<dependencyManagement>-->
+    <dependencyManagement>
+
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>${spring.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+
         <!--<dependencies>-->
             <!--<dependency>-->
                 <!--<groupId>io.spring.platform</groupId>-->
@@ -240,6 +251,6 @@
                 <!--<scope>import</scope>-->
             <!--</dependency>-->
         <!--</dependencies>-->
-    <!--</dependencyManagement>-->
+    </dependencyManagement>
 
 </project>
