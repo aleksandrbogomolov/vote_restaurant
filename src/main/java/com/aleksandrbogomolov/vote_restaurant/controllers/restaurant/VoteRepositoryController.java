@@ -18,7 +18,7 @@ public class VoteRepositoryController {
     @Autowired
     private VoteService service;
 
-    @RequestMapping(value = "add/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public void newVote(@PathVariable("id") int id) {
         Vote vote = null;
         try {
@@ -39,7 +39,7 @@ public class VoteRepositoryController {
 //        return vote;
     }
 
-    @RequestMapping(value = "clear", method = RequestMethod.DELETE)
+    @RequestMapping(method = RequestMethod.DELETE)
     public void clear() {
         service.deleteAll();
     }

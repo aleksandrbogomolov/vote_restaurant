@@ -4,10 +4,7 @@ import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Restaurant;
 import com.aleksandrbogomolov.vote_restaurant.service.BaseService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
@@ -41,8 +38,8 @@ public class RestaurantRepositoryController {
         return "redirect:/admin/page";
     }
 
-    @RequestMapping(value = "delete", method = RequestMethod.DELETE)
-    public void delete(@RequestParam(value = "id") int id) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable("id") int id) {
         logger.info("delete restaurant with id {}", id);
         service.delete(id);
     }

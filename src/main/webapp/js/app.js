@@ -21,6 +21,10 @@ function makeEditable() {
         return false;
     });
 
+    $('.delete').click(function () {
+        deleteRestaurant($(this).attr('id'));
+    });
+
     $('.vote').click(function () {
         addVote($(this).attr('id'));
     });
@@ -43,7 +47,7 @@ function updateDesk() {
 
 function addVote(id) {
     $.ajax({
-        url: voteUrl + 'add/' + id,
+        url: voteUrl + id,
         type: 'POST',
         success: function () {
             updateDesk();
@@ -54,13 +58,13 @@ function addVote(id) {
 
 function clearVote() {
     $.ajax({
-        url: voteUrl + 'clear',
+        url: voteUrl,
         type: 'DELETE',
         success: function () {
             updateDesk();
             successNoty('Clear votes')
         }
-    })
+    });
 }
 
 function saveRestaurant(form) {
@@ -72,6 +76,17 @@ function saveRestaurant(form) {
             $('#newRestaurant').modal('hide');
             updateDesk();
             successNoty('Create new restaurant');
+        }
+    });
+}
+
+function deleteRestaurant(id) {
+    $.ajax({
+        url: restaurantUrl + id,
+        type:'DELETE',
+        success: function () {
+            updateDesk();
+            successNoty('Delete restaurant with id: ' + id);
         }
     });
 }
