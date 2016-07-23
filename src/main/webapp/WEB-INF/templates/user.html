@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress ThymeleafVariablesResolveInspection -->
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,8 +33,8 @@
     <div class="panel panel-default">
         <div class="panel-heading" th:text="#{user.table.title}"></div>
         <div class="panel-body">
-            <div class="row" id="datatable">
-                <div th:each="restaurant:${restaurants}">
+            <div class="row">
+                <div th:each="restaurant:${restaurants}" id="datatable">
                     <div class="col-md-4">
                         <div class="thumbnail">
                             <div class="caption">
