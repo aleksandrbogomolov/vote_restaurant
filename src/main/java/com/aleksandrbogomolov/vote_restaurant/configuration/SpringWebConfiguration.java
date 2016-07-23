@@ -30,7 +30,14 @@ public class SpringWebConfiguration extends WebMvcConfigurerAdapter implements A
     @Bean
     public ResourceBundleMessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-        messageSource.setBasenames("messages/header", "messages/user", "messages/footer", "messages/admin", "messages/profile", "messages/signin");
+        //noinspection RedundantArrayCreation
+        messageSource.setBasenames(new String[]{
+                "messages/header",
+                "messages/user",
+                "messages/footer",
+                "messages/admin",
+                "messages/profile",
+                "messages/signin"});
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
     }

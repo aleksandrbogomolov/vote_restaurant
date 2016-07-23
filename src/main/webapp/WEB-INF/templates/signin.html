@@ -14,7 +14,7 @@
 <div class="container">
 
     <!--Signin form-->
-    <form class="form-signin collapse in" method="post" th:action="@{/user/email}">
+    <form class="form-signin collapse in" method="post" th:action="@{/profile/email}">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h2 class="form-signin-heading" th:text="#{signin.form.signin.title}"></h2>
@@ -36,7 +36,7 @@
     </form>
 
     <!--Registration form-->
-    <form class="form-signin collapse" method="post" th:action="@{/user/create}">
+    <form class="form-signin collapse" method="post" th:action="@{/profile/create}">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h2 class="form-signin-heading" th:text="#{signin.form.register.title}"></h2>
