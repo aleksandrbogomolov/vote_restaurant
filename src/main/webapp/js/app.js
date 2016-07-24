@@ -10,14 +10,12 @@ function makeEditable() {
     });
 
     $('#newRestaurant').submit(function () {
-        form = $('#detailsForm');
-        saveRestaurant(form);
+        saveRestaurant($('#detailsForm'));
         return false;
     });
 
-    $('#updateRestaurant').submit(function () {
-        form = $(this);
-        saveRestaurant(form);
+    $("form[name='updateRestaurant']").submit(function () {
+        saveRestaurant($(this));
         return false;
     });
 
@@ -75,7 +73,7 @@ function saveRestaurant(form) {
         success: function () {
             $('#newRestaurant').modal('hide');
             updateDesk();
-            successNoty('Create new restaurant');
+            successNoty('Create or update restaurant');
         }
     });
 }
