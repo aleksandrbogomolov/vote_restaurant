@@ -6,21 +6,27 @@ $('.collapse').collapse('toggle');
 
 function makeEditable() {
     $('#addRestaurant').click(function () {
-        $('#newRestaurant').modal();
+        $('#new-restaurant').modal();
     });
 
-    $('#newRestaurant').submit(function () {
-        saveRestaurant($('#detailsForm'));
+    $('#new-restaurant').submit(function () {
+        saveRestaurant($('#details-form'));
         return false;
     });
 
-    $("form[name='updateRestaurant']").submit(function () {
+    $("form[name='update-restaurant']").submit(function () {
         saveRestaurant($(this));
         return false;
     });
 
-    $('.delete').click(function () {
+    $('.delete-restaurant').click(function () {
         deleteRestaurant($(this).attr('id'));
+    });
+
+    $('.delete-dish').click(function () {
+        var form = ($(this).parent());
+        var array = form.serializeArray();
+        deleteDish(array);
     });
 
     $('.vote').click(function () {
@@ -72,7 +78,7 @@ function saveRestaurant(form) {
         type: 'POST',
         data: form.serialize(),
         success: function () {
-            $('#newRestaurant').modal('hide');
+            $('#new-restaurant').modal('hide');
             updateDesk();
             successNoty('Create or update restaurant');
         }
@@ -86,6 +92,17 @@ function deleteRestaurant(id) {
         success: function () {
             updateDesk();
             successNoty('Delete restaurant with id: ' + id);
+        }
+    });
+}
+
+function deleteDish(array) {
+    $.ajax({
+        url: dishUrl + array[1].value + '/' + array[0].value,
+        type: 'DELETE',
+        success: function () {
+            updateDesk();
+            successNoty('Delete dish with id ' + array[0]);
         }
     });
 }

@@ -32,12 +32,12 @@ body {
     display: inline-block;
 }
 
-#updateDish input {
+#update-dish input {
     width: 26%;
     height: 33px;
 }
 
-#updateDish a {
+#update-dish a {
     color: black;
 }
 
