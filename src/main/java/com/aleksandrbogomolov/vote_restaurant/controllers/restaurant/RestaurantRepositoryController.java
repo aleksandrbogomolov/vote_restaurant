@@ -25,19 +25,6 @@ public class RestaurantRepositoryController {
         }
     }
 
-    @RequestMapping(value = "update", method = RequestMethod.POST)
-    public String update(@RequestParam(value = "id") int id,
-                         @RequestParam(value = "name") String name,
-                         @RequestParam(value = "address") String address) {
-        logger.info("update restaurant with id {}", id);
-        Restaurant restaurant = new Restaurant();
-        restaurant.setId(id);
-        restaurant.setName(name);
-        restaurant.setAddress(address);
-        service.update(restaurant);
-        return "redirect:/admin/page";
-    }
-
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") int id) {
         logger.info("delete restaurant with id {}", id);

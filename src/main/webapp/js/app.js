@@ -31,6 +31,7 @@ function makeEditable() {
         clearVote();
     });
 
+    //noinspection JSUnresolvedFunction
     $(document).ajaxError(function (event, jqXHR, options, jsExc) {
         failNoty(event, jqXHR, options, jsExc);
     });
