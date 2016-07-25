@@ -16,50 +16,71 @@
     <!--Signin form-->
     <form class="form-signin collapse in" method="post" th:action="@{/profile/email}">
         <div class="panel panel-default">
+
             <div class="panel-heading">
                 <h2 class="form-signin-heading" th:text="#{signin.form.signin.title}"></h2>
             </div>
+
             <div class="panel-body">
+
                 <input type="text" class="form-control" th:placeholder="#{signin.form.email}" name="email" autofocus>
+
                 <input type="password" class="form-control" th:placeholder="#{signin.form.password}" name="password">
+
                 <label class="checkbox">
                     <input type="checkbox" value="remember-me" th:text="#{signin.form.remember.me}">
                 </label>
+
                 <label class="checkbox">
                     <a data-toggle="collapse" data-target=".collapse" th:text="#{signin.form.register.me}"></a>
                 </label>
+
             </div>
+
             <div class="panel-footer">
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
             </div>
+
         </div>
     </form>
 
     <!--Registration form-->
     <form class="form-signin collapse" method="post" th:action="@{/profile/create}">
         <div class="panel panel-default">
+
             <div class="panel-heading">
                 <h2 class="form-signin-heading" th:text="#{signin.form.register.title}"></h2>
             </div>
+
             <div class="panel-body">
                 <div class="collapse">
+
                     <input type="text" class="form-control" th:placeholder="#{signin.form.name}" name="name" autofocus>
+
                 </div>
+
                 <input type="text" class="form-control" th:placeholder="#{signin.form.email}" name="email">
+
                 <input type="password" class="form-control" th:placeholder="#{signin.form.password}" name="password">
+
                 <div class="collapse">
                     <input type="password" class="form-control" th:placeholder="#{signin.form.confirm.password}">
                 </div>
+
                 <label class="checkbox">
                     <input type="checkbox" value="remember-me" th:text="#{signin.form.remember.me}">
                 </label>
+
                 <label class="checkbox">
                     <a data-toggle="collapse" data-target=".collapse" th:text="#{signin.form.register.me}"></a>
                 </label>
+
             </div>
             <div class="panel-footer">
+
                 <button class="btn btn-lg btn-primary btn-block" type="submit"
                         th:text="#{signin.form.button.register}"></button>
+
             </div>
         </div>
     </form>

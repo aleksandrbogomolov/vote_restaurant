@@ -26,32 +26,42 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-default" id="forms">
+
                 <div class="panel-heading" th:text="#{profile.form.title}"></div>
                 <div class="panel-body">
+
                     <form method="post" action="#" th:action="@{/profile/save}" th:object="${user}">
                         <fieldset>
+
                             <div class="form-group">
                                 <input type="hidden" class="form-control" id="userId" th:field="*{id}">
                             </div>
+
                             <div class="form-group">
                                 <label for="inputName" th:text="#{profile.form.name}"></label>
                                 <input type="text" class="form-control" id="inputName"
                                        th:field="*{name}" th:placeholder="#{profile.form.name.placeholder}">
                             </div>
+
                             <div class="form-group">
                                 <label for="inputEmail" th:text="#{profile.form.email}"></label>
                                 <input type="email" class="form-control" id="inputEmail"
                                        th:field="*{email}" th:placeholder="#{profile.form.email.placeholder}">
                             </div>
+
                             <div class="form-group">
                                 <label for="inputPassword" th:text="#{profile.form.password}"></label>
                                 <input type="password" class="form-control" id="inputPassword"
                                        th:field="*{password}" th:placeholder="#{profile.form.password.placeholder}">
                             </div>
+
                             <button type="submit" class="btn btn-primary" th:text="#{profile.form.submit}"></button>
+
                             <a href="profile.html" th:href="@{/profile/delete(userId=100000)}" class="btn btn-danger"
                                th:text="#{profile.form.delete}"></a>
+
                         </fieldset>
+
                     </form>
                 </div>
             </div>
