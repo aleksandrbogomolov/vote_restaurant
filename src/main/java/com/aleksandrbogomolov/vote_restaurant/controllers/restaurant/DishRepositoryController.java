@@ -14,16 +14,18 @@ public class DishRepositoryController {
     @Autowired
     private DishService service;
 
-    @RequestMapping(value = "create")
-    public String create(@RequestParam("restaurantId") int restaurantId) {
+    @RequestMapping(method = RequestMethod.POST)
+    public void create(@RequestParam(value = "restaurantId") int restaurantId,
+                         @RequestParam(value = "name") String name,
+                         @RequestParam(value = "price") int price,
+                         @RequestParam(value = "type") int type) {
         logger.info("create dish from restaurant with id {}", restaurantId);
         Dish dish = new Dish();
         dish.setId(null);
-        dish.setName(" ");
-        dish.setPrice(0);
-        dish.setTypeDish(0);
+        dish.setName(name);
+        dish.setPrice(price);
+        dish.setTypeDish(type);
         service.save(dish, restaurantId);
-        return "redirect:/admin";
     }
 
     @RequestMapping(value = "update")

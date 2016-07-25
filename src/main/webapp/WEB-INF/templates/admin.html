@@ -48,8 +48,7 @@
                                         th:text="#{admin.table.update}"></button>
                                 <a class="btn btn-default delete-restaurant" th:id="${restaurant.id}"
                                    th:text="#{admin.table.delete}"></a>
-                                <a href="#" th:href="@{/dish/create(restaurantId=${restaurant.id})}"
-                                   class="btn btn-default" th:text="#{admin.table.add.dish}"></a>
+                                <a class="btn btn-default add-dish" th:text="#{admin.table.add.dish}"></a>
                             </form>
                             <br>
                             <div th:each="dish:${restaurant.dishes}">
@@ -64,7 +63,8 @@
                                            name="typeDish"/>
                                     <button class="btn btn-default" type="submit"><i
                                             class="glyphicon glyphicon-ok"></i></button>
-                                    <a class="btn btn-default delete-dish"><i class="glyphicon glyphicon-remove"></i></a>
+                                    <a class="btn btn-default delete-dish"><i
+                                            class="glyphicon glyphicon-remove"></i></a>
                                 </form>
                             </div>
                             <h3>
@@ -93,7 +93,7 @@
                 <h2 class="modal-title" th:text="#{admin.new.restaurant}"></h2>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="post" id="details-form">
+                <form class="form-horizontal" method="post" id="details-restaurant">
                     <div class="form-group">
                         <label for="name" class="control-label col-xs-3" th:text="#{admin.new.restaurant.name}"></label>
                         <div class="col-xs-9">
@@ -121,12 +121,59 @@
     </div>
 </div>
 
-</body>
+<div class="modal fade" id="new-dish">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2 class="modal-title" th:text="#{admin.new.dish}"></h2>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" method="post" id="details-form">
+                    <div class="form-group">
+                        <input type="hidden" id="restaurant-id" name="restaurantId" value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="dish-name" class="control-label col-xs-3" th:text="#{admin.new.dish.name}"></label>
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" id="dish-name" name="name"
+                                   th:placeholder="#{admin.new.dish.name}" autofocus>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="price" class="control-label col-xs-3"
+                               th:text="#{admin.new.dish.price}"></label>
+                        <div class="col-xs-9">
+                            <input type="number" class="form-control" id="price" name="price"
+                                   th:placeholder="#{admin.new.dish.price}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="type" class="control-label col-xs-3"
+                               th:text="#{admin.new.dish.type}"></label>
+                        <div class="col-xs-9">
+                            <input type="number" class="form-control" id="type" name="type"
+                                   th:placeholder="#{admin.new.dish.type}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-offset-3 col-xs-9">
+                            <button type="submit" class="btn btn-default"
+                                    th:text="#{admin.new.restaurant.add}"></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="../../js/jquery-2.2.4.min.js"></script>
 <script src="../../js/bootstrap.min.js"></script>
 <script src="../../js/jquery.noty.packaged.min.js"></script>
 <script src="../../js/app.js"></script>
 <script>
+
     var voteUrl = 'vote/';
     var restaurantUrl = 'restaurant/';
     var dishUrl = 'dish/';
@@ -135,4 +182,5 @@
         makeEditable();
     })
 </script>
+</body>
 </html>
