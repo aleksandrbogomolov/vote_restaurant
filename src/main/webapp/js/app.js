@@ -9,13 +9,6 @@ function makeEditable() {
         $('#new-restaurant').modal();
     });
 
-    $('.add-dish').click(function () {
-        var parent = $(this).parent();
-        var array = parent.serializeArray();
-        document.getElementById('restaurant-id').value = array[0].value;
-        $('#new-dish').modal();
-    });
-
     $('#new-restaurant').submit(function () {
         saveRestaurant($('#details-restaurant'));
         return false;
@@ -26,13 +19,26 @@ function makeEditable() {
         return false;
     });
 
+    $('.delete-restaurant').click(function () {
+        deleteRestaurant($(this).attr('id'));
+    });
+
+    $('.add-dish').click(function () {
+        var parent = $(this).parent();
+        var array = parent.serializeArray();
+        document.getElementById('restaurant-id').value = array[0].value;
+        $('#id').val(0);
+        $('#new-dish').modal();
+    });
+
     $('#new-dish').submit(function () {
         createDish($('#details-form'));
         return false;
     });
 
-    $('.delete-restaurant').click(function () {
-        deleteRestaurant($(this).attr('id'));
+    $('#update-dish').submit(function () {
+        createDish($('#update-dish'));
+        return false;
     });
 
     $('.delete-dish').click(function () {
@@ -100,7 +106,7 @@ function saveRestaurant(form) {
 function deleteRestaurant(id) {
     $.ajax({
         url: restaurantUrl + id,
-        type:'DELETE',
+        type: 'DELETE',
         success: function () {
             updateDesk();
             successNoty('Delete restaurant with id: ' + id);
@@ -111,7 +117,7 @@ function deleteRestaurant(id) {
 function createDish(form) {
     $.ajax({
         url: dishUrl,
-        type:'POST',
+        type: 'POST',
         data: form.serialize(),
         success: function () {
             $('#new-dish').modal('hide');

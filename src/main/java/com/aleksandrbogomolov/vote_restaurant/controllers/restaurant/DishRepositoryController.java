@@ -15,32 +15,20 @@ public class DishRepositoryController {
     private DishService service;
 
     @RequestMapping(method = RequestMethod.POST)
-    public void create(@RequestParam(value = "restaurantId") int restaurantId,
-                         @RequestParam(value = "name") String name,
-                         @RequestParam(value = "price") int price,
-                         @RequestParam(value = "type") int type) {
-        logger.info("create dish from restaurant with id {}", restaurantId);
-        Dish dish = new Dish();
-        dish.setId(null);
-        dish.setName(name);
-        dish.setPrice(price);
-        dish.setTypeDish(type);
-        service.save(dish, restaurantId);
-    }
-
-    @RequestMapping(value = "update")
-    public String update(@RequestParam(value = "id") int id,
-                         @RequestParam(value = "restaurantId") int restaurantId,
-                         @RequestParam(value = "name") String name,
-                         @RequestParam(value = "price") int price,
-                         @RequestParam(value = "typeDish") int type) {
-        logger.info("update dish with id {}", id);
-        Dish dish = service.getOne(id, restaurantId);
-        dish.setName(name.trim());
-        dish.setPrice(price);
-        dish.setTypeDish(type);
-        service.update(dish, restaurantId);
-        return "redirect:/admin";
+    public void create(@RequestParam(value = "restaurant") int restaurantId,
+                       @RequestParam(value = "id") int id,
+                       @RequestParam(value = "name") String name,
+                       @RequestParam(value = "price") int price,
+                       @RequestParam(value = "typeDish") int type) {
+        Dish dish = new Dish(id, name, price, type);
+        if (id == 0) {
+            logger.info("create dish from restaurant with id {}", restaurantId);
+            dish.setId(null);
+            service.save(dish, restaurantId);
+        } else {
+            logger.info("update dish with id {}", id);
+            service.update(dish, restaurantId);
+        }
     }
 
     @RequestMapping(value = "/{restaurantId}/{id}", method = RequestMethod.DELETE)
