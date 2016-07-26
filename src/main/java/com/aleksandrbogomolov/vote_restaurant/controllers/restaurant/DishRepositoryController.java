@@ -16,14 +16,13 @@ public class DishRepositoryController {
 
     @RequestMapping(method = RequestMethod.POST)
     public void createOrUpdate(@RequestParam(value = "restaurant") int restaurantId,
-                               @RequestParam(value = "id") int id,
+                               @RequestParam(value = "id") Integer id,
                                @RequestParam(value = "name") String name,
                                @RequestParam(value = "price") int price,
                                @RequestParam(value = "typeDish") int type) {
         Dish dish = new Dish(id, name, price, type);
-        if (id == 0) {
+        if (id == null) {
             logger.info("create dish from restaurant with id {}", restaurantId);
-            dish.setId(null);
             service.save(dish, restaurantId);
         } else {
             logger.info("update dish with id {}", id);

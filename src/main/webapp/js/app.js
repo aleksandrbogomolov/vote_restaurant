@@ -27,7 +27,6 @@ function makeEditable() {
         var parent = $(this).parent();
         var array = parent.serializeArray();
         document.getElementById('restaurant-id').value = array[0].value;
-        $('#id').val(0);
         $('#new-dish').modal();
     });
 
