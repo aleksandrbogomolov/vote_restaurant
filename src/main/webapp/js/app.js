@@ -5,6 +5,7 @@ $('.scroll-top').click(function () {
 $('.collapse').collapse('toggle');
 
 function makeEditable() {
+
     $('#addRestaurant').click(function () {
         $('#new-restaurant').modal();
     });
@@ -40,7 +41,7 @@ function makeEditable() {
         return false;
     });
 
-    $('.delete-dish').click(function () {
+    $('#delete-dish').click(function () {
         var form = $(this).parent();
         var array = form.serializeArray();
         deleteDish(array);
