@@ -18,15 +18,15 @@ public class ModelMatcher<T, R> {
         this.entityConverter = entityConverter;
     }
 
+    private static <S, T> Collection<T> map(Collection<S> collection, Function<S, T> converter) {
+        return collection.stream().map(converter).collect(Collectors.toList());
+    }
+
     public void assertEquals(T expected, T actual) {
         Assert.assertEquals(entityConverter.apply(expected), entityConverter.apply(actual));
     }
 
     public void assertCollectionEquals(Collection<T> expected, Collection<T> actual) {
         Assert.assertEquals(map(expected, entityConverter), map(actual, entityConverter));
-    }
-
-    private static <S, T> Collection<T> map(Collection<S> collection, Function<S, T> converter) {
-        return collection.stream().map(converter).collect(Collectors.toList());
     }
 }

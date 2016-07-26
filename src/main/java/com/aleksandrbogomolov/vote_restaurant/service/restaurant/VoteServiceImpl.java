@@ -21,7 +21,7 @@ public class VoteServiceImpl implements VoteService {
     }
 
     @Override
-    public void delete(int userId) throws NotFoundException{
+    public void delete(int userId) throws NotFoundException {
         ExceptionUtil.checkNotFoundWithId(repository.delete(userId), userId);
     }
 

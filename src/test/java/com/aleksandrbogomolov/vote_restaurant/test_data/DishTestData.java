@@ -9,8 +9,8 @@ import static com.aleksandrbogomolov.vote_restaurant.model.BaseEntity.START_SEQ;
 
 public class DishTestData {
 
+    public static final ModelMatcher<Dish, TestDish> MATCHER = new ModelMatcher<>(d -> ((d instanceof TestDish) ? (TestDish) d : new TestDish(d)));
     private static final int DISH_ID = START_SEQ + 4;
-
     public static final Dish DISH_1 = new Dish(DISH_ID, "Борщ", 50, 1);
     public static final Dish DISH_3 = new Dish(DISH_ID + 1, "Пюре", 30, 2);
     public static final Dish DISH_5 = new Dish(DISH_ID + 2, "Котлета", 50, 3);
@@ -19,8 +19,6 @@ public class DishTestData {
     public static final Dish DISH_4 = new Dish(DISH_ID + 5, "Макароны", 20, 2);
     public static final Dish DISH_6 = new Dish(DISH_ID + 6, "Бифштекс", 60, 3);
     public static final Dish DISH_8 = new Dish(DISH_ID + 7, "Компот", 10, 4);
-
-    public static final ModelMatcher<Dish, TestDish> MATCHER = new ModelMatcher<>(d -> ((d instanceof TestDish) ? (TestDish) d : new TestDish(d)));
 
     public static class TestDish extends Dish {
 

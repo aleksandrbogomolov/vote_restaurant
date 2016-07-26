@@ -11,15 +11,14 @@ import static com.aleksandrbogomolov.vote_restaurant.test_data.UserTestData.USER
 
 public class VoteTestData {
 
-    private static final int VOTE_ID = START_SEQ + 12;
-
-    public static final Vote VOTE = new Vote(VOTE_ID, USER, RESTAURANT_1);
-
     public static final ModelMatcher<Vote, TestVote> MATCHER = new ModelMatcher<>(v -> ((v instanceof TestVote) ? (TestVote) v : new TestVote(v)));
+    private static final int VOTE_ID = START_SEQ + 12;
+    public static final Vote VOTE = new Vote(VOTE_ID, USER, RESTAURANT_1);
 
     public static class TestVote extends Vote {
 
-        public TestVote(){}
+        public TestVote() {
+        }
 
         TestVote(Vote v) {
             this(v.getId());
