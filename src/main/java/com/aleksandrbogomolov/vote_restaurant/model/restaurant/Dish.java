@@ -1,6 +1,8 @@
 package com.aleksandrbogomolov.vote_restaurant.model.restaurant;
 
 import com.aleksandrbogomolov.vote_restaurant.model.NamedEntity;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +13,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @Table(name = "dishes")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Dish extends NamedEntity {
 
     @NotNull

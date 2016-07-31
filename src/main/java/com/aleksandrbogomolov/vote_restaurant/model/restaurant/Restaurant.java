@@ -2,6 +2,8 @@ package com.aleksandrbogomolov.vote_restaurant.model.restaurant;
 
 import com.aleksandrbogomolov.vote_restaurant.model.NamedEntity;
 import com.aleksandrbogomolov.vote_restaurant.model.user.Vote;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -14,13 +16,16 @@ import java.util.Set;
 @Getter
 @Setter
 @Table(name = "restaurants")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Restaurant extends NamedEntity {
 
     @NotEmpty
     @Column(name = "address")
     protected String address;
+
     @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
     protected Set<Vote> votes;
+
     @SuppressWarnings("JpaQlInspection")
     @OrderBy(value = "typeDish ASC")
     @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)

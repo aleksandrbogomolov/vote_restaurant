@@ -1,10 +1,11 @@
-$('.scroll-top').click(function () {
-    $('body,html').animate({scrollTop: 0}, 1000);
-});
-
-$('.collapse').collapse('toggle');
 
 function makeEditable() {
+
+    $('.scroll-top').click(function () {
+        $('body,html').animate({scrollTop: 0}, 1000);
+    });
+
+    $('.collapse').collapse('toggle');
 
     $('#addRestaurant').click(function () {
         $('#new-restaurant').modal();
@@ -61,11 +62,36 @@ function makeEditable() {
     });
 }
 
-function updateDesk() {
+function getAllFromUserPage() {
+    var table = $('#datatable');
     $.get(restaurantUrl, function (data) {
-        $('#datatable').hide().html(data).fadeIn('fast');
-    });
+        $.each(data, function (key, value) {
+            table.append('<div class="col-md-4"><div class="thumbnail"><div class="caption">' +
+                '<h3 class="caption-label name">' + value.name + '</h3>' +
+                '<h4 class="caption-label">' + value.address + '</h4>' +
+                '<div class="list-inline">' +
+                dishes(value.dishes) +
+                '</div>' +
+                '<h3>' +
+                '<a class="vote" id="' + value.id + '"><i class="glyphicon glyphicon-thumbs-up"></i></a>' +
+                '<span class="pull-right">' + value.votes.length + '</span>' +
+                '</h3></div></div></div>');
+        });
+        makeEditable();
+    }, 'json');
+}
 
+function dishes(strings) {
+    var result = '';
+    $.each(strings, function (key, value) {
+        result += '<span>' + value.name + '</span><span class="pull-right">' + value.price + '</span><br>';
+    });
+    return result;
+}
+
+function updateDesk() {
+    $('#datatable').empty();
+    getAllFromUserPage();
 }
 
 function addVote(id) {
