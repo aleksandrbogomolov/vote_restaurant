@@ -6,13 +6,14 @@ import com.aleksandrbogomolov.vote_restaurant.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.MediaType;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @Slf4j
 @RequestMapping(value = "profile")
 public class UserRepositoryController {
@@ -29,12 +30,10 @@ public class UserRepositoryController {
         return "redirect:/restaurant";
     }
 
-    @RequestMapping(value = "get")
-    public String getOne(@RequestParam(name = "userId") int userId, Model model) {
-        val user = service.getOne(userId);
-        model.addAttribute("user", user);
-        logger.info("update user {}", user);
-        return "profile";
+    @RequestMapping(value = "get", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public User getOne() {
+        logger.info("get user");
+        return service.getOne(100000);
     }
 
     @RequestMapping(value = "save", method = RequestMethod.POST)

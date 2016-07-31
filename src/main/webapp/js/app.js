@@ -139,8 +139,14 @@ function deleteDish(array) {
 }
 
 function profileForm() {
-    <!--th:href="@{/profile/get(userId=100000)}"-->
-    $('#user-update').modal();
+    var form = $('#user-update');
+    $.get('profile/get', function (data) {
+        $.each(data, function (key, value) {
+            form.find("input[name='" + key + "']").val(value);
+        });
+        form.find("input[name='password']").val('');
+        form.modal();
+    });
 }
 
 var failedNote;
