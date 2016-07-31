@@ -35,9 +35,11 @@ public class User extends NamedEntity {
     @Enumerated(value = EnumType.STRING)
     @Column(name = "role")
     protected Role role;
+
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "vote")
     protected Vote vote;
+
     @Column(name = "registered", columnDefinition = "timestamp default now()")
     private Date registered = new Date();
 

@@ -138,6 +138,11 @@ function deleteDish(array) {
     });
 }
 
+function profileForm() {
+    <!--th:href="@{/profile/get(userId=100000)}"-->
+    $('#user-update').modal();
+}
+
 var failedNote;
 
 function closeNoty() {

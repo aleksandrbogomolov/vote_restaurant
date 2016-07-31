@@ -29,8 +29,8 @@ public class UserRepositoryController {
         return "redirect:/restaurant";
     }
 
-    @RequestMapping(value = "update")
-    public String update(@RequestParam(name = "userId") int userId, Model model) {
+    @RequestMapping(value = "get")
+    public String getOne(@RequestParam(name = "userId") int userId, Model model) {
         val user = service.getOne(userId);
         model.addAttribute("user", user);
         logger.info("update user {}", user);
