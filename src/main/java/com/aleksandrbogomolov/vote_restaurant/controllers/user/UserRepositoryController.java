@@ -39,7 +39,7 @@ public class UserRepositoryController {
     @RequestMapping(value = "save", method = RequestMethod.POST)
     public String save(User user, Model model) {
         if (user == null) return "404";
-        if (!user.getPassword().equals(service.getOne(user.getId()).getPassword())) {
+        if (!isPasswordEquals(user)) {
             logger.info("access denied");
             return "access_denied";
         } else {
@@ -53,11 +53,12 @@ public class UserRepositoryController {
         }
     }
 
-    @RequestMapping(value = "delete")
-    public String delete(@RequestParam(name = "userId") int userId) {
-        logger.info("delete user with userId {}", userId);
-        service.delete(userId);
-        return "redirect:/";
+    @RequestMapping(value = "delete", method = RequestMethod.POST)
+    public void delete(User user) {
+        if (isPasswordEquals(user)) {
+            logger.info("delete user {}", user);
+            service.delete(user.getId());
+        }
     }
 
     @RequestMapping(value = "email")
@@ -74,5 +75,9 @@ public class UserRepositoryController {
             return "access_denied";
         }
         return "404";
+    }
+
+    private Boolean isPasswordEquals(User user) {
+        return user.getPassword().equals(service.getOne(user.getId()).getPassword());
     }
 }

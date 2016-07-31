@@ -149,6 +149,20 @@ function profileForm() {
     });
 }
 
+function deleteProfile() {
+    var form = $('#details-user');
+    $.ajax({
+        url: 'profile/delete',
+        type: 'POST',
+        data: form.serialize(),
+        success: function () {
+            $('#user-update').modal('hide');
+            successNoty('delete profile');
+            window.location.href = '/';
+        }
+    });
+}
+
 var failedNote;
 
 function closeNoty() {

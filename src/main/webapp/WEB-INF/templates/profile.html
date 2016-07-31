@@ -65,8 +65,7 @@
                         <div class="col-xs-offset-3 col-xs-9">
                             <button type="submit" class="btn btn-primary" th:text="#{profile.form.submit}"></button>
 
-                            <a href="profile.html" th:href="@{/profile/delete(userId=100000)}" class="btn btn-danger"
-                               th:text="#{profile.form.delete}"></a>
+                            <a class="btn btn-danger" th:text="#{profile.form.delete}" onclick="deleteProfile()"></a>
                         </div>
                     </div>
 
@@ -79,6 +78,6 @@
 <div id="footer" class="text-center" th:include="footer::copy"></div>
 
 <script src="../../js/jquery-3.0.0.min.js"></script>
-<script src="../../js/bootstrap.3.3.7.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
 </body>
 </html>
