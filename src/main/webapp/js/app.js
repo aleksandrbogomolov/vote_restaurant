@@ -1,3 +1,6 @@
+var dishUrl = 'dish/';
+var voteUrl = 'vote/';
+var restaurantUrl = 'restaurant/';
 
 function makeEditable() {
 
