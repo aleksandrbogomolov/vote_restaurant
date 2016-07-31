@@ -4,10 +4,11 @@ import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Restaurant;
 import com.aleksandrbogomolov.vote_restaurant.service.BaseService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @Slf4j
@@ -16,6 +17,14 @@ public class RestaurantRepositoryController {
 
     @Autowired
     private BaseService<Restaurant> service;
+
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Restaurant> getAllRestaurants() {
+        return service.getAll()
+                .stream()
+                .sorted((r1, r2) -> Integer.compare(r2.getVotes().size(), r1.getVotes().size()))
+                .collect(Collectors.toList());
+    }
 
     @RequestMapping(method = RequestMethod.POST)
     public void create(Restaurant restaurant) {
