@@ -4,9 +4,16 @@ import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Restaurant;
 import com.aleksandrbogomolov.vote_restaurant.service.BaseService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,14 +34,20 @@ public class RestaurantRepositoryController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void create(Restaurant restaurant) {
-        if (restaurant.getId() == null) {
+    public ResponseEntity<String> create(@Valid Restaurant restaurant, BindingResult result) {
+        if (result.hasErrors()) {
+            StringBuilder sb = new StringBuilder();
+            result.getFieldErrors().forEach(fe -> sb.append(fe.getField()).append(" ").append(fe.getDefaultMessage()).append("<br>"));
+            return new ResponseEntity<>(sb.toString(), HttpStatus.UNPROCESSABLE_ENTITY);
+        }
+        if (restaurant.isNew()) {
             logger.info("create restaurant {}", restaurant);
             service.save(restaurant);
         } else {
             logger.info("update restaurant with id {}", restaurant.getId());
             service.update(restaurant);
         }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
