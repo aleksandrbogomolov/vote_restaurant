@@ -1,10 +1,20 @@
 package com.aleksandrbogomolov.vote_restaurant.controllers.restaurant;
 
 import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Dish;
+import com.aleksandrbogomolov.vote_restaurant.model.to.DishTo;
 import com.aleksandrbogomolov.vote_restaurant.service.restaurant.DishService;
+import com.aleksandrbogomolov.vote_restaurant.util.Util;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 @RestController
 @Slf4j
@@ -15,19 +25,21 @@ public class DishRepositoryController {
     private DishService service;
 
     @RequestMapping(method = RequestMethod.POST)
-    public void createOrUpdate(@RequestParam(value = "restaurant") int restaurantId,
-                               @RequestParam(value = "id") Integer id,
-                               @RequestParam(value = "name") String name,
-                               @RequestParam(value = "price") int price,
-                               @RequestParam(value = "typeDish") int type) {
-        Dish dish = new Dish(id, name, price, type);
-        if (id == null) {
-            logger.info("create dish from restaurant with id {}", restaurantId);
-            service.save(dish, restaurantId);
-        } else {
-            logger.info("update dish with id {}", id);
-            service.update(dish, restaurantId);
+    public ResponseEntity<String> createOrUpdate(@Valid DishTo dishTo, BindingResult result) {
+        if (result.hasErrors()) {
+            StringBuilder sb = new StringBuilder();
+            result.getFieldErrors().forEach(fe -> sb.append(fe.getField()).append(" ").append(fe.getDefaultMessage()).append("<br>"));
+            return new ResponseEntity<>(sb.toString(), HttpStatus.UNPROCESSABLE_ENTITY);
         }
+        Dish dish = Util.createNewFromDishTo(dishTo);
+        if (dish.isNew()) {
+            logger.info("create dish {}", dish);
+            service.save(dish, dishTo.getRestaurant());
+        } else {
+            logger.info("update dish {}", dish);
+            service.update(dish, dishTo.getRestaurant());
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{restaurantId}/{id}", method = RequestMethod.DELETE)
