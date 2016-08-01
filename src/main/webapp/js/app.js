@@ -1,5 +1,6 @@
 var dishUrl = 'dish/';
 var voteUrl = 'vote/';
+var profileUrl = 'profile/';
 var restaurantUrl = 'restaurant/';
 
 function makeEditable() {
@@ -73,7 +74,7 @@ function getAllFromUserPage() {
                 '<h3 class="caption-label name">' + value.name + '</h3>' +
                 '<h4 class="caption-label">' + value.address + '</h4>' +
                 '<div class="list-inline">' +
-                dishes(value.dishes) +
+                dishesForUserPage(value.dishes) +
                 '</div>' +
                 '<h3>' +
                 '<a class="vote" id="' + value.id + '"><i class="glyphicon glyphicon-thumbs-up"></i></a>' +
@@ -84,17 +85,62 @@ function getAllFromUserPage() {
     }, 'json');
 }
 
-function dishes(strings) {
+function getAllFromAdminPage() {
+    var table = $('#datatable');
+    $.get(restaurantUrl, function (data) {
+        $.each(data, function (key, value) {
+            table.append('<div class="col-lg-6"><div class="thumbnail"><div class="caption">' +
+                '<form method="post" name="update-restaurant">' +
+                '<input type="hidden" value="' + value.id + '" name="id">' +
+                '<h3 class="caption-label">' +
+                '<input class="form-control input-lg" type="text" value="' + value.name + '" name="name"/></h3>' +
+                '<h4 class="caption-label">' +
+                '<input class="form-control" type="text" value="' + value.address + '" name="address"></h4>' +
+                '<button type="submit" class="btn btn-default">' + table_update + '</button>' +
+                '<a class="btn btn-default delete-restaurant" id="' + value.id + '">' + table_delete + '</a>' +
+                '<a class="btn btn-default add-dish">' + table_add_dish + '</a>' +
+                '</form><br>' +
+                '<div>' +
+                dishesForAdminPage(value.dishes) +
+                '</div><h3>' +
+                '<a id="thumb-up"><i class="glyphicon glyphicon-thumbs-up"></i></a>' +
+                '<span class="pull-right" id="count">' + value.votes.length + '</span>' +
+                '</h3></div></div></div>');
+        });
+        makeEditable();
+    }, 'json');
+}
+
+function dishesForUserPage(data) {
     var result = '';
-    $.each(strings, function (key, value) {
+    $.each(data, function (key, value) {
         result += '<span>' + value.name + '</span><span class="pull-right">' + value.price + '</span><br>';
+    });
+    return result;
+}
+
+function dishesForAdminPage(data) {
+    var result = '';
+    $.each(data, function (key, value) {
+        result += '<form id="update-dish" class="form-inline" method="post">' +
+            '<input type="hidden" value="' + value.id + '" name="id"/>' +
+            '<input type="hidden" value="' + value.restaurant + '" name="restaurant"/>' +
+            '<input type="text" class="form-control" value="' + value.name + '" name="name"/>' +
+            '<input type="text" class="form-control" value="' + value.price + '" name="price"/>' +
+            '<input type="text" class="form-control" value="' + value.typeDish + '" name="typeDish"/>' +
+            '<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-ok"></i></button>' +
+            '<a class="btn btn-default" id="delete-dish"><i class="glyphicon glyphicon-remove"></i></a></form>';
     });
     return result;
 }
 
 function updateDesk() {
     $('#datatable').empty();
-    getAllFromUserPage();
+    if (window.location.pathname == '/admin') {
+        getAllFromAdminPage();
+    } else {
+        getAllFromUserPage();
+    }
 }
 
 function addVote(id) {
@@ -169,7 +215,7 @@ function deleteDish(array) {
 
 function profileForm() {
     var form = $('#user-update');
-    $.get('profile/get', function (data) {
+    $.get(profileUrl + 'get', function (data) {
         $.each(data, function (key, value) {
             form.find("input[name='" + key + "']").val(value);
         });
@@ -181,7 +227,7 @@ function profileForm() {
 function deleteProfile() {
     var form = $('#details-user');
     $.ajax({
-        url: 'profile/delete',
+        url: profileUrl + 'delete',
         type: 'POST',
         data: form.serialize(),
         success: function () {
@@ -207,7 +253,7 @@ function successNoty(text) {
         text: text,
         type: 'success',
         layout: 'bottomRight',
-        timeout: 500
+        timeout: 1000
     });
 }
 
