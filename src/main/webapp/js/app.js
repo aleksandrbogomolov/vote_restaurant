@@ -30,9 +30,7 @@ function makeEditable() {
     });
 
     $('.add-dish').click(function () {
-        var parent = $(this).parent();
-        var array = parent.serializeArray();
-        document.getElementById('restaurant-id').value = array[0].value;
+        $('#restaurant-id').val($(this).attr('id'));
         $('#new-dish').modal();
     });
 
@@ -98,7 +96,7 @@ function getAllFromAdminPage() {
                 '<input class="form-control" type="text" value="' + value.address + '" name="address"></h4>' +
                 '<button type="submit" class="btn btn-default">' + table_update + '</button>' +
                 '<a class="btn btn-default delete-restaurant" id="' + value.id + '">' + table_delete + '</a>' +
-                '<a class="btn btn-default add-dish">' + table_add_dish + '</a>' +
+                '<a class="btn btn-default add-dish" id="' + value.id + '">' + table_add_dish + '</a>' +
                 '</form><br>' +
                 '<div>' +
                 dishesForAdminPage(value.dishes) +
@@ -190,12 +188,14 @@ function deleteRestaurant(id) {
 }
 
 function createDish(form) {
+    var newDish = $('#new-dish');
     $.ajax({
         url: dishUrl,
         type: 'POST',
         data: form.serialize(),
         success: function () {
-            $('#new-dish').modal('hide');
+            newDish.modal('hide');
+            newDish.find('input, textarea').val('');
             updateDesk();
             successNoty('Create new dish')
         }
