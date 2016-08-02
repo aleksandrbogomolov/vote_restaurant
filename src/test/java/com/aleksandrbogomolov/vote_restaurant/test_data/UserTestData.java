@@ -14,8 +14,8 @@ public class UserTestData {
     public static final int USER_ID = START_SEQ;
     public static final int ADMIN_ID = START_SEQ + 1;
 
-    public static final User USER = new User(USER_ID, "User", "user@yandex.ru", "password", Role.USER, null);
-    public static final User ADMIN = new User(ADMIN_ID, "Admin", "admin@yandex.ru", "admin", Role.ADMIN, null);
+    public static final User USER = new User(USER_ID, "User", "user@yandex.ru", "password", Role.ROLE_USER, null);
+    public static final User ADMIN = new User(ADMIN_ID, "Admin", "admin@yandex.ru", "admin", Role.ROLE_ADMIN, null);
 
     public static final ModelMatcher<User, TestUser> USER_MATCHER = new ModelMatcher<>(u -> ((u instanceof TestUser) ? (TestUser) u : new TestUser(u)));
 

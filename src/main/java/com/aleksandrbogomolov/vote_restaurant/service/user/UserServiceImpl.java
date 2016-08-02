@@ -5,12 +5,16 @@ import com.aleksandrbogomolov.vote_restaurant.repository.user.UserRepository;
 import com.aleksandrbogomolov.vote_restaurant.util.exception.ExceptionUtil;
 import com.aleksandrbogomolov.vote_restaurant.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
-@Service
-public class UserServiceImpl implements UserService<User> {
+@Service("userService")
+public class UserServiceImpl implements UserService<User>, UserDetailsService {
 
     @Autowired
     private UserRepository repository;
@@ -43,5 +47,14 @@ public class UserServiceImpl implements UserService<User> {
     @Override
     public List<User> getAll() {
         return repository.getAll();
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        User user = repository.getByEmail(s);
+        if (user == null) {
+            throw new UsernameNotFoundException("User " + s + " is not found");
+        }
+        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), true, true, true, true, Collections.singletonList(user.getRole()));
     }
 }

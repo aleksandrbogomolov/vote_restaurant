@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <title th:text="#{signin.header.title}"></title>
-    <link rel="shortcut icon" href="../../images/favicon.png">
-    <link rel="stylesheet" href="../../css/bootstrap.min.css" media="screen">
-    <link rel="stylesheet" href="../../css/signin.css">
+    <link rel="shortcut icon" href="../../resources/images/favicon.png">
+    <link rel="stylesheet" href="../../resources/css/bootstrap.min.css" media="screen">
+    <link rel="stylesheet" href="../../resources/css/signin.css">
 </head>
 
 <body>
@@ -13,7 +13,7 @@
 <div class="container">
 
     <!--Signin form-->
-    <form class="form-signin collapse in" method="post" th:action="@{/profile/email}">
+    <form class="form-signin collapse in" method="post" th:action="@{/login}">
         <div class="panel panel-default">
 
             <div class="panel-heading">
@@ -22,7 +22,7 @@
 
             <div class="panel-body">
 
-                <input type="text" class="form-control" th:placeholder="#{signin.form.email}" name="email" autofocus>
+                <input type="text" class="form-control" th:placeholder="#{signin.form.email}" name="username" autofocus>
 
                 <input type="password" class="form-control" th:placeholder="#{signin.form.password}" name="password">
 
@@ -80,8 +80,8 @@
     </form>
 
 </div>
-<script src="../../js/jquery-3.0.0.min.js"></script>
-<script src="../../js/bootstrap.min.js"></script>
-<script src="../../js/app.js"></script>
+<script src="../../resources/js/jquery-3.0.0.min.js"></script>
+<script src="../../resources/js/bootstrap.min.js"></script>
+<script src="../../resources/js/app.js"></script>
 </body>
 </html>

@@ -24,7 +24,7 @@ public class UserRepositoryController {
     @RequestMapping(value = "create")
     public String create(User user) {
         user.setId(null);
-        user.setRole(Role.USER);
+        user.setRole(Role.ROLE_USER);
         logger.info("create user {}", user);
         service.save(user);
         return "redirect:/restaurant";
@@ -66,9 +66,9 @@ public class UserRepositoryController {
         logger.info("get user with email {}", email);
         val user = service.getByEmail(email);
         if (user.getPassword().equals(pass)) {
-            if (user.getRole().equals(Role.USER)) {
+            if (user.getRole().equals(Role.ROLE_USER)) {
                 return "redirect:/restaurant";
-            } else if (user.getRole().equals(Role.ADMIN)) {
+            } else if (user.getRole().equals(Role.ROLE_ADMIN)) {
                 return "redirect:/admin";
             }
         } else {

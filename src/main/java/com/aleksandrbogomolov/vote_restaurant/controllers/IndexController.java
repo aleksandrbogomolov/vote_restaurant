@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 public class IndexController {
 
-    @RequestMapping(value = "/")
+    @RequestMapping(value = "login")
     public String getLoginPage() {
         logger.info("get login page");
         return "signin";
@@ -24,5 +24,10 @@ public class IndexController {
     public String getUserPage() {
         logger.info("get user page");
         return "user";
+    }
+
+    @RequestMapping(value = "access_denied")
+    public String getAccessDenied() {
+        return "access_denied";
     }
 }

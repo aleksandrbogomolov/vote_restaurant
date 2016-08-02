@@ -3,11 +3,12 @@ package com.aleksandrbogomolov.vote_restaurant.configuration;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.support.AbstractDispatcherServletInitializer;
 
 import javax.servlet.Filter;
 
-public class SpringServletInitializer extends AbstractDispatcherServletInitializer {
+public class SpringWebInitializer extends AbstractDispatcherServletInitializer {
 
     @Override
     protected WebApplicationContext createServletApplicationContext() {
@@ -31,7 +32,8 @@ public class SpringServletInitializer extends AbstractDispatcherServletInitializ
         CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
         encodingFilter.setEncoding("UTF-8");
         encodingFilter.setForceEncoding(true);
-        return new Filter[]{encodingFilter};
+        DelegatingFilterProxy proxy = new DelegatingFilterProxy("springSecurityFilterChain");
+        return new Filter[]{proxy, encodingFilter};
     }
 
 
