@@ -54,7 +54,7 @@ function makeEditable() {
         addVote($(this).attr('id'));
     });
 
-    $('.voteClear').click(function () {
+    $('#voteClear').off().click(function () {
         clearVote();
     });
 
@@ -134,7 +134,7 @@ function dishesForAdminPage(data) {
 
 function updateDesk() {
     $('#datatable').empty();
-    if (window.location.pathname == '/admin') {
+    if (window.location.pathname === '/admin') {
         getAllFromAdminPage();
     } else {
         getAllFromUserPage();
