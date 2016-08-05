@@ -18,8 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "profile")
 public class UserRepositoryController {
 
+    private final UserService<User> service;
+
     @Autowired
-    private UserService<User> service;
+    public UserRepositoryController(UserService<User> service) {
+        this.service = service;
+    }
 
     @RequestMapping(value = "create")
     public String create(User user) {
@@ -77,7 +81,7 @@ public class UserRepositoryController {
         return "404";
     }
 
-    private Boolean isPasswordEquals(User user) {
+    private boolean isPasswordEquals(User user) {
         return user.getPassword().equals(service.getOne(user.getId()).getPassword());
     }
 }

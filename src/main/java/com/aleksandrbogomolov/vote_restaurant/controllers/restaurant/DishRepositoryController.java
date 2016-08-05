@@ -21,8 +21,12 @@ import javax.validation.Valid;
 @RequestMapping(value = "dish")
 public class DishRepositoryController {
 
+    private final DishService service;
+
     @Autowired
-    private DishService service;
+    public DishRepositoryController(DishService service) {
+        this.service = service;
+    }
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<String> createOrUpdate(@Valid DishTo dishTo, BindingResult result) {

@@ -15,8 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "vote")
 public class VoteRepositoryController {
 
+    private final VoteService service;
+
     @Autowired
-    private VoteService service;
+    public VoteRepositoryController(VoteService service) {
+        this.service = service;
+    }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public void newVote(@PathVariable("id") int id) {

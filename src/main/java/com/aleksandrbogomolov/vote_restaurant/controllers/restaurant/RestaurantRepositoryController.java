@@ -22,8 +22,12 @@ import java.util.stream.Collectors;
 @RequestMapping(value = "restaurant")
 public class RestaurantRepositoryController {
 
+    private final BaseService<Restaurant> service;
+
     @Autowired
-    private BaseService<Restaurant> service;
+    public RestaurantRepositoryController(BaseService<Restaurant> service) {
+        this.service = service;
+    }
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Restaurant> getAllRestaurants() {
