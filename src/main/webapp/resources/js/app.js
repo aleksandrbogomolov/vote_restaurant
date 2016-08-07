@@ -215,7 +215,7 @@ function deleteDish(array) {
 
 function profileForm() {
     var form = $('#user-update');
-    $.get(profileUrl + 'get', function (data) {
+    $.get(profileUrl, function (data) {
         $.each(data, function (key, value) {
             form.find("input[name='" + key + "']").val(value);
         });

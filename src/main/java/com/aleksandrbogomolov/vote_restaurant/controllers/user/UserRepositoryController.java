@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,6 +27,15 @@ public class UserRepositoryController {
         this.service = service;
     }
 
+    private String getPrincipal() {
+        String email = null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            email = ((UserDetails) principal).getUsername();
+        }
+        return email;
+    }
+
     @RequestMapping(value = "create")
     public String create(User user) {
         user.setId(null);
@@ -34,10 +45,10 @@ public class UserRepositoryController {
         return "redirect:/restaurant";
     }
 
-    @RequestMapping(value = "get", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public User getOne() {
         logger.info("get user");
-        return service.getOne(100000);
+        return service.getByEmail(getPrincipal());
     }
 
     @RequestMapping(value = "save", method = RequestMethod.POST)
