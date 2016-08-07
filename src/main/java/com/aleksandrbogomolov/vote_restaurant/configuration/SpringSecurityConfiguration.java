@@ -27,11 +27,11 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/restaurant/**").authenticated()
+                .antMatchers("/**").authenticated()
                 .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
                 .and().formLogin()
                 .loginPage("/login").defaultSuccessUrl("/restaurant").failureUrl("/login?error=true").permitAll()
-                .and().logout().logoutUrl("/login?logout").permitAll()
+                .and().logout().logoutSuccessUrl("/login")
                 .and().exceptionHandling().accessDeniedPage("/access_denied")
                 .and().httpBasic();
     }
