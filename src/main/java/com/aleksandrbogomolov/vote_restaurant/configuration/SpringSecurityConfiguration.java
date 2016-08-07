@@ -14,9 +14,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 @EnableWebSecurity
 public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    private final UserDetailsService userService;
+
     @Autowired
-    @Qualifier("userService")
-    UserDetailsService userService;
+    public SpringSecurityConfiguration(@Qualifier("userService") UserDetailsService userService) {
+        this.userService = userService;
+    }
 
     @Autowired
     protected void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
@@ -28,7 +31,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/**").authenticated()
-                .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .and().formLogin()
                 .loginPage("/login").defaultSuccessUrl("/restaurant").failureUrl("/login?error=true").permitAll()
                 .and().logout().logoutSuccessUrl("/login")
