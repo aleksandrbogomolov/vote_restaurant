@@ -44,23 +44,6 @@ public class UserRepositoryController {
         }
     }
 
-//    @RequestMapping(value = "email")
-//    public String getByEmail(@RequestParam(name = "email") String email,
-//                             @RequestParam(name = "password") String pass) {
-//        logger.info("get user with email {}", email);
-//        val user = service.getByEmail(email);
-//        if (user.getPassword().equals(pass)) {
-//            if (user.getRole().equals(Role.ROLE_USER)) {
-//                return "redirect:/restaurant";
-//            } else if (user.getRole().equals(Role.ROLE_ADMIN)) {
-//                return "redirect:/admin";
-//            }
-//        } else {
-//            return "access_denied";
-//        }
-//        return "404";
-//    }
-
     private boolean isPasswordEquals(User user) {
         return user.getPassword().equals(service.getOne(user.getId()).getPassword());
     }
