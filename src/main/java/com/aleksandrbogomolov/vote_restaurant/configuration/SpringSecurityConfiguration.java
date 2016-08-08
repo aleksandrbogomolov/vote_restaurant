@@ -14,29 +14,29 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 @EnableWebSecurity
 public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private final UserDetailsService userService;
+    private final UserDetailsService userDetailsService;
 
     private final CustomSuccessHandler customSuccessHandler;
 
     @Autowired
-    public SpringSecurityConfiguration(@Qualifier("userService") UserDetailsService userService, CustomSuccessHandler customSuccessHandler) {
-        this.userService = userService;
+    public SpringSecurityConfiguration(@Qualifier("userService") UserDetailsService userDetailsService, CustomSuccessHandler customSuccessHandler) {
+        this.userDetailsService = userDetailsService;
         this.customSuccessHandler = customSuccessHandler;
     }
 
     @Autowired
     protected void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userService);
+        auth.userDetailsService(userDetailsService);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/register", "/login").permitAll()
                 .antMatchers("/**").authenticated()
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .and().formLogin()
-                .loginPage("/login").successHandler(customSuccessHandler).failureUrl("/login?error=true").permitAll()
+                .and().formLogin().loginPage("/login").successHandler(customSuccessHandler).failureUrl("/login?error=true")
                 .and().logout().logoutSuccessUrl("/login")
                 .and().exceptionHandling().accessDeniedPage("/access_denied")
                 .and().httpBasic();

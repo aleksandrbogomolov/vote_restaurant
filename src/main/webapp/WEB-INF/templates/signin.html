@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress ThymeleafVariablesResolveInspection -->
 <html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
@@ -9,6 +10,12 @@
 </head>
 
 <body>
+<div class="col-md-6 col-md-offset-3 message" th:if="${error}">
+    <p class="text-center alert alert-danger" th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"></p>
+</div>
+<div class="col-md-6 col-md-offset-3 message" th:if="${message}">
+    <p class="text-center alert alert-success" th:text="#{signin.form.register.success}"></p>
+</div>
 
 <div class="container">
 
@@ -44,7 +51,7 @@
     </form>
 
     <!--Registration form-->
-    <form class="form-signin collapse" method="post" th:action="@{/profile/create}">
+    <form class="form-signin collapse" method="post" th:action="@{/register}">
         <div class="panel panel-default">
 
             <div class="panel-heading">
@@ -58,8 +65,6 @@
                 <input type="text" class="form-control" th:placeholder="#{signin.form.email}" name="email">
 
                 <input type="password" class="form-control" th:placeholder="#{signin.form.password}" name="password">
-
-                <input type="password" class="form-control" th:placeholder="#{signin.form.confirm.password}">
 
                 <label class="checkbox">
                     <input type="checkbox" value="remember-me" th:text="#{signin.form.remember.me}">

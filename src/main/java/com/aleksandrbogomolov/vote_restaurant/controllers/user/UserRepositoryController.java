@@ -36,15 +36,6 @@ public class UserRepositoryController {
         return email;
     }
 
-    @RequestMapping(value = "create")
-    public String create(User user) {
-        user.setId(null);
-        user.setRole(Role.ROLE_USER);
-        logger.info("create user {}", user);
-        service.save(user);
-        return "redirect:/restaurant";
-    }
-
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public User getOne() {
         logger.info("get user");

@@ -50,3 +50,9 @@ body {
 .form-signin input[type="password"] {
     border-radius: 0;
 }
+
+.message {
+    top: 0;
+    position: fixed;
+    height: 40px;
+}
