@@ -3,12 +3,11 @@ package com.aleksandrbogomolov.vote_restaurant.controllers.user;
 import com.aleksandrbogomolov.vote_restaurant.model.user.Role;
 import com.aleksandrbogomolov.vote_restaurant.model.user.User;
 import com.aleksandrbogomolov.vote_restaurant.service.user.UserService;
+import com.aleksandrbogomolov.vote_restaurant.util.Util;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,19 +26,10 @@ public class UserRepositoryController {
         this.service = service;
     }
 
-    private String getPrincipal() {
-        String email = null;
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            email = ((UserDetails) principal).getUsername();
-        }
-        return email;
-    }
-
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public User getOne() {
         logger.info("get user");
-        return service.getByEmail(getPrincipal());
+        return service.getByEmail(Util.getPrincipal());
     }
 
     @RequestMapping(value = "save", method = RequestMethod.POST)
