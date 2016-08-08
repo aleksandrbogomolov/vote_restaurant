@@ -233,7 +233,7 @@ function deleteProfile() {
         success: function () {
             $('#user-update').modal('hide');
             successNoty('delete profile');
-            window.location.href = '/';
+            window.location.href = '/login?message=signin.form.delete.profile.success';
         }
     });
 }

@@ -14,7 +14,7 @@
     <p class="text-center alert alert-danger" th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"></p>
 </div>
 <div class="col-md-6 col-md-offset-3 message" th:if="${message}">
-    <p class="text-center alert alert-success" th:text="#{signin.form.register.success}"></p>
+    <p class="text-center alert alert-success" th:text="#{${message}}"></p>
 </div>
 
 <div class="container">
