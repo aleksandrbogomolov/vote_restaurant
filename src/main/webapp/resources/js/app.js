@@ -5,11 +5,10 @@ var restaurantUrl = 'restaurant/';
 
 function makeEditable() {
 
-    $('.scroll-top').click(function () {
-        $('body,html').animate({scrollTop: 0}, 1000);
+    $('#details-user').submit(function () {
+        updateProfile($(this));
+        return false;
     });
-
-    $('.collapse').collapse('toggle');
 
     $('#addRestaurant').click(function () {
         $('#new-restaurant').modal();
@@ -57,6 +56,12 @@ function makeEditable() {
     $('#voteClear').off().click(function () {
         clearVote();
     });
+
+    $('.scroll-top').click(function () {
+        $('body,html').animate({scrollTop: 0}, 1000);
+    });
+
+    $('.collapse').collapse('toggle');
 
     //noinspection JSUnresolvedFunction
     $(document).ajaxError(function (event, jqXHR, options, jsExc) {
@@ -221,6 +226,18 @@ function profileForm() {
         });
         form.find("input[name='password']").val('');
         form.modal();
+    });
+}
+
+function updateProfile(form) {
+    $.ajax({
+        url: profileUrl + 'update',
+        type: 'POST',
+        data: form.serialize(),
+        success: function () {
+            $('#user-update').modal('hide');
+            successNoty('update profile');
+        }
     });
 }
 
