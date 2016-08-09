@@ -236,7 +236,7 @@ function updateProfile(form) {
         data: form.serialize(),
         success: function () {
             $('#user-update').modal('hide');
-            successNoty('update profile');
+            successNoty('Update profile');
         }
     });
 }
@@ -249,7 +249,7 @@ function deleteProfile() {
         data: form.serialize(),
         success: function () {
             $('#user-update').modal('hide');
-            successNoty('delete profile');
+            successNoty('Delete profile');
             window.location.href = '/login?message=signin.form.delete.profile.success';
         }
     });
