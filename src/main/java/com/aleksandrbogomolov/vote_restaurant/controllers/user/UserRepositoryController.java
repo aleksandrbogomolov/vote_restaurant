@@ -1,5 +1,6 @@
 package com.aleksandrbogomolov.vote_restaurant.controllers.user;
 
+import com.aleksandrbogomolov.vote_restaurant.controllers.ExceptionInfoHandler;
 import com.aleksandrbogomolov.vote_restaurant.model.user.User;
 import com.aleksandrbogomolov.vote_restaurant.service.user.UserService;
 import com.aleksandrbogomolov.vote_restaurant.util.Util;
@@ -10,10 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @Slf4j
 @RequestMapping(value = "profile")
-public class UserRepositoryController {
+public class UserRepositoryController implements ExceptionInfoHandler {
 
     private final UserService<User> service;
 
@@ -29,7 +32,7 @@ public class UserRepositoryController {
     }
 
     @RequestMapping(value = "update", method = RequestMethod.POST)
-    public void update(User user) {
+    public void update(@Valid User user) {
         if (isPasswordEquals(user)) {
             logger.info("update user {}", user);
             service.update(user);

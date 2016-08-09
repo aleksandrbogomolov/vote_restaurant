@@ -1,5 +1,6 @@
 package com.aleksandrbogomolov.vote_restaurant.controllers.restaurant;
 
+import com.aleksandrbogomolov.vote_restaurant.controllers.ExceptionInfoHandler;
 import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Restaurant;
 import com.aleksandrbogomolov.vote_restaurant.service.BaseService;
 import lombok.extern.slf4j.Slf4j;
@@ -7,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @RestController
 @Slf4j
 @RequestMapping(value = "restaurant")
-public class RestaurantRepositoryController {
+public class RestaurantRepositoryController implements ExceptionInfoHandler {
 
     private final BaseService<Restaurant> service;
 
@@ -38,12 +38,7 @@ public class RestaurantRepositoryController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<String> create(@Valid Restaurant restaurant, BindingResult result) {
-        if (result.hasErrors()) {
-            StringBuilder sb = new StringBuilder();
-            result.getFieldErrors().forEach(fe -> sb.append(fe.getField()).append(" ").append(fe.getDefaultMessage()).append("<br>"));
-            return new ResponseEntity<>(sb.toString(), HttpStatus.UNPROCESSABLE_ENTITY);
-        }
+    public ResponseEntity<String> create(@Valid Restaurant restaurant) {
         if (restaurant.isNew()) {
             logger.info("create restaurant {}", restaurant);
             service.save(restaurant);
