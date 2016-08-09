@@ -16,11 +16,15 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class VoteRepositoryIml implements VoteRepository {
 
-    @Autowired
-    private ProxyVoteRepository proxy;
+    private final ProxyVoteRepository proxy;
 
     @PersistenceContext
     private EntityManager entityManager;
+
+    @Autowired
+    public VoteRepositoryIml(ProxyVoteRepository proxy) {
+        this.proxy = proxy;
+    }
 
     @Override
     @Transactional

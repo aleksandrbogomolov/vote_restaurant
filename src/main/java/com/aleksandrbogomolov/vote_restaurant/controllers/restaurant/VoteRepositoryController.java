@@ -2,9 +2,12 @@ package com.aleksandrbogomolov.vote_restaurant.controllers.restaurant;
 
 import com.aleksandrbogomolov.vote_restaurant.model.user.Vote;
 import com.aleksandrbogomolov.vote_restaurant.service.restaurant.VoteService;
+import com.aleksandrbogomolov.vote_restaurant.util.Util;
 import com.aleksandrbogomolov.vote_restaurant.util.exception.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,24 +26,26 @@ public class VoteRepositoryController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public void newVote(@PathVariable("id") int id) {
+    public void addVote(@PathVariable("id") int id) {
         Vote vote = null;
+        val userId = Util.getUserId();
         try {
-            vote = service.getOne(100001);
+            vote = service.getOne(userId);
         } catch (NotFoundException e) {
             e.printStackTrace();
         }
         if (vote != null) {
-            service.delete(100001);
+            service.delete(userId);
             if (vote.getRestaurant().getId() != id) {
-                service.save(new Vote(), 100001, id);
+                service.save(new Vote(), userId, id);
             }
         } else {
-            service.save(new Vote(), 100001, id);
+            service.save(new Vote(), userId, id);
         }
-        logger.info("add new vote user.id={}, restaurant.id={}", 100001, id);
+        logger.info("add vote user.id={}, restaurant.id={}", userId, id);
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(method = RequestMethod.DELETE)
     public void clear() {
         service.deleteAll();
