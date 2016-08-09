@@ -157,7 +157,7 @@ function addVote(id) {
         type: 'POST',
         success: function () {
             updateDesk();
-            successNoty('Add vote');
+            successNoty('Add vote', 1000);
         }
     });
 }
@@ -168,7 +168,7 @@ function clearVote() {
         type: 'DELETE',
         success: function () {
             updateDesk();
-            successNoty('Clear votes')
+            successNoty('Clear votes', 1000)
         }
     });
 }
@@ -181,7 +181,7 @@ function saveRestaurant(form) {
         success: function () {
             $('#new-restaurant').modal('hide');
             updateDesk();
-            successNoty('Create or update restaurant');
+            successNoty('Create or update restaurant', 1000);
         }
     });
 }
@@ -192,7 +192,7 @@ function deleteRestaurant(id) {
         type: 'DELETE',
         success: function () {
             updateDesk();
-            successNoty('Delete restaurant with id: ' + id);
+            successNoty('Delete restaurant with id: ' + id, 1000);
         }
     });
 }
@@ -207,7 +207,7 @@ function createDish(form) {
             newDish.modal('hide');
             newDish.find('input, textarea').val('');
             updateDesk();
-            successNoty('Create new dish')
+            successNoty('Create new dish', 1000)
         }
     });
 }
@@ -218,7 +218,7 @@ function deleteDish(array) {
         type: 'DELETE',
         success: function () {
             updateDesk();
-            successNoty('Delete dish with id ' + array[0].value);
+            successNoty('Delete dish with id ' + array[0].value, 1000);
         }
     });
 }
@@ -240,7 +240,8 @@ function registerProfile(form) {
         type: 'POST',
         data: form.serialize(),
         success: function () {
-            window.location.href = 'login?message=signin.form.register.success';
+            $('.collapse').collapse('toggle');
+            successNoty('Successful registration. <br> Please enter your login/password to login', 0);
         }
     });
 }
@@ -252,7 +253,7 @@ function updateProfile(form) {
         data: form.serialize(),
         success: function () {
             $('#user-update').modal('hide');
-            successNoty('Update profile');
+            successNoty('Update profile', 1000);
         }
     });
 }
@@ -265,7 +266,7 @@ function deleteProfile() {
         data: form.serialize(),
         success: function () {
             $('#user-update').modal('hide');
-            successNoty('Delete profile');
+            successNoty('Delete profile', 1000);
             window.location.href = '/login?message=signin.form.delete.profile.success';
         }
     });
@@ -280,13 +281,13 @@ function closeNoty() {
     }
 }
 
-function successNoty(text) {
+function successNoty(text, timeout) {
     closeNoty();
     noty({
         text: text,
         type: 'success',
         layout: 'bottomRight',
-        timeout: 1000
+        timeout: timeout
     });
 }
 
