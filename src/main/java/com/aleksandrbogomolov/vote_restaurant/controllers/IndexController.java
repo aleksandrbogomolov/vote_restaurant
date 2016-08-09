@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 
+import javax.validation.Valid;
+
 @Controller
 @Slf4j
-public class IndexController {
+public class IndexController implements ExceptionInfoHandler {
 
     private final UserService<User> service;
 
@@ -34,7 +36,7 @@ public class IndexController {
     }
 
     @RequestMapping(value = "register", method = RequestMethod.POST)
-    public String register(User user, SessionStatus status) {
+    public String register(@Valid User user, SessionStatus status) {
         user.setId(null);
         user.setRole(Role.ROLE_USER);
         service.save(user);
