@@ -10,10 +10,10 @@
 </head>
 
 <body>
-<div class="col-md-6 col-md-offset-3 message" th:if="${error}">
+<div class="col-md-4 col-md-offset-4 message" th:if="${error}">
     <p class="text-center alert alert-danger" th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"></p>
 </div>
-<div class="col-md-6 col-md-offset-3 message" th:if="${message}">
+<div class="col-md-4 col-md-offset-4 message" th:if="${message}">
     <p class="text-center alert alert-success" th:text="#{${message}}"></p>
 </div>
 
@@ -33,25 +33,19 @@
 
                 <input type="password" class="form-control" th:placeholder="#{signin.form.password}" name="password">
 
-                <label class="checkbox">
-                    <input type="checkbox" value="remember-me" th:text="#{signin.form.remember.me}">
-                </label>
-
-                <label class="checkbox">
-                    <a data-toggle="collapse" data-target=".collapse" th:text="#{signin.form.register.me}"></a>
-                </label>
-
             </div>
 
             <div class="panel-footer">
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{signin.form.signin}"></button>
+                <a class="btn btn-lg btn-warning btn-block" data-toggle="collapse" data-target=".collapse"
+                   th:text="#{signin.form.register.me}"></a>
             </div>
 
         </div>
     </form>
 
     <!--Registration form-->
-    <form class="form-signin collapse" method="post" th:action="@{/register}">
+    <form class="form-signin collapse" method="post" id="register">
         <div class="panel panel-default">
 
             <div class="panel-heading">
@@ -68,19 +62,13 @@
 
                 <input type="password" class="form-control" th:placeholder="#{signin.form.password}" name="password">
 
-                <label class="checkbox">
-                    <input type="checkbox" value="remember-me" th:text="#{signin.form.remember.me}">
-                </label>
-
-                <label class="checkbox">
-                    <a data-toggle="collapse" data-target=".collapse" th:text="#{signin.form.register.me}"></a>
-                </label>
-
             </div>
             <div class="panel-footer">
 
                 <button class="btn btn-lg btn-primary btn-block" type="submit"
                         th:text="#{signin.form.button.register}"></button>
+                <a class="btn btn-lg btn-warning btn-block" data-toggle="collapse" data-target=".collapse"
+                   th:text="#{signin.form.signin}"></a>
 
             </div>
         </div>
@@ -91,5 +79,10 @@
 <script src="../../resources/js/bootstrap.min.js"></script>
 <script src="../../resources/js/jquery.noty.packaged.min.js"></script>
 <script src="../../resources/js/app.js"></script>
+<script>
+    $(function () {
+        makeEditable();
+    })
+</script>
 </body>
 </html>

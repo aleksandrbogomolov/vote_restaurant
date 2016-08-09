@@ -10,6 +10,10 @@ function makeEditable() {
         return false;
     });
 
+    $('#register').submit(function () {
+        registerProfile($('#register'));
+    });
+
     $('#addRestaurant').click(function () {
         $('#new-restaurant').modal();
     });
@@ -61,7 +65,7 @@ function makeEditable() {
         $('body,html').animate({scrollTop: 0}, 1000);
     });
 
-    $('.collapse').collapse('toggle');
+    // $('.collapse').collapse('toggle');
 
     //noinspection JSUnresolvedFunction
     $(document).ajaxError(function (event, jqXHR, options, jsExc) {
@@ -227,6 +231,17 @@ function profileForm() {
         form.find("input[name='password']").val('');
         form.modal();
     });
+}
+
+function registerProfile(form) {
+    $.ajax({
+        url: profileUrl + 'register',
+        type: 'POST',
+        data: form.serialize(),
+        success: function () {
+            window.location.href = 'login?message=signin.form.register.success';
+        }
+    })
 }
 
 function updateProfile(form) {

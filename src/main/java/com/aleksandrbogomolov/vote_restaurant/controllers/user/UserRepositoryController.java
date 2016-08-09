@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
 
@@ -29,6 +30,13 @@ public class UserRepositoryController implements ExceptionInfoHandler {
     public User getOne() {
         logger.info("get user");
         return service.getByEmail(Util.getPrincipal());
+    }
+
+    @RequestMapping(value = "register", method = RequestMethod.POST)
+    public void register(@Valid User user, SessionStatus status) {
+        service.save(user);
+        status.setComplete();
+        logger.info("create user {}", user);
     }
 
     @RequestMapping(value = "update", method = RequestMethod.POST)

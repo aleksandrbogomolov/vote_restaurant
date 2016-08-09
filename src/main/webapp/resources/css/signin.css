@@ -52,7 +52,7 @@ body {
 }
 
 .message {
-    top: 0;
+    top: 90%;
     position: fixed;
     height: 40px;
 }

@@ -33,8 +33,11 @@ public interface ExceptionInfoHandler {
     @ExceptionHandler(DataIntegrityViolationException.class)
     @ResponseBody
     @Order(Ordered.HIGHEST_PRECEDENCE + 1)
-    default ErrorInfo conflict(HttpServletRequest req, DataIntegrityViolationException e) {
-        return logAndGetErrorInfo(req, e, true);
+    default ErrorInfo conflict(HttpServletRequest req, BindingResult result) {
+        LOGGER.error("BindException at request " + req.getRequestURL());
+        StringBuilder sb = new StringBuilder();
+        result.getFieldErrors().forEach(fe -> sb.append(fe.getField()).append(" ").append(fe.getDefaultMessage()).append("<br>"));
+        return logAndGetErrorInfo(req, new DataIntegrityViolationException(sb.toString()), true);
     }
 
     @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
