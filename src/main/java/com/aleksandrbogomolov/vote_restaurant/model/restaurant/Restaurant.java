@@ -9,7 +9,6 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -29,7 +28,7 @@ public class Restaurant extends NamedEntity {
     @SuppressWarnings("JpaQlInspection")
     @OrderBy(value = "typeDish ASC")
     @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
-    private List<Dish> dishes; //TODO mb change to Set
+    private Set<Dish> dishes;
 
     public Restaurant() {
     }
