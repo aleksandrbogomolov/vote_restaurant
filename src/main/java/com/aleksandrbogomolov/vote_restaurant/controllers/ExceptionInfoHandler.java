@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.ValidationException;
 
+@SuppressWarnings("OverloadedMethodsWithSameNumberOfParameters")
 public interface ExceptionInfoHandler {
 
     Logger LOGGER = LoggerFactory.getLogger(ExceptionInfoHandler.class);
@@ -33,11 +34,9 @@ public interface ExceptionInfoHandler {
     @ExceptionHandler(DataIntegrityViolationException.class)
     @ResponseBody
     @Order(Ordered.HIGHEST_PRECEDENCE + 1)
-    default ErrorInfo conflict(HttpServletRequest req, BindingResult result) {
+    default ErrorInfo conflict(HttpServletRequest req, DataIntegrityViolationException exc) {
         LOGGER.error("BindException at request " + req.getRequestURL());
-        StringBuilder sb = new StringBuilder();
-        result.getFieldErrors().forEach(fe -> sb.append(fe.getField()).append(" ").append(fe.getDefaultMessage()).append("<br>"));
-        return logAndGetErrorInfo(req, new DataIntegrityViolationException(sb.toString()), true);
+        return logAndGetErrorInfo(req, new DataIntegrityViolationException("User with this email already present in application"), true);
     }
 
     @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)

@@ -12,6 +12,7 @@ function makeEditable() {
 
     $('#register').submit(function () {
         registerProfile($('#register'));
+        return false;
     });
 
     $('#addRestaurant').click(function () {
@@ -241,7 +242,7 @@ function registerProfile(form) {
         success: function () {
             window.location.href = 'login?message=signin.form.register.success';
         }
-    })
+    });
 }
 
 function updateProfile(form) {
