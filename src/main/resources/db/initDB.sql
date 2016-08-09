@@ -13,8 +13,7 @@ CREATE TABLE users (
   password   VARCHAR(16) NOT NULL,
   registered TIMESTAMP                        DEFAULT now(),
   enabled    BOOL                             DEFAULT TRUE,
-  role       VARCHAR(16) NOT NULL,
-  vote       INTEGER
+  role       VARCHAR(16) NOT NULL
 );
 CREATE UNIQUE INDEX users_unique_email_idx ON users (email);
 

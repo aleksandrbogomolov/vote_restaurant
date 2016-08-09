@@ -36,10 +36,6 @@ public class User extends NamedEntity {
     @Column(name = "role")
     protected Role role;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "vote")
-    protected Vote vote;
-
     @Column(name = "registered", columnDefinition = "timestamp default now()")
     private Date registered = new Date();
 
@@ -47,20 +43,19 @@ public class User extends NamedEntity {
     }
 
     public User(User u) {
-        this(u.getId(), u.getName(), u.getEmail(), u.getPassword(), u.isEnabled(), u.getRole(), u.getVote());
+        this(u.getId(), u.getName(), u.getEmail(), u.getPassword(), u.isEnabled(), u.getRole());
     }
 
-    public User(Integer id, String name, String email, String password, Role role, Vote vote) {
-        this(id, name, email, password, true, role, vote);
+    public User(Integer id, String name, String email, String password, Role role) {
+        this(id, name, email, password, true, role);
     }
 
-    public User(Integer id, String name, String email, String password, boolean enabled, Role role, Vote vote) {
+    public User(Integer id, String name, String email, String password, boolean enabled, Role role) {
         super(id, name);
         this.email = email;
         this.password = password;
         this.enabled = enabled;
         this.role = role;
-        this.vote = vote;
     }
 
     @Override

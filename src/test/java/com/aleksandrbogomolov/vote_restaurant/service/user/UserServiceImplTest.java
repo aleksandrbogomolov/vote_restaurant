@@ -22,7 +22,7 @@ public class UserServiceImplTest extends AbstractServiceTest {
 
     @Test
     public void save() throws Exception {
-        TestUser testUser = new TestUser(null, "New", "new@yandex.ru", "testPass", false, Role.ROLE_USER, null);
+        TestUser testUser = new TestUser(null, "New", "new@yandex.ru", "testPass", false, Role.ROLE_USER);
         val created = userService.save(testUser.asUser());
         testUser.setId(created.getId());
         USER_MATCHER.assertCollectionEquals(Arrays.asList(ADMIN, testUser, USER), userService.getAll());
@@ -30,7 +30,7 @@ public class UserServiceImplTest extends AbstractServiceTest {
 
     @Test(expected = DataAccessException.class)
     public void duplicateMailSave() throws Exception {
-        userService.save(new User(null, "New", "user@yandex.ru", "testPass", false, Role.ROLE_USER, null));
+        userService.save(new User(null, "New", "user@yandex.ru", "testPass", false, Role.ROLE_USER));
     }
 
     @Test

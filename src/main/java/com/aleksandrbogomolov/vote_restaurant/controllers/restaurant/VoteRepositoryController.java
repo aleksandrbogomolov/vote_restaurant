@@ -25,6 +25,7 @@ public class VoteRepositoryController {
         this.service = service;
     }
 
+    @SuppressWarnings("NonBooleanMethodNameMayNotStartWithQuestion")
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
     public void addVote(@PathVariable("id") int id) {
         Vote vote = null;
