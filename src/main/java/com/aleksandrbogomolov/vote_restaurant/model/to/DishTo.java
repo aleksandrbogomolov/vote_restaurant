@@ -16,10 +16,10 @@ public class DishTo {
     private String name;
 
     @NotNull
-    private int price;
+    private Integer price;
 
     @NotNull
-    private int typeDish;
+    private Integer typeDish;
 
     @NotNull
     private int restaurant;

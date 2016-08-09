@@ -1,5 +1,6 @@
 package com.aleksandrbogomolov.vote_restaurant.controllers.restaurant;
 
+import com.aleksandrbogomolov.vote_restaurant.controllers.ExceptionInfoHandler;
 import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Dish;
 import com.aleksandrbogomolov.vote_restaurant.model.to.DishTo;
 import com.aleksandrbogomolov.vote_restaurant.service.restaurant.DishService;
@@ -8,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,7 +19,7 @@ import javax.validation.Valid;
 @RestController
 @Slf4j
 @RequestMapping(value = "dish")
-public class DishRepositoryController {
+public class DishRepositoryController implements ExceptionInfoHandler {
 
     private final DishService service;
 
@@ -29,12 +29,7 @@ public class DishRepositoryController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<String> createOrUpdate(@Valid DishTo dishTo, BindingResult result) {
-        if (result.hasErrors()) {
-            StringBuilder sb = new StringBuilder();
-            result.getFieldErrors().forEach(fe -> sb.append(fe.getField()).append(" ").append(fe.getDefaultMessage()).append("<br>"));
-            return new ResponseEntity<>(sb.toString(), HttpStatus.UNPROCESSABLE_ENTITY);
-        }
+    public ResponseEntity<String> createOrUpdate(@Valid DishTo dishTo) {
         Dish dish = Util.createNewFromDishTo(dishTo);
         if (dish.isNew()) {
             logger.info("create dish {}", dish);
