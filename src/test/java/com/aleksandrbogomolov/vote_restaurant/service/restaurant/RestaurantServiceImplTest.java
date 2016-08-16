@@ -1,6 +1,8 @@
 package com.aleksandrbogomolov.vote_restaurant.service.restaurant;
 
+import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Restaurant;
 import com.aleksandrbogomolov.vote_restaurant.service.AbstractServiceTest;
+import com.aleksandrbogomolov.vote_restaurant.service.BaseService;
 import com.aleksandrbogomolov.vote_restaurant.util.exception.NotFoundException;
 import lombok.val;
 import org.junit.Test;
@@ -15,7 +17,7 @@ public class RestaurantServiceImplTest extends AbstractServiceTest {
 
     @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
-    private RestaurantService service;
+    private BaseService<Restaurant> service;
 
     @Test
     public void save() throws Exception {

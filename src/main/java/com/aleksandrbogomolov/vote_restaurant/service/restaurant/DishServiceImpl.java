@@ -12,8 +12,12 @@ import java.util.List;
 @Service
 public class DishServiceImpl implements DishService {
 
+    private final DishRepository repository;
+
     @Autowired
-    private DishRepository repository;
+    public DishServiceImpl(DishRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public Dish save(Dish entity, int restaurantId) {

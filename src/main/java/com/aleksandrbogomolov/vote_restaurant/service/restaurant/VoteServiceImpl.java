@@ -12,8 +12,12 @@ import java.util.List;
 @Service
 public class VoteServiceImpl implements VoteService {
 
+    private final VoteRepository repository;
+
     @Autowired
-    private VoteRepository repository;
+    public VoteServiceImpl(VoteRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public Vote save(Vote vote, int userId, int restaurantId) {
