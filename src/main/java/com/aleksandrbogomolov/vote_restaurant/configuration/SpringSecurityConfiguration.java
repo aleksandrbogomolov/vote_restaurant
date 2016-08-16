@@ -9,12 +9,11 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Configuration
 @EnableWebSecurity
-//@EnableGlobalMethodSecurity(securedEnabled = true)
+@EnableGlobalMethodSecurity(securedEnabled = true)
 public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
@@ -37,8 +36,8 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/profile/register", "/login").permitAll()
-                .antMatchers("/").authenticated()
                 .antMatchers("/admin").hasRole("ADMIN")
+                .antMatchers("/**").authenticated()
                 .and().formLogin().loginPage("/login").successHandler(customSuccessHandler).failureUrl("/login?error=true")
                 .and().logout().logoutSuccessUrl("/login")
                 .and().exceptionHandling().accessDeniedPage("/access_denied")

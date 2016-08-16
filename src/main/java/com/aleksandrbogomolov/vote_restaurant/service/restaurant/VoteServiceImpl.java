@@ -5,6 +5,7 @@ import com.aleksandrbogomolov.vote_restaurant.repository.restaurant.VoteReposito
 import com.aleksandrbogomolov.vote_restaurant.util.exception.ExceptionUtil;
 import com.aleksandrbogomolov.vote_restaurant.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,6 +30,7 @@ public class VoteServiceImpl implements VoteService {
         ExceptionUtil.checkNotFoundWithId(repository.delete(userId), userId);
     }
 
+    @Secured("ROLE_ADMIN")
     @Override
     public void deleteAll() {
         repository.deleteAll();

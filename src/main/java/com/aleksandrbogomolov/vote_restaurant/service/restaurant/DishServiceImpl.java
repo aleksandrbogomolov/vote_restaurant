@@ -5,6 +5,7 @@ import com.aleksandrbogomolov.vote_restaurant.repository.restaurant.DishReposito
 import com.aleksandrbogomolov.vote_restaurant.util.exception.ExceptionUtil;
 import com.aleksandrbogomolov.vote_restaurant.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,16 +20,19 @@ public class DishServiceImpl implements DishService {
         this.repository = repository;
     }
 
+    @Secured("ROLE_ADMIN")
     @Override
     public Dish save(Dish entity, int restaurantId) {
         return repository.save(entity, restaurantId);
     }
 
+    @Secured("ROLE_ADMIN")
     @Override
     public Dish update(Dish entity, int restaurantId) {
         return ExceptionUtil.checkNotFoundWithId(repository.save(entity, restaurantId), entity.getId());
     }
 
+    @Secured("ROLE_ADMIN")
     @Override
     public void delete(int id, int restaurantId) throws NotFoundException {
         ExceptionUtil.checkNotFoundWithId(repository.delete(id, restaurantId), id);
