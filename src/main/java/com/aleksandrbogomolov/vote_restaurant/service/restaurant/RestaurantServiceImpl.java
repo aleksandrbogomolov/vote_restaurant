@@ -16,8 +16,6 @@ public class RestaurantServiceImpl implements BaseService<Restaurant> {
 
     private final RestaurantRepository repository;
 
-    private final RestaurantRepository repository;
-
     @Autowired
     public RestaurantServiceImpl(RestaurantRepository repository) {
         this.repository = repository;
