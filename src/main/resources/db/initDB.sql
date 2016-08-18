@@ -10,12 +10,13 @@ CREATE TABLE users (
   id         INTEGER     NOT NULL PRIMARY KEY DEFAULT nextval('global_seq'),
   name       VARCHAR(50) NOT NULL,
   email      VARCHAR(50) NOT NULL,
-  password   VARCHAR(16) NOT NULL,
+  password   VARCHAR     NOT NULL,
   registered TIMESTAMP                        DEFAULT now(),
   enabled    BOOL                             DEFAULT TRUE,
   role       VARCHAR(16) NOT NULL
 );
-CREATE UNIQUE INDEX users_unique_email_idx ON users (email);
+CREATE UNIQUE INDEX users_unique_email_idx
+  ON users (email);
 
 CREATE TABLE restaurants (
   id      INTEGER     NOT NULL PRIMARY KEY DEFAULT nextval('global_seq'),

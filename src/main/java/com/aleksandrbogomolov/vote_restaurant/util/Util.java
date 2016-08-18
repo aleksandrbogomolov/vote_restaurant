@@ -7,6 +7,7 @@ import com.aleksandrbogomolov.vote_restaurant.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,9 +15,12 @@ public class Util {
 
     private static UserService<User> service;
 
+    private static PasswordEncoder passwordEncoder;
+
     @Autowired
-    public Util(UserService<User> service) {
+    public Util(UserService<User> service, PasswordEncoder passwordEncoder) {
         Util.service = service;
+        Util.passwordEncoder = passwordEncoder;
     }
 
     public static Dish createNewFromDishTo(DishTo dishTo) {
@@ -34,5 +38,13 @@ public class Util {
 
     public static int getUserId() {
         return service.getByEmail(getPrincipal()).getId();
+    }
+
+    public static String encodePassword(String pass) {
+        return passwordEncoder.encode(pass);
+    }
+
+    public static boolean isPasswordMatches(CharSequence rawPassword, String encodedPassword) {
+        return passwordEncoder.matches(rawPassword, encodedPassword);
     }
 }

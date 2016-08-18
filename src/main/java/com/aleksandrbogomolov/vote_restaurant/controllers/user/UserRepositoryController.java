@@ -54,6 +54,6 @@ public class UserRepositoryController implements ExceptionInfoHandler {
     }
 
     private boolean isPasswordEquals(User user) {
-        return user.getPassword().equals(service.getOne(user.getId()).getPassword());
+        return Util.isPasswordMatches(user.getPassword(), service.getOne(user.getId()).getPassword());
     }
 }

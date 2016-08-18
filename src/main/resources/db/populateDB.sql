@@ -5,10 +5,10 @@ DELETE FROM restaurants;
 ALTER SEQUENCE global_seq RESTART WITH 100000;
 
 INSERT INTO users (name, email, password, role)
-VALUES ('User', 'user@yandex.ru', 'password', 'ROLE_USER');
+VALUES ('User', 'user@yandex.ru', '$2a$10$sMCFyv2EXxlPJQqP8MFJ9ecg60uZ9R/smYikx3kDYQLdIKSUNSy8W', 'ROLE_USER');
 
 INSERT INTO users (name, email, password, role)
-VALUES ('Admin', 'admin@yandex.ru', 'admin', 'ROLE_ADMIN');
+VALUES ('Admin', 'admin@yandex.ru', '$2a$10$OTlMoRcTDNsEbUsUlHmKvOuqqsBUu7fdvxSRL.gyNzzhgW9tzPL9y', 'ROLE_ADMIN');
 
 
 INSERT INTO restaurants (name, address) VALUES ('Кавказ', 'Днепровка');

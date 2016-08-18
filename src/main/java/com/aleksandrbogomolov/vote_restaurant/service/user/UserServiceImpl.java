@@ -2,6 +2,7 @@ package com.aleksandrbogomolov.vote_restaurant.service.user;
 
 import com.aleksandrbogomolov.vote_restaurant.model.user.User;
 import com.aleksandrbogomolov.vote_restaurant.repository.user.UserRepository;
+import com.aleksandrbogomolov.vote_restaurant.util.Util;
 import com.aleksandrbogomolov.vote_restaurant.util.exception.ExceptionUtil;
 import com.aleksandrbogomolov.vote_restaurant.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +26,13 @@ public class UserServiceImpl implements UserService<User>, UserDetailsService {
 
     @Override
     public User save(User entity) {
+        entity.setPassword(Util.encodePassword(entity.getPassword()));
         return repository.save(entity);
     }
 
     @Override
     public void update(User entity) {
+        entity.setPassword(Util.encodePassword(entity.getPassword()));
         repository.save(entity);
     }
 
