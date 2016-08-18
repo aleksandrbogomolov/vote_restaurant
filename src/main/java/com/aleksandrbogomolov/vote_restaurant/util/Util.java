@@ -9,9 +9,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
+
+import java.util.regex.Pattern;
 
 @Component
 public class Util {
+
+    private static final Pattern BCRYPT_PATTERN = Pattern.compile("\\A\\$2a?\\$\\d\\d\\$[./0-9A-Za-z]{53}");
 
     private static UserService<User> service;
 
@@ -40,8 +45,18 @@ public class Util {
         return service.getByEmail(getPrincipal()).getId();
     }
 
-    public static String encodePassword(String pass) {
-        return passwordEncoder.encode(pass);
+    public static String encodePassword(String newPassword) {
+        if (StringUtils.isEmpty(newPassword)) {
+            return null;
+        }
+        if (isEncoded(newPassword)) {
+            return newPassword;
+        }
+        return passwordEncoder.encode(newPassword);
+    }
+
+    public static boolean isEncoded(String newPassword) {
+        return BCRYPT_PATTERN.matcher(newPassword).matches();
     }
 
     public static boolean isPasswordMatches(CharSequence rawPassword, String encodedPassword) {

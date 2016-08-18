@@ -3,11 +3,14 @@ package com.aleksandrbogomolov.vote_restaurant.test_data;
 import com.aleksandrbogomolov.vote_restaurant.matcher.ModelMatcher;
 import com.aleksandrbogomolov.vote_restaurant.model.user.Role;
 import com.aleksandrbogomolov.vote_restaurant.model.user.User;
+import com.aleksandrbogomolov.vote_restaurant.util.Util;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Objects;
 
 import static com.aleksandrbogomolov.vote_restaurant.model.BaseEntity.START_SEQ;
 
+@Slf4j
 public class UserTestData {
 
     public static final int USER_ID = START_SEQ;
@@ -54,12 +57,22 @@ public class UserTestData {
             }
 
             TestUser testUser = (TestUser) obj;
-            return Objects.equals(this.password, testUser.password)
+            return comparePassword(this.password, testUser.password)
                     && Objects.equals(this.id, testUser.id)
                     && Objects.equals(this.name, testUser.name)
                     && Objects.equals(this.email, testUser.email)
                     && Objects.equals(this.enabled, testUser.enabled)
                     && Objects.equals(this.role, testUser.role);
+        }
+
+        private static boolean comparePassword(String rawOrEncodedPassword, String password) {
+            if (Util.isEncoded(rawOrEncodedPassword)) {
+                return rawOrEncodedPassword.equals(password);
+            } else if (!Util.isPasswordMatches(rawOrEncodedPassword, password)) {
+                logger.error("Password " + password + " doesn't match encoded " + password);
+                return false;
+            }
+            return true;
         }
     }
 }
