@@ -10,14 +10,13 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.ValidationException;
 
 @SuppressWarnings("OverloadedMethodsWithSameNumberOfParameters")
+@ControllerAdvice(annotations = RestController.class)
 public interface ExceptionInfoHandler {
 
     Logger LOGGER = LoggerFactory.getLogger(ExceptionInfoHandler.class);

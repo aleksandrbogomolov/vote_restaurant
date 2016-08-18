@@ -21,19 +21,16 @@ public class RestaurantServiceImpl implements BaseService<Restaurant> {
         this.repository = repository;
     }
 
-    @Secured("ROLE_ADMIN")
     @Override
     public Restaurant save(Restaurant entity) {
         return repository.save(entity);
     }
 
-    @Secured("ROLE_ADMIN")
     @Override
     public void update(Restaurant entity) {
         repository.save(entity);
     }
 
-    @Secured("ROLE_ADMIN")
     @Override
     public void delete(int id) throws NotFoundException {
         ExceptionUtil.checkNotFoundWithId(repository.delete(id), id);

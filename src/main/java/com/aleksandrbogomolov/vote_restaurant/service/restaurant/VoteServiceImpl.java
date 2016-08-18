@@ -30,7 +30,6 @@ public class VoteServiceImpl implements VoteService {
         ExceptionUtil.checkNotFoundWithId(repository.delete(userId), userId);
     }
 
-    @Secured("ROLE_ADMIN")
     @Override
     public void deleteAll() {
         repository.deleteAll();

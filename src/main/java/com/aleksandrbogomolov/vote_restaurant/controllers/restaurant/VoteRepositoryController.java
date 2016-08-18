@@ -7,6 +7,7 @@ import com.aleksandrbogomolov.vote_restaurant.util.exception.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,6 +46,7 @@ public class VoteRepositoryController {
         logger.info("add vote user.id={}, restaurant.id={}", userId, id);
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(method = RequestMethod.DELETE)
     public void clear() {
         service.deleteAll();

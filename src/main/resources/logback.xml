@@ -27,6 +27,8 @@
 
     <logger name="com.aleksandrbogomolov.vote_restaurant" level="debug"/>
 
+    <!--<logger name="org.springframework.web" level="debug"/>-->
+
     <!--log hibernate showSql-->
     <logger name="org.hibernate.SQL" level="debug"/>
 

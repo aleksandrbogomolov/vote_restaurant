@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @RestController
 @Slf4j
 @RequestMapping(value = "restaurant")
-public class RestaurantRepositoryController implements ExceptionInfoHandler {
+public class RestaurantRepositoryController {
 
     private final BaseService<Restaurant> service;
 
@@ -38,8 +38,9 @@ public class RestaurantRepositoryController implements ExceptionInfoHandler {
                 .collect(Collectors.toList());
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<String> create(@Valid Restaurant restaurant) {
+    public ResponseEntity<String> createOrUpdate(@Valid Restaurant restaurant) {
         if (restaurant.isNew()) {
             logger.info("create restaurant {}", restaurant);
             service.save(restaurant);
@@ -50,6 +51,7 @@ public class RestaurantRepositoryController implements ExceptionInfoHandler {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @Secured("ROLE_ADMIN")
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") int id) {
         logger.info("delete restaurant with id {}", id);

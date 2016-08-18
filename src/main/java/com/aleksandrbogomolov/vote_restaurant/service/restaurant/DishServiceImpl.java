@@ -20,19 +20,16 @@ public class DishServiceImpl implements DishService {
         this.repository = repository;
     }
 
-    @Secured("ROLE_ADMIN")
     @Override
     public Dish save(Dish entity, int restaurantId) {
         return repository.save(entity, restaurantId);
     }
 
-    @Secured("ROLE_ADMIN")
     @Override
     public Dish update(Dish entity, int restaurantId) {
         return ExceptionUtil.checkNotFoundWithId(repository.save(entity, restaurantId), entity.getId());
     }
 
-    @Secured("ROLE_ADMIN")
     @Override
     public void delete(int id, int restaurantId) throws NotFoundException {
         ExceptionUtil.checkNotFoundWithId(repository.delete(id, restaurantId), id);

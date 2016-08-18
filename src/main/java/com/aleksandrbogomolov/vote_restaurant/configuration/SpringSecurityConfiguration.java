@@ -37,7 +37,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/profile/register", "/login").permitAll()
                 .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/**").authenticated()
+                .antMatchers("/", "/**").authenticated()
                 .and().formLogin().loginPage("/login").successHandler(customSuccessHandler).failureUrl("/login?error=true")
                 .and().logout().logoutSuccessUrl("/login")
                 .and().exceptionHandling().accessDeniedPage("/access_denied")
