@@ -42,7 +42,7 @@ public class DataBaseConfiguration {
         URI dbUri = new URI(System.getenv("DATABASE_URL"));
         String username = dbUri.getUserInfo().split(":")[0];
         String password = dbUri.getUserInfo().split(":")[1];
-        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + dbUri.getPath() + ":" + dbUri.getPort() + dbUri.getPath();
+        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + dbUri.getPath();
 //        dataSource.setUrl(environment.getRequiredProperty("database.url"));
 //        dataSource.setUsername(environment.getRequiredProperty("database.username"));
 //        dataSource.setPassword(environment.getRequiredProperty("database.password"));
