@@ -14,6 +14,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Properties;
 
 @Configuration
@@ -43,6 +45,28 @@ public class DataBaseConfiguration {
         dataSource.setPassword(environment.getRequiredProperty("database.password"));
         return dataSource;
     }
+
+//    @Bean
+//    public DataSource dataSource() {
+//        String username = null;
+//        String password = null;
+//        String dbUrl = null;
+//        try {
+//            URI dbUri = new URI(System.getenv("DATABASE_URL"));
+//            username = dbUri.getUserInfo().split(":")[0];
+//            password = dbUri.getUserInfo().split(":")[1];
+//            dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+//        } catch (URISyntaxException e) {
+//            e.printStackTrace();
+//        }
+//
+//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//        dataSource.setUrl(dbUrl);
+//        dataSource.setUsername(username);
+//        dataSource.setPassword(password);
+//
+//        return dataSource;
+//    }
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
