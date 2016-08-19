@@ -25,8 +25,12 @@ import java.util.Properties;
 @PropertySource(value = "classpath:db/postgres.properties")
 public class DataBaseConfiguration {
 
+    private final Environment environment;
+
     @Autowired
-    private Environment environment;
+    public DataBaseConfiguration(Environment environment) {
+        this.environment = environment;
+    }
 
     private Properties postgresProperties() {
         Properties properties = new Properties();
