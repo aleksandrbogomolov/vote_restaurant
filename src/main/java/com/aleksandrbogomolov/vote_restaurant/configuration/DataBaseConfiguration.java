@@ -1,22 +1,21 @@
 package com.aleksandrbogomolov.vote_restaurant.configuration;
 
+import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Properties;
+
+//import javax.sql.DataSource;
 
 @Configuration
 @EnableJpaRepositories(basePackages = "com.aleksandrbogomolov.vote_restaurant.repository")
@@ -38,35 +37,14 @@ public class DataBaseConfiguration {
 
     @Bean
     public DataSource dataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        DataSource dataSource = new DataSource();
         dataSource.setDriverClassName(environment.getRequiredProperty("database.driverClassName"));
         dataSource.setUrl(environment.getRequiredProperty("database.url"));
         dataSource.setUsername(environment.getRequiredProperty("database.username"));
         dataSource.setPassword(environment.getRequiredProperty("database.password"));
+        dataSource.setValidationQuery("SELECT 1 FROM users");
         return dataSource;
     }
-
-//    @Bean
-//    public DataSource dataSource() {
-//        String username = null;
-//        String password = null;
-//        String dbUrl = null;
-//        try {
-//            URI dbUri = new URI(System.getenv("DATABASE_URL"));
-//            username = dbUri.getUserInfo().split(":")[0];
-//            password = dbUri.getUserInfo().split(":")[1];
-//            dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
-//        } catch (URISyntaxException e) {
-//            e.printStackTrace();
-//        }
-//
-//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-//        dataSource.setUrl(dbUrl);
-//        dataSource.setUsername(username);
-//        dataSource.setPassword(password);
-//
-//        return dataSource;
-//    }
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
