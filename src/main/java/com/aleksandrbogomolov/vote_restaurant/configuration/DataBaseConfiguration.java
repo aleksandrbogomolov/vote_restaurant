@@ -4,9 +4,11 @@ import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -38,17 +40,20 @@ public class DataBaseConfiguration {
     @Bean
     public DataSource dataSource() throws URISyntaxException {
         DataSource dataSource = new DataSource();
+        if (System.getenv("DATABASE_URL") != null) {
+            URI dbUri = new URI(System.getenv("DATABASE_URL"));
+            String username = dbUri.getUserInfo().split(":")[0];
+            String password = dbUri.getUserInfo().split(":")[1];
+            String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + dbUri.getPath();
+            dataSource.setUrl(dbUrl);
+            dataSource.setUsername(username);
+            dataSource.setPassword(password);
+        } else {
+            dataSource.setUrl(environment.getRequiredProperty("database.url"));
+            dataSource.setUsername(environment.getRequiredProperty("database.username"));
+            dataSource.setPassword(environment.getRequiredProperty("database.password"));
+        }
         dataSource.setDriverClassName("org.postgresql.Driver");
-        URI dbUri = new URI(System.getenv("DATABASE_URL"));
-        String username = dbUri.getUserInfo().split(":")[0];
-        String password = dbUri.getUserInfo().split(":")[1];
-        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + dbUri.getPath();
-//        dataSource.setUrl(environment.getRequiredProperty("database.url"));
-//        dataSource.setUsername(environment.getRequiredProperty("database.username"));
-//        dataSource.setPassword(environment.getRequiredProperty("database.password"));
-        dataSource.setUrl(dbUrl);
-        dataSource.setUsername(username);
-        dataSource.setPassword(password);
         dataSource.setValidationQuery("SELECT 1 FROM users");
         dataSource.setMaxActive(10);
         dataSource.setMinIdle(2);
@@ -61,22 +66,6 @@ public class DataBaseConfiguration {
         dataSource.setTestWhileIdle(true);
         return dataSource;
     }
-
-//    @Bean
-//    public BasicDataSource dataSource() throws URISyntaxException {
-//        URI dbUri = new URI(System.getenv("DATABASE_URL"));
-//
-//        String username = dbUri.getUserInfo().split(":")[0];
-//        String password = dbUri.getUserInfo().split(":")[1];
-//        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + dbUri.getPath() + ":" + dbUri.getPort() + dbUri.getPath();
-//
-//        BasicDataSource basicDataSource = new BasicDataSource();
-//        basicDataSource.setUrl(dbUrl);
-//        basicDataSource.setUsername(username);
-//        basicDataSource.setPassword(password);
-//
-//        return basicDataSource;
-//    }
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws URISyntaxException {
