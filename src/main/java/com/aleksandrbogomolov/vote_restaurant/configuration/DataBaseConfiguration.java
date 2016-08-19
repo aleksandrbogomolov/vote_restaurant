@@ -1,5 +1,6 @@
 package com.aleksandrbogomolov.vote_restaurant.configuration;
 
+import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -13,6 +14,8 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Properties;
 
 @Configuration
@@ -29,17 +32,24 @@ public class DataBaseConfiguration {
         properties.put("hibernate.show_sql", environment.getRequiredProperty("hibernate.show_sql"));
         properties.put("hibernate.format_sql", environment.getRequiredProperty("hibernate.format_sql"));
         properties.put("hibernate.use_sql_comments", environment.getRequiredProperty("hibernate.use_sql_comments"));
-        properties.put("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
+//        properties.put("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
         return properties;
     }
 
     @Bean
-    public DataSource dataSource() {
+    public DataSource dataSource() throws URISyntaxException {
         DataSource dataSource = new DataSource();
-        dataSource.setDriverClassName(environment.getRequiredProperty("database.driverClassName"));
-        dataSource.setUrl(environment.getRequiredProperty("database.url"));
+        dataSource.setDriverClassName("org.postgresql.Driver");
+        URI dbUri = new URI(System.getenv("DATABASE_URL"));
+        String username = dbUri.getUserInfo().split(":")[0];
+        String password = dbUri.getUserInfo().split(":")[1];
+        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + dbUri.getPath() + ":" + dbUri.getPort() + dbUri.getPath();
+//        dataSource.setUrl(environment.getRequiredProperty("database.url"));
 //        dataSource.setUsername(environment.getRequiredProperty("database.username"));
 //        dataSource.setPassword(environment.getRequiredProperty("database.password"));
+        dataSource.setUrl(dbUrl);
+        dataSource.setUsername(username);
+        dataSource.setPassword(password);
         dataSource.setValidationQuery("SELECT 1 FROM users");
         dataSource.setMaxActive(10);
         dataSource.setMinIdle(2);
@@ -53,8 +63,24 @@ public class DataBaseConfiguration {
         return dataSource;
     }
 
+//    @Bean
+//    public BasicDataSource dataSource() throws URISyntaxException {
+//        URI dbUri = new URI(System.getenv("DATABASE_URL"));
+//
+//        String username = dbUri.getUserInfo().split(":")[0];
+//        String password = dbUri.getUserInfo().split(":")[1];
+//        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + dbUri.getPath() + ":" + dbUri.getPort() + dbUri.getPath();
+//
+//        BasicDataSource basicDataSource = new BasicDataSource();
+//        basicDataSource.setUrl(dbUrl);
+//        basicDataSource.setUsername(username);
+//        basicDataSource.setPassword(password);
+//
+//        return basicDataSource;
+//    }
+
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws URISyntaxException {
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
         factoryBean.setDataSource(dataSource());
         factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
