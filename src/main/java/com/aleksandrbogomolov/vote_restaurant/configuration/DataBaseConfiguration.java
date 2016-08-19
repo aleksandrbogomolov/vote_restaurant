@@ -38,8 +38,8 @@ public class DataBaseConfiguration {
         DataSource dataSource = new DataSource();
         dataSource.setDriverClassName(environment.getRequiredProperty("database.driverClassName"));
         dataSource.setUrl(environment.getRequiredProperty("database.url"));
-        dataSource.setUsername(environment.getRequiredProperty("database.username"));
-        dataSource.setPassword(environment.getRequiredProperty("database.password"));
+//        dataSource.setUsername(environment.getRequiredProperty("database.username"));
+//        dataSource.setPassword(environment.getRequiredProperty("database.password"));
         dataSource.setValidationQuery("SELECT 1 FROM users");
         dataSource.setMaxActive(10);
         dataSource.setMinIdle(2);
