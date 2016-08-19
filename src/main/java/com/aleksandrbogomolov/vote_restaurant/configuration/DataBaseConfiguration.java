@@ -15,8 +15,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.persistence.EntityManagerFactory;
 import java.util.Properties;
 
-//import javax.sql.DataSource;
-
 @Configuration
 @EnableJpaRepositories(basePackages = "com.aleksandrbogomolov.vote_restaurant.repository")
 @EnableTransactionManagement
@@ -43,6 +41,15 @@ public class DataBaseConfiguration {
         dataSource.setUsername(environment.getRequiredProperty("database.username"));
         dataSource.setPassword(environment.getRequiredProperty("database.password"));
         dataSource.setValidationQuery("SELECT 1 FROM users");
+        dataSource.setMaxActive(10);
+        dataSource.setMinIdle(2);
+        dataSource.setMaxWait(20000);
+        dataSource.setInitialSize(2);
+        dataSource.setMaxIdle(5);
+        dataSource.setTestOnBorrow(true);
+        dataSource.setRemoveAbandoned(true);
+        dataSource.setTestOnConnect(true);
+        dataSource.setTestWhileIdle(true);
         return dataSource;
     }
 
