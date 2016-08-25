@@ -12,6 +12,7 @@ public class RestaurantTestData {
     public static final int RESTAURANT_ID = START_SEQ + 2;
 
     public static final Restaurant RESTAURANT_1 = new Restaurant(RESTAURANT_ID, "Кавказ", "Днепровка");
+
     public static final Restaurant RESTAURANT_2 = new Restaurant(RESTAURANT_ID + 1, "Скиф", "Энергодар");
 
     public static final ModelMatcher<Restaurant, TestRestaurant> RESTAURANT_MATCHER = new ModelMatcher<>(tr -> ((tr instanceof TestRestaurant) ? (TestRestaurant) tr : new TestRestaurant(tr)));
@@ -20,10 +21,6 @@ public class RestaurantTestData {
 
         public TestRestaurant(Restaurant r) {
             this(r.getId(), r.getName(), r.getAddress());
-        }
-
-        public TestRestaurant(String name, String address) {
-            this(null, name, address);
         }
 
         public TestRestaurant(Integer id, String name, String address) {
@@ -44,15 +41,15 @@ public class RestaurantTestData {
         }
 
         @Override
-        public boolean equals(Object o) {
-            if (this == o) {
+        public boolean equals(Object obj) {
+            if (this == obj) {
                 return true;
             }
-            if (o == null || getClass() != o.getClass()) {
+            if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
 
-            RestaurantTestData.TestRestaurant testRestaurant = (RestaurantTestData.TestRestaurant) o;
+            RestaurantTestData.TestRestaurant testRestaurant = (RestaurantTestData.TestRestaurant) obj;
             return Objects.equals(this.id, testRestaurant.id)
                     && Objects.equals(this.name, testRestaurant.name)
                     && Objects.equals(this.address, testRestaurant.address);
