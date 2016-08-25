@@ -1,10 +1,13 @@
 package com.aleksandrbogomolov.vote_restaurant.service.user;
 
+import com.aleksandrbogomolov.vote_restaurant.controllers.user.UserRepositoryController;
 import com.aleksandrbogomolov.vote_restaurant.model.user.Role;
 import com.aleksandrbogomolov.vote_restaurant.model.user.User;
 import com.aleksandrbogomolov.vote_restaurant.service.AbstractServiceTest;
 import com.aleksandrbogomolov.vote_restaurant.util.exception.NotFoundException;
 import lombok.val;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -12,6 +15,7 @@ import org.springframework.dao.DataAccessException;
 import java.util.Arrays;
 import java.util.Collections;
 
+import static com.aleksandrbogomolov.vote_restaurant.controllers.user.UserRepositoryController.isTest;
 import static com.aleksandrbogomolov.vote_restaurant.test_data.UserTestData.*;
 
 public class UserServiceImplTest extends AbstractServiceTest {
@@ -19,6 +23,16 @@ public class UserServiceImplTest extends AbstractServiceTest {
     @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
     private UserService<User> userService;
+
+    @Before
+    public void setUp() {
+        isTest = true;
+    }
+
+    @After
+    public void setDown() {
+        isTest = false;
+    }
 
     @Test
     public void save() throws Exception {

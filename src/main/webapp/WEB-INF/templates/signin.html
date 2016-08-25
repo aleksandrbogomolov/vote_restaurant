@@ -2,8 +2,10 @@
 <!--suppress ThymeleafVariablesResolveInspection -->
 <html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8">
     <title th:text="#{signin.header.title}"></title>
+    <meta charset="utf-8">
+    <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+    <meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
     <link rel="shortcut icon" href="../../resources/images/favicon.png">
     <link rel="stylesheet" href="../../resources/css/bootstrap.min.css" media="screen">
     <link rel="stylesheet" href="../../resources/css/signin.css">
@@ -13,6 +15,9 @@
 
 <div class="col-md-4 col-md-offset-4 message" th:if="${error}">
     <p class="text-center alert alert-danger" th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}"></p>
+</div>
+<div class="col-md-4 col-md-offset-4 message" th:if="${message}">
+    <p class="text-center alert alert-success" th:text="#{${message}}"></p>
 </div>
 
 <div class="container">
