@@ -19,7 +19,9 @@
                 <a class="btn btn-success btn-sm navbar-btn" style="margin-left:10px;"
                    th:text="#{header.update}" onclick="profileForm()"></a>
 
-                <a class="btn btn-danger btn-sm navbar-btn" href="/logout" th:text="#{header.logout}"></a>
+                <form th:action="@{/logout}" method="post" style="display: inline-block">
+                    <input class="btn btn-danger btn-sm navbar-btn" type="submit" th:value="#{header.logout}">
+                </form>
 
                 <div class="btn-group">
 

@@ -21,7 +21,7 @@ public class UserTestData {
 
     public static final ModelMatcher<User, TestUser> USER_MATCHER = new ModelMatcher<>(u -> ((u instanceof TestUser) ? (TestUser) u : new TestUser(u)));
 
-    public static class TestUser extends User {
+    public static class TestUser extends User { //ToDo mb change on matcher
 
         public TestUser(User u) {
             this(u.getId(), u.getName(), u.getEmail(), u.getPassword(), u.isEnabled(), u.getRole());
