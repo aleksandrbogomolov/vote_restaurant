@@ -38,17 +38,17 @@ function makeEditable() {
         $('#new-dish').modal();
     });
 
-    $('#new-dish').submit(function () {
-        createDish($('#details-form'));
+    $('#details-form').submit(function () {
+        createDish($(this));
         return false;
     });
 
-    $('#update-dish').submit(function () {
-        createDish($('#update-dish'));
+    $('.update-dish').submit(function () {
+        createDish($(this));
         return false;
     });
 
-    $('#delete-dish').click(function () {
+    $('.delete-dish').click(function () {
         var form = $(this).parent();
         var array = form.serializeArray();
         deleteDish(array);
@@ -136,14 +136,14 @@ function dishesForUserPage(data) {
 function dishesForAdminPage(data) {
     var result = '';
     $.each(data, function (key, value) {
-        result += '<form class="form-inline" id="update-dish" method="post">' +
+        result += '<form class="form-inline update-dish" method="post">' +
             '<input type="hidden" value="' + value.id + '" name="id"/>' +
             '<input type="hidden" value="' + value.restaurant + '" name="restaurant"/>' +
             '<input id="name" type="text" class="form-control" value="' + value.name + '" name="name"/>' +
             '<input id="price" type="text" class="form-control" value="' + value.price + '" name="price"/>' +
             '<input id="typeDish" type="text" class="form-control" value="' + value.typeDish + '" name="typeDish"/>' +
             '<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-ok"></i></button>' +
-            '<a class="btn btn-default" id="delete-dish"><i class="glyphicon glyphicon-remove"></i></a>' +
+            '<a class="btn btn-default delete-dish"><i class="glyphicon glyphicon-remove"></i></a>' +
             '</form>';
     });
     return result;
@@ -214,7 +214,7 @@ function createDish(form) {
             newDish.modal('hide');
             newDish.find('input, textarea').val('');
             updateDesk();
-            successNoty('Create new dish', 1000)
+            successNoty('Create or update dish', 1000)
         }
     });
 }
