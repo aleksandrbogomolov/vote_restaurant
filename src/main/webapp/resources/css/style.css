@@ -7,14 +7,10 @@ body {
     bottom: 0;
     right: 6%;
     z-index: 100;
-    background: #5ac19b;
+    background: #5cb85c;
     font-size: 24px;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
-}
-
-.scroll-top a:link, .scroll-top a:visited {
-    color: #222;
 }
 
 #footer {
@@ -25,21 +21,8 @@ body {
     padding: 15px;
 }
 
-#footer a {
-    color: rgba(252, 252, 252, 0);
-}
-
-#updateDish {
-    display: inline-block;
-}
-
-#update-dish input {
-    width: 26%;
-    height: 33px;
-}
-
-#update-dish a {
-    color: black;
+#update-dish .form-control {
+    width: 27%;
 }
 
 #thumb-up {

@@ -76,6 +76,7 @@ function getAllFromUserPage() {
     var table = $('#datatable');
     $.get(restaurantUrl, function (data) {
         $.each(data, function (key, value) {
+            //noinspection JSUnresolvedVariable
             table.append('<div class="col-md-4"><div class="thumbnail"><div class="caption">' +
                 '<h3 class="caption-label name">' + value.name + '</h3>' +
                 '<h4 class="caption-label">' + value.address + '</h4>' +
@@ -95,6 +96,7 @@ function getAllFromAdminPage() {
     var table = $('#datatable');
     $.get(restaurantUrl, function (data) {
         $.each(data, function (key, value) {
+            //noinspection JSUnresolvedVariable
             table.append('<div class="col-lg-6"><div class="thumbnail"><div class="caption">' +
                 '<form method="post" name="update-restaurant">' +
                 '<input type="hidden" value="' + value.id + '" name="id">' +
@@ -106,9 +108,8 @@ function getAllFromAdminPage() {
                 '<a class="btn btn-default delete-restaurant" id="' + value.id + '">' + table_delete + '</a>' +
                 '<a class="btn btn-default add-dish" id="' + value.id + '">' + table_add_dish + '</a>' +
                 '</form><br>' +
-                '<div>' +
                 dishesForAdminPage(value.dishes) +
-                '</div><h3>' +
+                '<h3>' +
                 '<a id="thumb-up"><i class="glyphicon glyphicon-thumbs-up"></i></a>' +
                 '<span class="pull-right" id="count">' + value.votes.length + '</span>' +
                 '</h3></div></div></div>');
@@ -128,14 +129,15 @@ function dishesForUserPage(data) {
 function dishesForAdminPage(data) {
     var result = '';
     $.each(data, function (key, value) {
-        result += '<form id="update-dish" class="form-inline" method="post">' +
+        result += '<form class="form-inline" id="update-dish" method="post">' +
             '<input type="hidden" value="' + value.id + '" name="id"/>' +
             '<input type="hidden" value="' + value.restaurant + '" name="restaurant"/>' +
-            '<input type="text" class="form-control" value="' + value.name + '" name="name"/>' +
-            '<input type="text" class="form-control" value="' + value.price + '" name="price"/>' +
-            '<input type="text" class="form-control" value="' + value.typeDish + '" name="typeDish"/>' +
+            '<input id="name" type="text" class="form-control" value="' + value.name + '" name="name"/>' +
+            '<input id="price" type="text" class="form-control" value="' + value.price + '" name="price"/>' +
+            '<input id="typeDish" type="text" class="form-control" value="' + value.typeDish + '" name="typeDish"/>' +
             '<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-ok"></i></button>' +
-            '<a class="btn btn-default" id="delete-dish"><i class="glyphicon glyphicon-remove"></i></a></form>';
+            '<a class="btn btn-default" id="delete-dish"><i class="glyphicon glyphicon-remove"></i></a>' +
+            '</form>';
     });
     return result;
 }
