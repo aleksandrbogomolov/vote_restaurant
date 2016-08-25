@@ -2,6 +2,7 @@ package com.aleksandrbogomolov.vote_restaurant.controllers;
 
 import com.aleksandrbogomolov.vote_restaurant.util.exception.ErrorInfo;
 import com.aleksandrbogomolov.vote_restaurant.util.exception.NotFoundException;
+import com.aleksandrbogomolov.vote_restaurant.util.exception.TimeException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.Ordered;
@@ -26,6 +27,14 @@ public interface ExceptionInfoHandler {
     @ResponseBody
     @Order(Ordered.HIGHEST_PRECEDENCE)
     default ErrorInfo handleError(HttpServletRequest req, NotFoundException e) {
+        return logAndGetErrorInfo(req, e, false);
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(TimeException.class)
+    @ResponseBody
+    @Order(Ordered.HIGHEST_PRECEDENCE)
+    default ErrorInfo handleError(HttpServletRequest req, TimeException e) {
         return logAndGetErrorInfo(req, e, false);
     }
 
