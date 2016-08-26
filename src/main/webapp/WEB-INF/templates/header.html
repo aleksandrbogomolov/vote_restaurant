@@ -23,17 +23,23 @@
                     <input class="btn btn-danger btn-sm navbar-btn" type="submit" th:value="#{header.logout}">
                 </form>
 
-                <div class="btn-group">
+                <div style="display: inline-block">
 
-                    <button class="btn btn-info navbar-btn btn-sm">En</button>
+                    <li class="dropdown btn-group">
+                        <button class="btn btn-info navbar-btn btn-sm" th:text="${#locale}"></button>
+                        <button class="dropdown-toggle btn btn-info navbar-btn btn-sm" data-toggle="dropdown"><b
+                                class="caret"></b></button>
+                        <ul class="dropdown-menu" style="min-width:30px;">
+                            <li><a onclick="show('en')">English</a></li>
+                            <li><a onclick="show('ru')">Русский</a></li>
+                        </ul>
+                    </li>
 
-                    <button class="btn dropdown-toggle navbar-btn btn-info btn-sm" data-toggle="dropdown">
-                        <span class="caret"></span>
-                    </button>
-
-                    <ul class="dropdown-menu" style="min-width:30px;">
-                        <li><a href="">Ru</a></li>
-                    </ul>
+                    <script type="text/javascript">
+                        function show(lang) {
+                            window.location.href = window.location.href.split('?')[0] + '?lang=' + lang;
+                        }
+                    </script>
 
                 </div>
             </ul>
