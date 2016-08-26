@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
+import java.time.Clock;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -17,6 +18,12 @@ public class VoteServiceImpl implements VoteService {
 
     private final VoteRepository repository;
 
+    private static Clock clock = Clock.systemDefaultZone();
+
+    static void setClock(Clock clock) {
+        VoteServiceImpl.clock = clock;
+    }
+
     @Autowired
     public VoteServiceImpl(VoteRepository repository) {
         this.repository = repository;
@@ -24,7 +31,8 @@ public class VoteServiceImpl implements VoteService {
 
     @Override
     public Vote save(Vote vote, int userId, int restaurantId) throws TimeException {
-        if (LocalTime.now().isBefore(LocalTime.of(7, 0)) || LocalTime.now().isAfter(LocalTime.of(11, 0))) {
+        if (LocalTime.now(clock).isBefore(LocalTime.of(7, 0)) ||
+                LocalTime.now(clock).isAfter(LocalTime.of(11, 0))) {
             throw new TimeException("Time to vote from 07:00 to 11:00");
         } else {
             return repository.save(vote, userId, restaurantId);
