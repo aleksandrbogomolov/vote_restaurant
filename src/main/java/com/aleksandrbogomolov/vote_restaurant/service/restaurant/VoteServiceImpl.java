@@ -6,7 +6,6 @@ import com.aleksandrbogomolov.vote_restaurant.util.exception.ExceptionUtil;
 import com.aleksandrbogomolov.vote_restaurant.util.exception.NotFoundException;
 import com.aleksandrbogomolov.vote_restaurant.util.exception.TimeException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 import java.time.Clock;
@@ -14,7 +13,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 @Service
-public class VoteServiceImpl implements VoteService {
+class VoteServiceImpl implements VoteService {
 
     private final VoteRepository repository;
 

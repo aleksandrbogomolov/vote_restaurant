@@ -8,6 +8,7 @@ public interface DishRepository {
 
     Dish save(Dish entity, int restaurantId);
 
+    @SuppressWarnings("BooleanMethodNameMustStartWithQuestion")
     boolean delete(int id, int restaurantId);
 
     Dish getOne(int id, int restaurantId);

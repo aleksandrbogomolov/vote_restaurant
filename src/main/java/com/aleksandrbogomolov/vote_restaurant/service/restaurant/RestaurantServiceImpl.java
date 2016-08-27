@@ -1,12 +1,11 @@
 package com.aleksandrbogomolov.vote_restaurant.service.restaurant;
 
 import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Restaurant;
-import com.aleksandrbogomolov.vote_restaurant.repository.restaurant.RestaurantRepository;
+import com.aleksandrbogomolov.vote_restaurant.repository.BaseRepository;
 import com.aleksandrbogomolov.vote_restaurant.service.BaseService;
 import com.aleksandrbogomolov.vote_restaurant.util.exception.ExceptionUtil;
 import com.aleksandrbogomolov.vote_restaurant.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,10 +13,10 @@ import java.util.List;
 @Service
 public class RestaurantServiceImpl implements BaseService<Restaurant> {
 
-    private final RestaurantRepository repository;
+    private final BaseRepository<Restaurant> repository;
 
     @Autowired
-    public RestaurantServiceImpl(RestaurantRepository repository) {
+    public RestaurantServiceImpl(BaseRepository<Restaurant> repository) {
         this.repository = repository;
     }
 

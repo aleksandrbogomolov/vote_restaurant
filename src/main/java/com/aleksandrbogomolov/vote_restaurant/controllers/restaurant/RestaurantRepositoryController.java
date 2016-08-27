@@ -1,6 +1,5 @@
 package com.aleksandrbogomolov.vote_restaurant.controllers.restaurant;
 
-import com.aleksandrbogomolov.vote_restaurant.controllers.ExceptionInfoHandler;
 import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Restaurant;
 import com.aleksandrbogomolov.vote_restaurant.service.BaseService;
 import lombok.extern.slf4j.Slf4j;

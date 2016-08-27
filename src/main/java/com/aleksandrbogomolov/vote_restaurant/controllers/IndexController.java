@@ -1,7 +1,6 @@
 package com.aleksandrbogomolov.vote_restaurant.controllers;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;

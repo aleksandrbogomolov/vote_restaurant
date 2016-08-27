@@ -15,11 +15,15 @@ import java.util.List;
 @Transactional
 public class DishRepositoryImpl implements DishRepository {
 
-    @Autowired
-    private ProxyDishRepository proxy;
+    private final ProxyDishRepository proxy;
 
     @PersistenceContext
     private EntityManager entityManager;
+
+    @Autowired
+    public DishRepositoryImpl(ProxyDishRepository proxy) {
+        this.proxy = proxy;
+    }
 
     @Override
     @Transactional

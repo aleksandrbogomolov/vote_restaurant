@@ -8,6 +8,7 @@ public interface VoteRepository {
 
     Vote save(Vote vote, int userId, int restaurantId);
 
+    @SuppressWarnings("BooleanMethodNameMustStartWithQuestion")
     boolean delete(int userId);
 
     void deleteAll();

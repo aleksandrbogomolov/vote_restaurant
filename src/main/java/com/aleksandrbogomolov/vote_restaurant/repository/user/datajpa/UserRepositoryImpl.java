@@ -15,8 +15,12 @@ public class UserRepositoryImpl implements UserRepository {
 
     private static final Sort USER_NAME = new Sort("name");
 
+    private final ProxyUserRepository proxy;
+
     @Autowired
-    private ProxyUserRepository proxy;
+    public UserRepositoryImpl(ProxyUserRepository proxy) {
+        this.proxy = proxy;
+    }
 
     @Override
     @Transactional

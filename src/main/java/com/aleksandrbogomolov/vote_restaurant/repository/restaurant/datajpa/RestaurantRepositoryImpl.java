@@ -1,7 +1,7 @@
 package com.aleksandrbogomolov.vote_restaurant.repository.restaurant.datajpa;
 
 import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Restaurant;
-import com.aleksandrbogomolov.vote_restaurant.repository.restaurant.RestaurantRepository;
+import com.aleksandrbogomolov.vote_restaurant.repository.BaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
@@ -11,12 +11,16 @@ import java.util.List;
 
 @Repository
 @Transactional(readOnly = true)
-public class RestaurantRepositoryImpl implements RestaurantRepository {
+public class RestaurantRepositoryImpl implements BaseRepository<Restaurant> {
 
     private static final Sort RESTAURANT_NAME = new Sort("name");
 
+    private final ProxyRestaurantRepository proxy;
+
     @Autowired
-    private ProxyRestaurantRepository proxy;
+    public RestaurantRepositoryImpl(ProxyRestaurantRepository proxy) {
+        this.proxy = proxy;
+    }
 
     @Override
     @Transactional

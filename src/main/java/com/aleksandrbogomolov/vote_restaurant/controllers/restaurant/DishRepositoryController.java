@@ -1,6 +1,5 @@
 package com.aleksandrbogomolov.vote_restaurant.controllers.restaurant;
 
-import com.aleksandrbogomolov.vote_restaurant.controllers.ExceptionInfoHandler;
 import com.aleksandrbogomolov.vote_restaurant.model.restaurant.Dish;
 import com.aleksandrbogomolov.vote_restaurant.model.to.DishTo;
 import com.aleksandrbogomolov.vote_restaurant.service.restaurant.DishService;

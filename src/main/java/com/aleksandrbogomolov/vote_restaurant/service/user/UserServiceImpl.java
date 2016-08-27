@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService<User>, UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(@SuppressWarnings("ParameterNameDiffersFromOverriddenParameter") String email) throws UsernameNotFoundException {
         User user = repository.getByEmail(email);
         if (user == null) {
             throw new UsernameNotFoundException("User " + email + " is not found");

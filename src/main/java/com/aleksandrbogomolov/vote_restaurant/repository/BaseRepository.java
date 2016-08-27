@@ -8,6 +8,7 @@ public interface BaseRepository<T extends BaseEntity> {
 
     T save(T entity);
 
+    @SuppressWarnings("BooleanMethodNameMustStartWithQuestion")
     boolean delete(int id);
 
     default T getOne(int id) {
