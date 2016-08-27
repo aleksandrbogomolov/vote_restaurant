@@ -1,5 +1,6 @@
 package com.aleksandrbogomolov.vote_restaurant.util.exception;
 
+@SuppressWarnings("NonBooleanMethodNameMayNotStartWithQuestion")
 public class ExceptionUtil {
 
     private ExceptionUtil() {
