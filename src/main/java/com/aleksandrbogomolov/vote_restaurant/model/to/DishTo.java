@@ -24,17 +24,6 @@ public class DishTo {
     @NotNull
     private int restaurant;
 
-    public DishTo() {
-    }
-
-    public DishTo(int id, String name, int price, int typeDish, int restaurant) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.typeDish = typeDish;
-        this.restaurant = restaurant;
-    }
-
     @Override
     public String toString() {
         return "DishTo{" +
