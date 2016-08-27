@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @Slf4j
-public class IndexController implements ExceptionInfoHandler {
+public class IndexController {
 
     @RequestMapping(value = "login")
     public String getLoginPage(ModelMap modelMap,
