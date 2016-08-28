@@ -15,6 +15,10 @@ function makeEditable() {
         return false;
     });
 
+    $('#help').click(function () {
+        $('#faq').modal();
+    });
+
     $('#addRestaurant').click(function () {
         $('#new-restaurant').modal();
     });
