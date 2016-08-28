@@ -2,24 +2,21 @@
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e19b70a1a840492abd2ce1539a1deb54)](https://www.codacy.com/app/ksandr-ua/vote_restaurant?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=aleksandrbogomolov/vote_restaurant&amp;utm_campaign=Badge_Grade)
 
-Solution in process
+Java приложение с использованием Spring MVC, Spring Security, Spring Data JPA, Hibernate ORM, REST(Jackson), SLF4J, Apache Tomcat, Maven, Thymeleaf, jQuery, Bootstrap.
 
-Goal:
+Демо доступно по адресу [https://vote-restaurant.herokuapp.com/](https://vote-restaurant.herokuapp.com/)
 
-Design and implement a JSON API using Hibernate/Spring/SpringMVC (or Spring-Boot).
+Каждый ресторан предлагает меню каждый день. Пользователи могут голосовать за ресторан в котором они хотели бы обедать. Только один голос учитывается если пользователь голосует снова в тот же день. Если это произошло после 07:00 и до 11:00 мы считаем, что пользователь изменил свое мнение. Если до 07:00 и после 11:00, тогда голос не может быть изменен или добавлен.
 
-The task is:
+Доступны два предустановленных пользователя с различными правами  
+* Админ (логин = **admin@yandex.ru** пароль = **admin**) для доступа ко всем возможностям  
+* Юзер (логин = **user@yandex.ru** пароль = **password**) с правами пользователя. Также вы можете зарегестировать новый аккаунт с правами пользователя. 
 
-Build a voting system for deciding where to have lunch.
+Админ/Юзер не доступны для редактирования и удаления.
 
-2 types of users: admin and regular users
-Admin can input a restaurant and it's lunch menu of the day (2-5 items usually, just a dish name and price)
-Menu changes each day (admins do the updates)
-Users can vote on which restaurant they want to have lunch at
-Only one vote counted per user
-If user votes again the same day:
-If it is before 11:00 we assume that he changed his mind.
-If it is after 11:00 then it is too late, vote can't be changed
-Each restaurant provides new menu each day.
+Запуск из командной строки
 
-As a result, provide a link to github repository. It should contain the code, README.md with API documentation and couple curl commands to test it.
+```
+mvn clean package
+mvn tomcat7:run
+```
